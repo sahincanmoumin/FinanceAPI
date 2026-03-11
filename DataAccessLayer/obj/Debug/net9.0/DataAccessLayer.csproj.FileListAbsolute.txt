@@ -1,0 +1,17 @@
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\DataAccessLayer.deps.json
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\DataAccessLayer.runtimeconfig.json
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\DataAccessLayer.dll
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\DataAccessLayer.pdb
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\EntityLayer.dll
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\bin\Debug\net9.0\EntityLayer.pdb
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAcce.E67BD773.Up2Date
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.dll
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\refint\DataAccessLayer.dll
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.pdb
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.genruntimeconfig.cache
+C:\Users\sahin\source\repos\FinanceApi\DataAccessLayer\obj\Debug\net9.0\ref\DataAccessLayer.dll

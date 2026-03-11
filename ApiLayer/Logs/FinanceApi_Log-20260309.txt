@@ -1,0 +1,1179 @@
+2026-03-09 14:19:31.912 +03:00 [INF] Finance API started successfully
+2026-03-09 14:19:31.972 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:19:32.269 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:19:32.272 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:19:32.369 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:19:32.371 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:19:32.373 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:19:47.026 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:19:47.258 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 240.9642ms
+2026-03-09 14:19:47.313 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:19:47.313 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:19:47.327 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:19:47.330 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 16.6348ms
+2026-03-09 14:19:47.371 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 58.9378ms
+2026-03-09 14:19:47.409 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 82.2152ms
+2026-03-09 14:19:47.625 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:19:47.697 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:19:47.709 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 84.4901ms
+2026-03-09 14:19:49.217 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:19:49.226 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 9.1343ms
+2026-03-09 14:19:49.260 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:19:49.262 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:19:49.265 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 5.0651ms
+2026-03-09 14:19:49.269 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 6.8931ms
+2026-03-09 14:19:49.276 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:19:49.295 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.6314ms
+2026-03-09 14:19:49.343 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:19:49.390 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:19:49.395 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 52.7525ms
+2026-03-09 14:19:50.054 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:19:50.060 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 5.8822ms
+2026-03-09 14:19:50.093 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:19:50.094 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:19:50.098 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 5.2819ms
+2026-03-09 14:19:50.102 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.3534ms
+2026-03-09 14:19:50.104 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:19:50.123 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.0459ms
+2026-03-09 14:19:50.170 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:19:50.200 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:19:50.207 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 37.0511ms
+2026-03-09 14:19:50.710 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:19:50.717 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 6.7712ms
+2026-03-09 14:19:50.751 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:19:50.753 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:19:50.756 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 4.7124ms
+2026-03-09 14:19:50.761 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 8.2354ms
+2026-03-09 14:19:50.767 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:19:50.780 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.5083ms
+2026-03-09 14:19:50.831 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:19:50.860 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:19:50.868 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 36.6496ms
+2026-03-09 14:19:51.221 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:19:51.229 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 7.4001ms
+2026-03-09 14:19:51.268 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:19:51.269 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:19:51.273 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 5.0511ms
+2026-03-09 14:19:51.278 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 8.5459ms
+2026-03-09 14:19:51.285 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:19:51.303 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.8288ms
+2026-03-09 14:19:51.354 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:19:51.391 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:19:51.397 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 43.1698ms
+2026-03-09 14:20:17.266 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:20:17.277 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 10.8442ms
+2026-03-09 14:20:17.314 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:20:17.316 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:20:17.321 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.1017ms
+2026-03-09 14:20:17.329 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:20:17.331 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 15.04ms
+2026-03-09 14:20:17.356 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.6571ms
+2026-03-09 14:20:17.405 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:20:17.441 +03:00 [ERR] An unhandled exception has occurred. Path: /swagger/v1/swagger.json, Method: GET
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Invoices" for actions - WebAPI.Controllers.InvoicesController.GetAll (ApiLayer), ApiLayer.Controllers.InvoicesController.GetAll (ApiLayer). Actions require a unique method/path combination for Swagger/OpenAPI 2.0 and 3.0. Use ConflictingActionsResolver as a workaround or provide your own implementation of PathGroupSelector.
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.IteratorSelectIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:20:17.448 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 500 null application/json 42.6419ms
+2026-03-09 14:22:25.188 +03:00 [INF] Finance API started successfully
+2026-03-09 14:22:25.248 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:22:25.463 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:22:25.466 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:22:25.673 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:22:25.676 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:22:25.678 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:22:45.759 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:22:45.931 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 180.381ms
+2026-03-09 14:22:45.965 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:22:45.965 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:22:45.972 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 6.3989ms
+2026-03-09 14:22:45.981 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:22:45.998 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 33.0507ms
+2026-03-09 14:22:46.031 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.1073ms
+2026-03-09 14:22:46.133 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:22:46.165 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.4452ms
+2026-03-09 14:22:57.300 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/CurrentAccounts?PageNumber=1&PageSize=2&companyId=1 - null null
+2026-03-09 14:22:58.142 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-03-09 14:22:58.148 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-03-09 14:22:58.151 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/CurrentAccounts?PageNumber=1&PageSize=2&companyId=1 - 401 0 null 850.5673ms
+2026-03-09 14:23:11.081 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 14:23:11.093 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:23:11.128 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:24:47.589 +03:00 [INF] Finance API started successfully
+2026-03-09 14:24:47.681 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:24:47.971 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:24:47.973 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:24:48.210 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:24:48.213 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:24:48.215 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:25:02.172 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 14:25:02.172 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:25:02.267 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:02.298 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:25:02.398 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 235.2303ms
+2026-03-09 14:25:02.509 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:25:02.509 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:25:02.518 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 8.6315ms
+2026-03-09 14:25:02.567 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:25:02.573 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 64.206ms
+2026-03-09 14:25:02.612 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 72.9925ms
+2026-03-09 14:25:02.740 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:25:02.781 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 41.1281ms
+2026-03-09 14:25:03.295 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 990.9555ms
+2026-03-09 14:25:03.297 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:03.325 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/register, Method: POST
+System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Text.Json.Serialization.StreamReadBufferState.ReadAsync(Stream stream, CancellationToken cancellationToken, Boolean fillBuffer)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 14:25:03.365 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 500 null application/json 1202.4124ms
+2026-03-09 14:25:23.962 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 14:25:23.997 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:24.007 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:25:24.109 +03:00 [INF] New user registration attempt: string
+2026-03-09 14:25:24.598 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`UserName` = @__dto_UserName_0)
+2026-03-09 14:25:24.841 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`CreateDate`, `FullName`, `PasswordHash`, `UpdateDate`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 14:25:24.896 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:25:24.907 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 896.4003ms
+2026-03-09 14:25:24.910 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:24.918 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 200 null application/json; charset=utf-8 956.2211ms
+2026-03-09 14:25:33.824 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 75
+2026-03-09 14:25:33.833 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:33.835 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:25:33.862 +03:00 [INF] New user registration attempt: string2
+2026-03-09 14:25:33.869 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Users` AS `u`
+    WHERE `u`.`UserName` = @__dto_UserName_0)
+2026-03-09 14:25:33.878 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`CreateDate`, `FullName`, `PasswordHash`, `UpdateDate`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 14:25:33.891 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:25:33.894 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 55.2575ms
+2026-03-09 14:25:33.896 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 14:25:33.898 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 200 null application/json; charset=utf-8 73.3681ms
+2026-03-09 14:28:19.358 +03:00 [INF] Finance API started successfully
+2026-03-09 14:28:19.436 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:28:19.728 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:28:19.731 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:28:19.806 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:28:19.809 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:28:19.810 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:28:53.055 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:28:53.220 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 170.6732ms
+2026-03-09 14:28:53.260 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:28:53.260 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:28:53.267 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 6.4247ms
+2026-03-09 14:28:53.300 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:28:53.385 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 124.4836ms
+2026-03-09 14:28:53.416 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 146.6321ms
+2026-03-09 14:28:53.515 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:28:53.548 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 32.8561ms
+2026-03-09 14:28:58.916 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 14:28:58.990 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:28:59.009 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:28:59.771 +03:00 [INF] Login attempt for user: string
+2026-03-09 14:29:00.208 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 14:29:00.268 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 14:40:56.764 +03:00 [INF] Finance API started successfully
+2026-03-09 14:40:56.844 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:40:57.102 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:40:57.106 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:40:57.190 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:40:57.192 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:40:57.194 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:41:03.814 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:41:04.032 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 228.8089ms
+2026-03-09 14:41:04.075 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:41:04.075 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:41:04.087 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:41:04.089 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 14.2881ms
+2026-03-09 14:41:04.113 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 38.5745ms
+2026-03-09 14:41:04.152 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.815ms
+2026-03-09 14:41:04.259 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:41:04.298 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 38.8429ms
+2026-03-09 14:41:08.119 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 14:41:08.184 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:41:08.208 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:41:08.939 +03:00 [INF] Login attempt for user: string
+2026-03-09 14:41:09.292 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 14:41:09.331 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 14:41:09.367 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:41:09.378 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 1162.5055ms
+2026-03-09 14:41:09.381 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:41:09.391 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 1272.683ms
+2026-03-09 14:41:30.607 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Users - null null
+2026-03-09 14:41:30.666 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-03-09 14:41:30.670 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-03-09 14:41:30.673 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Users - 403 0 null 66.3851ms
+2026-03-09 14:41:41.343 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Users/1 - null null
+2026-03-09 14:41:41.356 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.UsersController.GetById (ApiLayer)'
+2026-03-09 14:41:41.365 +03:00 [INF] Route matched with {action = "GetById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ApiLayer.Controllers.UsersController (ApiLayer).
+2026-03-09 14:41:41.699 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__p_0
+LIMIT 1
+2026-03-09 14:41:41.745 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.Entities.Auth.User'.
+2026-03-09 14:41:41.773 +03:00 [INF] Executed action ApiLayer.Controllers.UsersController.GetById (ApiLayer) in 402.7076ms
+2026-03-09 14:41:41.776 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.UsersController.GetById (ApiLayer)'
+2026-03-09 14:41:41.779 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Users/1 - 200 null application/json; charset=utf-8 435.9022ms
+2026-03-09 14:45:16.627 +03:00 [INF] Finance API started successfully
+2026-03-09 14:45:16.698 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 14:45:16.897 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 14:45:16.899 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 14:45:16.986 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 14:45:16.988 +03:00 [INF] Hosting environment: Development
+2026-03-09 14:45:16.990 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 14:45:18.932 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:45:19.118 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 192.4047ms
+2026-03-09 14:45:19.447 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 14:45:19.455 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 8.2921ms
+2026-03-09 14:45:19.490 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 14:45:19.491 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 14:45:19.496 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 5.9016ms
+2026-03-09 14:45:19.503 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 14:45:19.553 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 62.1951ms
+2026-03-09 14:45:19.583 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.4252ms
+2026-03-09 14:45:19.691 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 14:45:19.723 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 32.235ms
+2026-03-09 14:45:28.855 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 14:45:28.929 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:45:28.953 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:45:29.721 +03:00 [INF] Login attempt for user: string
+2026-03-09 14:45:30.081 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 14:45:30.121 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 14:45:30.158 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:45:30.169 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 1208.971ms
+2026-03-09 14:45:30.173 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:45:30.182 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 1327.1404ms
+2026-03-09 14:45:47.904 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Users - null null
+2026-03-09 14:45:47.962 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-03-09 14:45:47.967 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-03-09 14:45:47.970 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Users - 403 0 null 65.8737ms
+2026-03-09 14:46:08.968 +03:00 [INF] Request starting HTTP/2 PUT https://localhost:7241/api/Users - application/json 86
+2026-03-09 14:46:08.975 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.UsersController.Update (ApiLayer)'
+2026-03-09 14:46:08.981 +03:00 [INF] Route matched with {action = "Update", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(EntityLayer.DTOs.User.UserUpdateDto) on controller ApiLayer.Controllers.UsersController (ApiLayer).
+2026-03-09 14:46:09.174 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`Id` = @__p_0
+LIMIT 1
+2026-03-09 14:46:09.328 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Users` SET `CreateDate` = @p0, `FullName` = @p1, `PasswordHash` = @p2, `UpdateDate` = @p3, `UserName` = @p4
+WHERE `Id` = @p5;
+SELECT ROW_COUNT();
+2026-03-09 14:46:09.337 +03:00 [INF] User updated. UserId: 1
+2026-03-09 14:46:09.339 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:46:09.343 +03:00 [INF] Executed action ApiLayer.Controllers.UsersController.Update (ApiLayer) in 359.0636ms
+2026-03-09 14:46:09.345 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.UsersController.Update (ApiLayer)'
+2026-03-09 14:46:09.346 +03:00 [INF] Request finished HTTP/2 PUT https://localhost:7241/api/Users - 200 null application/json; charset=utf-8 378.3144ms
+2026-03-09 14:47:38.027 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Companies - application/json 131
+2026-03-09 14:47:38.035 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CompaniesController.Create (ApiLayer)'
+2026-03-09 14:47:38.047 +03:00 [INF] Route matched with {action = "Create", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.Company.CreateCompanyDto) on controller ApiLayer.Controllers.CompaniesController (ApiLayer).
+2026-03-09 14:47:38.090 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__dto_TaxNumber_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Companies` AS `c`
+    WHERE `c`.`TaxNumber` = @__dto_TaxNumber_0)
+2026-03-09 14:47:38.176 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime), @p2='?' (Size = 100), @p3='?' (Size = 20), @p4='?' (Size = 50), @p5='?' (DbType = DateTime), @p6='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Companies` (`Address`, `CreateDate`, `Name`, `TaxNumber`, `TaxOffice`, `UpdateDate`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Companies`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 14:47:38.207 +03:00 [INF] Company created. Name: testcomp1
+2026-03-09 14:47:38.209 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:47:38.213 +03:00 [INF] Executed action ApiLayer.Controllers.CompaniesController.Create (ApiLayer) in 162.9633ms
+2026-03-09 14:47:38.215 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CompaniesController.Create (ApiLayer)'
+2026-03-09 14:47:38.216 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Companies - 200 null application/json; charset=utf-8 189.4745ms
+2026-03-09 14:48:07.030 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 51
+2026-03-09 14:48:07.039 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:48:07.042 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 14:48:07.058 +03:00 [INF] Login attempt for user: string2
+2026-03-09 14:48:07.063 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 14:48:07.069 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 14:48:07.073 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:48:07.074 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 27.0602ms
+2026-03-09 14:48:07.106 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 14:48:07.109 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 78.9735ms
+2026-03-09 14:48:24.139 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Companies - null null
+2026-03-09 14:48:24.144 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer)'
+2026-03-09 14:48:24.151 +03:00 [INF] Route matched with {action = "GetAll", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(EntityLayer.DTOs.Pagination.PaginationFilter) on controller ApiLayer.Controllers.CompaniesController (ApiLayer).
+2026-03-09 14:48:24.196 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Companies` AS `c`
+WHERE `c`.`UserId` = @__userId_0
+2026-03-09 14:48:24.206 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-03-09 14:48:24.209 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-03-09 14:48:24.214 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`UserId` = @__userId_0
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-09 14:48:24.226 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Company.CompanyListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-09 14:48:24.234 +03:00 [INF] Executed action ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer) in 79.0803ms
+2026-03-09 14:48:24.237 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer)'
+2026-03-09 14:48:24.240 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Companies - 200 null application/json; charset=utf-8 100.6512ms
+2026-03-09 14:48:32.179 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Companies/1 - null null
+2026-03-09 14:48:32.187 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CompaniesController.GetById (ApiLayer)'
+2026-03-09 14:48:32.194 +03:00 [INF] Route matched with {action = "GetById", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller ApiLayer.Controllers.CompaniesController (ApiLayer).
+2026-03-09 14:48:32.216 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-09 14:48:32.224 +03:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2026-03-09 14:48:32.227 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-03-09 14:48:32.229 +03:00 [INF] Executed action ApiLayer.Controllers.CompaniesController.GetById (ApiLayer) in 31.3324ms
+2026-03-09 14:48:32.230 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CompaniesController.GetById (ApiLayer)'
+2026-03-09 14:48:32.232 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Companies/1 - 403 0 null 53.3393ms
+2026-03-09 14:49:01.452 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Companies - application/json 132
+2026-03-09 14:49:01.458 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CompaniesController.Create (ApiLayer)'
+2026-03-09 14:49:01.460 +03:00 [INF] Route matched with {action = "Create", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.Company.CreateCompanyDto) on controller ApiLayer.Controllers.CompaniesController (ApiLayer).
+2026-03-09 14:49:01.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__dto_TaxNumber_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Companies` AS `c`
+    WHERE `c`.`TaxNumber` = @__dto_TaxNumber_0)
+2026-03-09 14:49:01.485 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime), @p2='?' (Size = 100), @p3='?' (Size = 20), @p4='?' (Size = 50), @p5='?' (DbType = DateTime), @p6='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Companies` (`Address`, `CreateDate`, `Name`, `TaxNumber`, `TaxOffice`, `UpdateDate`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Companies`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 14:49:01.492 +03:00 [INF] Company created. Name: testcomp2
+2026-03-09 14:49:01.493 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 14:49:01.495 +03:00 [INF] Executed action ApiLayer.Controllers.CompaniesController.Create (ApiLayer) in 31.6582ms
+2026-03-09 14:49:01.497 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CompaniesController.Create (ApiLayer)'
+2026-03-09 14:49:01.499 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Companies - 200 null application/json; charset=utf-8 46.6674ms
+2026-03-09 14:50:16.729 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Companies - null null
+2026-03-09 14:50:16.735 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer)'
+2026-03-09 14:50:16.736 +03:00 [INF] Route matched with {action = "GetAll", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(EntityLayer.DTOs.Pagination.PaginationFilter) on controller ApiLayer.Controllers.CompaniesController (ApiLayer).
+2026-03-09 14:50:16.750 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Companies` AS `c`
+WHERE `c`.`UserId` = @__userId_0
+2026-03-09 14:50:16.756 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`UserId` = @__userId_0
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-09 14:50:16.759 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Company.CompanyListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-09 14:50:16.763 +03:00 [INF] Executed action ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer) in 24.1293ms
+2026-03-09 14:50:16.771 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CompaniesController.GetAll (ApiLayer)'
+2026-03-09 14:50:16.773 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Companies - 200 null application/json; charset=utf-8 86.0824ms
+2026-03-09 14:50:28.614 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Users - null null
+2026-03-09 14:50:28.622 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-03-09 14:50:28.625 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-03-09 14:50:28.628 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Users - 403 0 null 14.2157ms
+2026-03-09 15:54:01.872 +03:00 [INF] Finance API started successfully
+2026-03-09 15:54:01.935 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 15:54:02.235 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 15:54:02.239 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 15:54:02.312 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 15:54:02.313 +03:00 [INF] Hosting environment: Development
+2026-03-09 15:54:02.314 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 15:54:06.550 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 15:54:06.801 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 262.1281ms
+2026-03-09 15:54:06.864 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 15:54:06.864 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 15:54:06.875 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 10.5313ms
+2026-03-09 15:54:06.885 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 15:54:06.910 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 45.7437ms
+2026-03-09 15:54:06.955 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 70.0763ms
+2026-03-09 15:54:07.095 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 15:54:07.151 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 55.8303ms
+2026-03-09 15:54:12.370 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 15:54:12.484 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:54:12.514 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:54:13.390 +03:00 [INF] Login attempt for user: string
+2026-03-09 15:54:13.842 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 15:54:45.640 +03:00 [INF] Finance API started successfully
+2026-03-09 15:54:45.712 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 15:54:45.981 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 15:54:45.983 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 15:54:46.189 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 15:54:46.190 +03:00 [INF] Hosting environment: Development
+2026-03-09 15:54:46.191 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 15:54:57.838 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 15:54:57.838 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 15:54:58.006 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:54:58.037 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:54:58.197 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 367.7751ms
+2026-03-09 15:54:58.304 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 15:54:58.304 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 15:54:58.312 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 7.8624ms
+2026-03-09 15:54:58.320 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 15:54:58.334 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 30.1781ms
+2026-03-09 15:54:58.368 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.4826ms
+2026-03-09 15:54:58.512 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 15:54:58.540 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 28.1163ms
+2026-03-09 15:54:58.998 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 955.8941ms
+2026-03-09 15:54:59.002 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:54:59.059 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/login, Method: POST
+System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Text.Json.Serialization.StreamReadBufferState.ReadAsync(Stream stream, CancellationToken cancellationToken, Boolean fillBuffer)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 15:54:59.112 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 500 null application/json 1283.7642ms
+2026-03-09 15:55:10.754 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 15:55:10.766 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:55:10.770 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:55:10.848 +03:00 [INF] Login attempt for user: string
+2026-03-09 15:55:11.212 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 15:55:18.987 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 8212.1991ms
+2026-03-09 15:55:18.990 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:55:19.130 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/login, Method: POST
+EntityLayer.Exceptions.BusinessException: WrongPassword
+   at BusinessLayer.Concrete.AuthService.LoginAsync(LoginDto dto) in C:\Users\sahin\source\repos\FinanceApi\BusinessLayer\Concrete\AuthService.cs:line 58
+   at ApiLayer.Controllers.AuthController.Login(LoginDto dto) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Controllers\AuthController.cs:line 32
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 15:55:19.141 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 400 null application/json 8387.7417ms
+2026-03-09 15:55:30.162 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 51
+2026-03-09 15:55:30.172 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:55:30.175 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:55:30.205 +03:00 [INF] Login attempt for user: string1
+2026-03-09 15:55:30.217 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 15:56:49.891 +03:00 [INF] Finance API started successfully
+2026-03-09 15:56:49.980 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 15:56:50.265 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 15:56:50.267 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 15:56:50.507 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 15:56:50.522 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 15:56:50.524 +03:00 [INF] Hosting environment: Development
+2026-03-09 15:56:50.525 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 15:56:50.690 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 192.537ms
+2026-03-09 15:56:50.735 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 15:56:50.735 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 15:56:50.743 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 8.5305ms
+2026-03-09 15:56:50.751 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 15:56:50.768 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 32.9146ms
+2026-03-09 15:56:50.802 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.9674ms
+2026-03-09 15:56:50.925 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 15:56:50.955 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.9606ms
+2026-03-09 15:56:56.756 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 51
+2026-03-09 15:56:56.874 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:56:56.899 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:56:57.873 +03:00 [INF] Login attempt for user: string2
+2026-03-09 15:56:58.325 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 15:56:58.374 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 15:56:58.420 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 15:56:58.431 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 1523.8619ms
+2026-03-09 15:56:58.434 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:56:58.442 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 1686.0934ms
+2026-03-09 15:57:05.748 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 15:57:05.762 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:57:05.766 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:57:05.822 +03:00 [INF] Login attempt for user: string
+2026-03-09 15:57:05.831 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 15:58:19.410 +03:00 [INF] Finance API started successfully
+2026-03-09 15:58:19.510 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 15:58:19.799 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 15:58:19.801 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 15:58:20.075 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 15:58:20.077 +03:00 [INF] Hosting environment: Development
+2026-03-09 15:58:20.079 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 15:58:30.046 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 15:58:30.207 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 168.411ms
+2026-03-09 15:58:30.258 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 15:58:30.258 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 15:58:30.269 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 15:58:30.272 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 14.0169ms
+2026-03-09 15:58:30.283 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 25.29ms
+2026-03-09 15:58:30.310 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.8476ms
+2026-03-09 15:58:30.412 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 15:58:30.455 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 43.0539ms
+2026-03-09 15:58:38.599 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 15:58:38.701 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 15:58:38.718 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 15:58:39.474 +03:00 [INF] Login attempt for user: string
+2026-03-09 15:58:39.824 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:04:20.481 +03:00 [INF] Finance API started successfully
+2026-03-09 16:04:20.550 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:04:20.739 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:04:20.741 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:04:20.809 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:04:20.812 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:04:20.813 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:04:41.161 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:04:41.327 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 172.7503ms
+2026-03-09 16:04:41.359 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:04:41.359 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:04:41.364 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 5.3837ms
+2026-03-09 16:04:41.377 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:04:41.399 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 39.9014ms
+2026-03-09 16:04:41.433 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 56.0118ms
+2026-03-09 16:04:41.566 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:04:41.590 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 23.7569ms
+2026-03-09 16:04:52.321 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 16:04:52.376 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:04:52.394 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:04:53.139 +03:00 [INF] Login attempt for user: string
+2026-03-09 16:04:53.492 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:06:27.413 +03:00 [INF] Finance API started successfully
+2026-03-09 16:06:27.484 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:06:27.697 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:06:27.699 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:06:27.903 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:06:27.904 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:06:27.906 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:06:42.343 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 16:06:42.343 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:06:42.477 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:06:42.508 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:06:42.600 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 266.9046ms
+2026-03-09 16:06:42.675 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:06:42.675 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:06:42.686 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:06:42.687 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 11.7725ms
+2026-03-09 16:06:42.725 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 50.1678ms
+2026-03-09 16:06:42.758 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 71.2792ms
+2026-03-09 16:06:42.871 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:06:42.900 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 28.9354ms
+2026-03-09 16:06:43.393 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 879.8072ms
+2026-03-09 16:06:43.395 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:06:43.421 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/login, Method: POST
+System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Text.Json.Serialization.StreamReadBufferState.ReadAsync(Stream stream, CancellationToken cancellationToken, Boolean fillBuffer)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 16:06:43.456 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 500 null application/json 1122.8821ms
+2026-03-09 16:06:58.457 +03:00 [INF] Finance API started successfully
+2026-03-09 16:06:58.539 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:06:58.818 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:06:58.821 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:06:58.891 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:06:58.895 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:06:58.896 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:07:13.115 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:07:13.315 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 209.4525ms
+2026-03-09 16:07:13.356 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:07:13.356 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:07:13.364 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 7.6243ms
+2026-03-09 16:07:13.365 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:07:13.388 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 32.2951ms
+2026-03-09 16:07:13.415 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.2856ms
+2026-03-09 16:07:13.461 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:07:13.488 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 27.3833ms
+2026-03-09 16:07:21.134 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 51
+2026-03-09 16:07:21.213 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:07:21.240 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:07:22.017 +03:00 [INF] Login attempt for user: string1
+2026-03-09 16:07:47.620 +03:00 [INF] Finance API started successfully
+2026-03-09 16:07:47.698 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:07:48.047 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:07:48.050 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:07:48.194 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:07:48.197 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:07:48.198 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:07:58.202 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:07:58.391 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 200.3193ms
+2026-03-09 16:07:58.430 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:07:58.430 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:07:58.438 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:07:58.441 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 10.483ms
+2026-03-09 16:07:58.480 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 49.5527ms
+2026-03-09 16:07:58.507 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 69.585ms
+2026-03-09 16:07:58.602 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:07:58.633 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.4192ms
+2026-03-09 16:08:03.237 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 16:08:03.326 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:08:03.344 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:08:04.113 +03:00 [INF] Login attempt for user: string
+2026-03-09 16:09:04.520 +03:00 [INF] Finance API started successfully
+2026-03-09 16:09:04.594 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:09:04.822 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:09:04.825 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:09:04.897 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:09:04.900 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:09:04.902 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:09:17.039 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:09:17.206 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 172.9019ms
+2026-03-09 16:09:17.240 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:09:17.240 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:09:17.247 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:09:17.247 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 7.4856ms
+2026-03-09 16:09:17.307 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 66.7901ms
+2026-03-09 16:09:17.328 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.9269ms
+2026-03-09 16:09:17.420 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:09:17.449 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 28.6546ms
+2026-03-09 16:09:21.073 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 16:09:21.143 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:09:21.162 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:09:21.978 +03:00 [INF] Login attempt for user: string
+2026-03-09 16:09:22.692 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:16:39.674 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-09 16:16:39.732 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__financedb_EFMigrationsLock', 259200)
+2026-03-09 16:16:39.816 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:39.838 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='financedb' AND TABLE_NAME='__EFMigrationsHistory';
+2026-03-09 16:16:39.844 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2026-03-09 16:16:39.857 +03:00 [INF] Applying migration '20260305111017_InitialCreate'.
+2026-03-09 16:16:39.907 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER DATABASE CHARACTER SET utf8mb4;
+2026-03-09 16:16:39.923 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Roles` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Roles` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:39.936 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Users` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `UserName` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `PasswordHash` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `FullName` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Users` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:39.955 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Companies` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+    `TaxNumber` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
+    `TaxOffice` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Address` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `UserId` int NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Companies` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Companies_Users_UserId` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:39.976 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `UserRoles` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `UserId` int NOT NULL,
+    `RoleId` int NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_UserRoles` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_UserRoles_Roles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `Roles` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_UserRoles_Users_UserId` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:39.994 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `CurrentAccounts` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CompanyId` int NOT NULL,
+    `Code` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+    `Type` int NOT NULL,
+    `Balance` decimal(18,2) NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_CurrentAccounts` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_CurrentAccounts_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:40.012 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Stocks` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `CompanyId` int NOT NULL,
+    `Code` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+    `Name` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+    `Unit` int NOT NULL,
+    `Balance` decimal(18,2) NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Stocks` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Stocks_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:40.036 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Invoices` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `SerialNumber` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
+    `Ettn` char(36) COLLATE ascii_general_ci NULL,
+    `Date` datetime(6) NOT NULL,
+    `Status` int NOT NULL,
+    `CompanyId` int NOT NULL,
+    `CurrentAccountId` int NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Invoices` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Invoices_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`Id`) ON DELETE RESTRICT,
+    CONSTRAINT `FK_Invoices_CurrentAccounts_CurrentAccountId` FOREIGN KEY (`CurrentAccountId`) REFERENCES `CurrentAccounts` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:40.328 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `StockTransactions` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Date` datetime(6) NOT NULL,
+    `Quantity` decimal(18,2) NOT NULL,
+    `UnitPrice` decimal(18,2) NOT NULL,
+    `Direction` int NOT NULL,
+    `CompanyId` int NOT NULL,
+    `StockId` int NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_StockTransactions` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_StockTransactions_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_StockTransactions_Stocks_StockId` FOREIGN KEY (`StockId`) REFERENCES `Stocks` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:40.349 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `InvoiceDetails` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Quantity` decimal(18,2) NOT NULL,
+    `UnitPrice` decimal(18,2) NOT NULL,
+    `InvoiceId` int NOT NULL,
+    `StockId` int NOT NULL,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_InvoiceDetails` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_InvoiceDetails_Invoices_InvoiceId` FOREIGN KEY (`InvoiceId`) REFERENCES `Invoices` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_InvoiceDetails_Stocks_StockId` FOREIGN KEY (`StockId`) REFERENCES `Stocks` (`Id`) ON DELETE RESTRICT
+) CHARACTER SET=utf8mb4;
+2026-03-09 16:16:40.381 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Companies_UserId` ON `Companies` (`UserId`);
+2026-03-09 16:16:40.399 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_CurrentAccounts_CompanyId` ON `CurrentAccounts` (`CompanyId`);
+2026-03-09 16:16:40.415 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_InvoiceDetails_InvoiceId` ON `InvoiceDetails` (`InvoiceId`);
+2026-03-09 16:16:40.426 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_InvoiceDetails_StockId` ON `InvoiceDetails` (`StockId`);
+2026-03-09 16:16:40.447 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Invoices_CompanyId` ON `Invoices` (`CompanyId`);
+2026-03-09 16:16:40.460 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Invoices_CurrentAccountId` ON `Invoices` (`CurrentAccountId`);
+2026-03-09 16:16:40.478 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_Stocks_CompanyId` ON `Stocks` (`CompanyId`);
+2026-03-09 16:16:40.492 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_StockTransactions_CompanyId` ON `StockTransactions` (`CompanyId`);
+2026-03-09 16:16:40.502 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_StockTransactions_StockId` ON `StockTransactions` (`StockId`);
+2026-03-09 16:16:40.514 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_UserRoles_RoleId` ON `UserRoles` (`RoleId`);
+2026-03-09 16:16:40.525 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_UserRoles_UserId` ON `UserRoles` (`UserId`);
+2026-03-09 16:16:40.527 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20260305111017_InitialCreate', '9.0.0');
+2026-03-09 16:16:40.527 +03:00 [INF] Applying migration '20260309131624_InitialCreate2'.
+2026-03-09 16:16:40.541 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20260309131624_InitialCreate2', '9.0.0');
+2026-03-09 16:16:43.259 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT RELEASE_LOCK('__financedb_EFMigrationsLock')
+2026-03-09 16:26:39.365 +03:00 [INF] Finance API started successfully
+2026-03-09 16:26:39.427 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:26:39.763 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:26:39.765 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:26:40.041 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:26:40.043 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:26:40.045 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:26:48.549 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:26:48.756 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 215.4245ms
+2026-03-09 16:26:48.796 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:26:48.796 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:26:48.806 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 9.5567ms
+2026-03-09 16:26:48.819 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 23.2542ms
+2026-03-09 16:26:48.827 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:26:48.869 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 41.8098ms
+2026-03-09 16:26:49.014 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:26:49.041 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 27.2739ms
+2026-03-09 16:27:02.137 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 16:27:02.214 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:27:02.242 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:27:03.215 +03:00 [INF] New user registration attempt: string
+2026-03-09 16:27:03.960 +03:00 [INF] Executed DbCommand (34ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`CreateDate`, `FullName`, `PasswordHash`, `UpdateDate`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 16:27:04.254 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Name` = 'User'
+LIMIT 1
+2026-03-09 16:28:20.225 +03:00 [INF] Finance API started successfully
+2026-03-09 16:28:20.298 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:28:20.524 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:28:20.526 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:28:20.731 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:28:20.733 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:28:20.735 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:28:54.188 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:28:54.188 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 16:28:54.403 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:28:54.462 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:28:54.578 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 396.5946ms
+2026-03-09 16:28:54.683 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:28:54.687 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:28:54.690 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 7.4488ms
+2026-03-09 16:28:54.699 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:28:54.713 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 26.5761ms
+2026-03-09 16:28:54.745 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 46.6419ms
+2026-03-09 16:28:54.905 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:28:54.946 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 41.2172ms
+2026-03-09 16:28:55.435 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 966.5276ms
+2026-03-09 16:28:55.439 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:28:55.467 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/register, Method: POST
+System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Text.Json.Serialization.StreamReadBufferState.ReadAsync(Stream stream, CancellationToken cancellationToken, Boolean fillBuffer)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync[TReadBufferState,TStream](TStream utf8Json, TReadBufferState bufferState, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter.ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 16:28:55.520 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 500 null application/json 1339.6113ms
+2026-03-09 16:29:04.258 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-09 16:29:04.265 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:29:04.272 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:29:04.347 +03:00 [INF] Login attempt for user: string
+2026-03-09 16:29:04.801 +03:00 [INF] Executed DbCommand (46ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:29:05.208 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 16:29:05.255 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 16:29:05.264 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 988.2469ms
+2026-03-09 16:29:05.268 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:29:05.276 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 1018.7625ms
+2026-03-09 16:47:26.492 +03:00 [INF] Finance API started successfully
+2026-03-09 16:47:26.559 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-09 16:47:26.829 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-09 16:47:26.832 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-09 16:47:26.938 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:47:26.940 +03:00 [INF] Hosting environment: Development
+2026-03-09 16:47:26.942 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-09 16:47:27.011 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-09 16:47:27.211 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 210.8834ms
+2026-03-09 16:47:27.260 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-09 16:47:27.261 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-09 16:47:27.273 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 12.0267ms
+2026-03-09 16:47:27.278 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 18.4039ms
+2026-03-09 16:47:27.298 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-09 16:47:27.336 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.5767ms
+2026-03-09 16:47:27.509 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-09 16:47:27.535 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 26.3336ms
+2026-03-09 16:47:32.049 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 74
+2026-03-09 16:47:32.139 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:47:32.180 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:47:33.181 +03:00 [INF] New user registration attempt: string
+2026-03-09 16:47:34.027 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`CreateDate`, `FullName`, `PasswordHash`, `UpdateDate`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 16:47:34.398 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Name` = 'User'
+LIMIT 1
+2026-03-09 16:47:34.446 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `UserRoles` (`CreateDate`, `RoleId`, `UpdateDate`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `UserRoles`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 16:47:34.471 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 16:47:34.480 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 2293.1543ms
+2026-03-09 16:47:34.485 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:47:34.499 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 200 null application/json; charset=utf-8 2450.7277ms
+2026-03-09 16:47:39.783 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/register - application/json 75
+2026-03-09 16:47:39.793 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:47:39.798 +03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(EntityLayer.DTOs.Auth.RegisterDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:47:39.859 +03:00 [INF] New user registration attempt: string2
+2026-03-09 16:47:40.179 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 100), @p2='?' (Size = 255), @p3='?' (DbType = DateTime), @p4='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Users` (`CreateDate`, `FullName`, `PasswordHash`, `UpdateDate`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Users`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 16:47:40.192 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Name` = 'User'
+LIMIT 1
+2026-03-09 16:47:40.198 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `UserRoles` (`CreateDate`, `RoleId`, `UpdateDate`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `UserRoles`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-09 16:47:40.205 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 16:47:40.207 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Register (ApiLayer) in 400.0628ms
+2026-03-09 16:47:40.209 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Register (ApiLayer)'
+2026-03-09 16:47:40.211 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/register - 200 null application/json; charset=utf-8 427.2919ms
+2026-03-09 16:49:05.572 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 52
+2026-03-09 16:49:05.622 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:49:05.627 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:49:05.663 +03:00 [INF] Login attempt for user: admin
+2026-03-09 16:49:05.682 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:49:51.192 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 45561.507ms
+2026-03-09 16:49:51.195 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:49:51.338 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Auth/login, Method: POST
+EntityLayer.Exceptions.BusinessException: WrongPassword
+   at BusinessLayer.Concrete.AuthService.LoginAsync(LoginDto dto) in C:\Users\sahin\source\repos\FinanceApi\BusinessLayer\Concrete\AuthService.cs:line 79
+   at ApiLayer.Controllers.AuthController.Login(LoginDto dto) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Controllers\AuthController.cs:line 32
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-09 16:49:51.380 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 400 null application/json 45838.0439ms
+2026-03-09 16:51:47.332 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 48
+2026-03-09 16:51:47.337 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:51:47.344 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-09 16:51:47.358 +03:00 [INF] Login attempt for user: admin
+2026-03-09 16:51:47.362 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-09 16:51:47.658 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-09 16:51:47.690 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Id` = @__p_0
+LIMIT 1
+2026-03-09 16:51:47.738 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-09 16:51:47.743 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 396.2562ms
+2026-03-09 16:51:47.746 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-09 16:51:47.747 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 415.8375ms

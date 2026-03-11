@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ApiLayer/ApiLayer.csproj" Id="dff344a2-b5c4-48e2-806c-8ab24d8d2540" />
+  <Project Path="BusinessLayer/BusinessLayer.csproj" Id="a99f7025-135e-49a5-a32f-f35d73957093" />
+  <Project Path="DataAccessLayer/DataAccessLayer.csproj" Id="b93d84bd-68ca-41a0-9b86-3b8745a2cb1a" />
+  <Project Path="EntityLayer/EntityLayer.csproj" Id="4c195242-ecc7-4f08-b011-3e32e90130dd" />
+  <Project Path="FinanceApi.Tests/FinanceApi.Tests.csproj" />
+</Solution>

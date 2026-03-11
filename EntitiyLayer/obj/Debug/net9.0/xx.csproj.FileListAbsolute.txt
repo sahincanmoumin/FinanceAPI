@@ -1,0 +1,12 @@
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\bin\Debug\net9.0\xx.deps.json
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\bin\Debug\net9.0\xx.dll
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\bin\Debug\net9.0\xx.pdb
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.csproj.AssemblyReference.cache
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.AssemblyInfoInputs.cache
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.AssemblyInfo.cs
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.csproj.CoreCompileInputs.cache
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.dll
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\refint\xx.dll
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\xx.pdb
+C:\Users\sahin\source\repos\FinanceApi\EntitiyLayer\obj\Debug\net9.0\ref\xx.dll
