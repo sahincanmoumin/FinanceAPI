@@ -1,7 +1,0 @@
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_FinanceApi.Tests
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_FinanceApi.Tests
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\obj\Debug\net9.0\FinanceApi.Tests.csproj.AssemblyReference.cache
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\obj\Debug\net9.0\FinanceApi.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\obj\Debug\net9.0\FinanceApi.Tests.AssemblyInfoInputs.cache
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\obj\Debug\net9.0\FinanceApi.Tests.AssemblyInfo.cs
-C:\Users\sahin\source\repos\FinanceApi\FinanceApi.Tests\obj\Debug\net9.0\FinanceApi.Tests.csproj.CoreCompileInputs.cache
