@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
@@ -12,7 +7,13 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 
 namespace BusinessLayer.Concrete
@@ -25,6 +26,7 @@ namespace BusinessLayer.Concrete
         private readonly ICurrentAccountRepository _currentAccountRepository;
         private readonly IStockTransRepository _stockTransRepository;
         private readonly IMapper _mapper;
+        private readonly IValidator<CreateInvoiceDto> _createValidator;
 
         public InvoiceService(
             IInvoiceRepository invoiceRepository,
@@ -32,7 +34,8 @@ namespace BusinessLayer.Concrete
             IStockRepository stockRepository,
             ICurrentAccountRepository currentAccountRepository,
             IStockTransRepository stockTransRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IValidator<CreateInvoiceDto> createValidator)
         {
             _invoiceRepository = invoiceRepository;
             _invoiceDetailRepository = invoiceDetailRepository;
@@ -40,6 +43,7 @@ namespace BusinessLayer.Concrete
             _currentAccountRepository = currentAccountRepository;
             _stockTransRepository = stockTransRepository;
             _mapper = mapper;
+            _createValidator = createValidator;
         }
 
         public async Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId)
@@ -106,15 +110,17 @@ namespace BusinessLayer.Concrete
 
         public async Task CreateDraftInvoiceAsync(CreateInvoiceDto dto)
         {
+            await _createValidator.ValidateAndThrowAsync(dto);
+
             var invoice = new Invoice
             {
                 CompanyId = dto.CompanyId,
                 CurrentAccountId = dto.CurrentAccountId,
                 SerialNumber = dto.SerialNumber,
                 Ettn = Guid.NewGuid(),
-                Date = dto.Date, 
+                Date = dto.Date,
                 Status = InvoiceStatus.Draft,
-                Type = dto.Type 
+                Type = dto.Type
             };
 
             await _invoiceRepository.AddAsync(invoice);
@@ -123,14 +129,14 @@ namespace BusinessLayer.Concrete
             {
                 var detail = new InvoiceDetail
                 {
-                    InvoiceId = invoice.Id, 
+                    InvoiceId = invoice.Id,
                     StockId = detailDto.StockId,
                     Quantity = detailDto.Quantity,
                     UnitPrice = detailDto.UnitPrice
                 };
                 await _invoiceDetailRepository.AddAsync(detail);
             }
-            await _invoiceDetailRepository.SaveChangesAsync(); 
+            await _invoiceDetailRepository.SaveChangesAsync();
         }
 
         public async Task ApproveInvoiceAsync(int invoiceId)

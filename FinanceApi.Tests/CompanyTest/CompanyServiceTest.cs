@@ -6,6 +6,8 @@ using EntityLayer.DTOs.Company;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
@@ -13,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -22,13 +25,30 @@ namespace FinanceApi.Tests.CompanyTest
     {
         private readonly Mock<IGenericRepository<Company>> _mockRepo;
         private readonly Mock<IMapper> _mockMapper;
+        private readonly Mock<IValidator<CreateCompanyDto>> _mockCreateValidator;
+        private readonly Mock<IValidator<UpdateCompanyDto>> _mockUpdateValidator;
         private readonly CompanyService _companyService;
 
         public CompanyServiceTests()
         {
             _mockRepo = new Mock<IGenericRepository<Company>>();
             _mockMapper = new Mock<IMapper>();
-            _companyService = new CompanyService(_mockRepo.Object, _mockMapper.Object);
+            _mockCreateValidator = new Mock<IValidator<CreateCompanyDto>>();
+            _mockUpdateValidator = new Mock<IValidator<UpdateCompanyDto>>();
+
+            _mockCreateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateCompanyDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _mockUpdateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<UpdateCompanyDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _companyService = new CompanyService(
+                _mockRepo.Object,
+                _mockMapper.Object,
+                _mockCreateValidator.Object,
+                _mockUpdateValidator.Object);
         }
 
         [Fact]

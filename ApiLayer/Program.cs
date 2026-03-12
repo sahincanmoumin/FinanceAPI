@@ -11,6 +11,8 @@ using Serilog;
 using StackExchange.Redis; 
 using System.Text;
 using ApiLayer.Middlewares;
+using FluentValidation;
+using BusinessLayer.Validators.CurrentAccountValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +47,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//validators
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCurrentAccountValidator>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
@@ -74,6 +78,8 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 
 builder.Services.AddScoped<ICacheService, CacheService>();
 
+//validtors
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCurrentAccountValidator>();
 
 builder.Services.AddSwaggerGen(c =>
 {

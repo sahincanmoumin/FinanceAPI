@@ -7,6 +7,7 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,19 @@ namespace BusinessLayer.Concrete
     {
         private readonly IGenericRepository<Company> _companyRepository;
         private readonly IMapper _mapper;
+        private readonly IValidator<CreateCompanyDto> _createValidator;
+        private readonly IValidator<UpdateCompanyDto> _updateValidator;
 
-        public CompanyService(IGenericRepository<Company> companyRepository, IMapper mapper)
+        public CompanyService(
+            IGenericRepository<Company> companyRepository,
+            IMapper mapper,
+            IValidator<CreateCompanyDto> createValidator,
+            IValidator<UpdateCompanyDto> updateValidator)
         {
             _companyRepository = companyRepository;
             _mapper = mapper;
+            _createValidator = createValidator;
+            _updateValidator = updateValidator;
         }
 
         public async Task<PagedResponse<CompanyListDto>> GetAllCompaniesAsync(CompanyFilterDto filter, int userId)
@@ -64,6 +73,8 @@ namespace BusinessLayer.Concrete
 
         public async Task AddAsync(CreateCompanyDto dto)
         {
+            await _createValidator.ValidateAndThrowAsync(dto);
+
             var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber);
             if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
 
@@ -73,6 +84,8 @@ namespace BusinessLayer.Concrete
 
         public async Task UpdateAsync(UpdateCompanyDto dto)
         {
+            await _updateValidator.ValidateAndThrowAsync(dto);
+
             var company = await _companyRepository.GetByIdAsync(dto.Id);
             if (company == null) throw new BusinessException(ErrorKeys.CompanyNotFound);
 

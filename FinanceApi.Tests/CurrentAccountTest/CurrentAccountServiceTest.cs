@@ -9,6 +9,8 @@ using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
@@ -16,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -25,23 +28,30 @@ namespace FinanceApi.Tests.CurrentAccountTest
     {
         private readonly Mock<ICurrentAccountRepository> _mockCurrentAccountRepo;
         private readonly Mock<IMapper> _mockMapper;
-        private readonly Mock<ICacheService> _mockCacheService; 
+        private readonly Mock<ICacheService> _mockCacheService;
+        private readonly Mock<IValidator<CreateCurrentAccountDto>> _mockValidator;
         private readonly CurrentAccountService _currentAccountService;
 
         public CurrentAccountServiceTests()
         {
             _mockCurrentAccountRepo = new Mock<ICurrentAccountRepository>();
             _mockMapper = new Mock<IMapper>();
-            _mockCacheService = new Mock<ICacheService>(); 
+            _mockCacheService = new Mock<ICacheService>();
+            _mockValidator = new Mock<IValidator<CreateCurrentAccountDto>>();
+
+            _mockValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateCurrentAccountDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
 
             _currentAccountService = new CurrentAccountService(
                 _mockCurrentAccountRepo.Object,
                 _mockMapper.Object,
-                _mockCacheService.Object);
+                _mockCacheService.Object,
+                _mockValidator.Object);
         }
 
         [Fact]
-        public async Task GetAllCurrentAccountsAsync_ShouldReturnFilteredPagedData()
+        public async Task GetAllCurrentAccountsAsync()
         {
             var companyId = 1;
             var filter = new CurrentAccountFilterDto { Name = "Ahmet", PageNumber = 1, PageSize = 10 };
@@ -73,7 +83,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task GetByIdAsync_WhenAccountExists_ShouldReturnMappedDto()
+        public async Task GetByIdAsync_WhenAccountExists()
         {
             var account = new CurrentAccount { Id = 1, Name = "Mehmet" };
             var dto = new CurrentAccountListDto { Id = 1, Name = "Mehmet" };
@@ -90,7 +100,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task GetByIdAsync_WhenAccountDoesNotExist_ShouldThrowBusinessException()
+        public async Task GetByIdAsync_WhenAccountDoesNotExist()
         {
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((CurrentAccount)null);
 
@@ -101,7 +111,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task AddAsync_WhenCodeExists_ShouldThrowBusinessException()
+        public async Task AddAsync_WhenCodeExists()
         {
             var dto = new CreateCurrentAccountDto { Code = "C-001", CompanyId = 1 };
             _mockCurrentAccountRepo.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<CurrentAccount, bool>>>())).ReturnsAsync(true);
@@ -113,7 +123,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task AddAsync_WhenSuccessful_ShouldCallRepositoryAndClearCache()
+        public async Task AddAsync_WhenSuccessful()
         {
             var dto = new CreateCurrentAccountDto { Code = "C-002", CompanyId = 1, Type = (AccountType)1 };
             var account = new CurrentAccount { Code = "C-002", CompanyId = 1, Balance = -10 };
@@ -130,7 +140,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task UpdateAsync_WhenAccountExists_ShouldUpdateAndClearCache()
+        public async Task UpdateAsync_WhenAccountExists()
         {
             var dto = new UpdateCurrentAccountDto { Id = 1, Name = "Updated Name" };
             var existingAccount = new CurrentAccount { Id = 1, Name = "Old Name", CompanyId = 1 };
@@ -147,7 +157,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task UpdateAsync_WhenAccountDoesNotExist_ShouldThrowBusinessException()
+        public async Task UpdateAsync_WhenAccountDoesNotExist()
         {
             var dto = new UpdateCurrentAccountDto { Id = 1 };
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync((CurrentAccount)null);
@@ -159,7 +169,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task DeleteAsync_WhenAccountExists_ShouldDeleteAndClearCache()
+        public async Task DeleteAsync_WhenAccountExists()
         {
             var account = new CurrentAccount { Id = 1, CompanyId = 1 };
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(account);
@@ -173,7 +183,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
         }
 
         [Fact]
-        public async Task DeleteAsync_WhenAccountDoesNotExist_ShouldThrowBusinessException()
+        public async Task DeleteAsync_WhenAccountDoesNotExist()
         {
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync((CurrentAccount)null);
 

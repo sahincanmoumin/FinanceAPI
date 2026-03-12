@@ -6,6 +6,7 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.Stock;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,21 @@ namespace BusinessLayer.Concrete
         private readonly IStockRepository _stockRepository;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
+        private readonly IValidator<CreateStockDto> _createValidator;
+        private readonly IValidator<UpdateStockDto> _updateValidator;
 
-        public StockService(IStockRepository stockRepository, IMapper mapper, ICacheService cacheService)
+        public StockService(
+            IStockRepository stockRepository,
+            IMapper mapper,
+            ICacheService cacheService,
+            IValidator<CreateStockDto> createValidator,
+            IValidator<UpdateStockDto> updateValidator)
         {
             _stockRepository = stockRepository;
             _mapper = mapper;
-            _cacheService = cacheService; 
+            _cacheService = cacheService;
+            _createValidator = createValidator;
+            _updateValidator = updateValidator;
         }
 
         public async Task<PagedResponse<StockListDto>> GetAllStocksAsync(StockFilterDto filter, int companyId)
@@ -33,7 +43,7 @@ namespace BusinessLayer.Concrete
             var cachedData = await _cacheService.GetAsync<PagedResponse<StockListDto>>(cacheKey);
             if (cachedData != null)
             {
-                return cachedData; 
+                return cachedData;
             }
 
             var validFilter = new StockFilterDto(filter.PageNumber, filter.PageSize);
@@ -85,8 +95,8 @@ namespace BusinessLayer.Concrete
 
             var stock = await _stockRepository.GetByIdAsync(id);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
-            var mappedData = _mapper.Map<StockListDto>(stock);
 
+            var mappedData = _mapper.Map<StockListDto>(stock);
             await _cacheService.SetAsync(cacheKey, mappedData, 60);
 
             return mappedData;
@@ -94,21 +104,22 @@ namespace BusinessLayer.Concrete
 
         public async Task AddAsync(CreateStockDto dto)
         {
+            await _createValidator.ValidateAndThrowAsync(dto);
+
             var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
             if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
 
             var stock = _mapper.Map<Stock>(dto);
-
-
             stock.Balance = 0;
 
             await _stockRepository.AddAsync(stock);
-
             await _cacheService.RemoveByPatternAsync($"Stocks_Company_{dto.CompanyId}*");
         }
 
         public async Task UpdateAsync(UpdateStockDto dto)
         {
+            await _updateValidator.ValidateAndThrowAsync(dto);
+
             var stock = await _stockRepository.GetByIdAsync(dto.Id);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
 

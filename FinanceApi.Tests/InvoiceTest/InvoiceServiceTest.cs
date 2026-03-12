@@ -8,12 +8,15 @@ using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -27,6 +30,7 @@ namespace FinanceApi.Tests.InvoiceTest
         private readonly Mock<ICurrentAccountRepository> _mockCurrentAccountRepo;
         private readonly Mock<IStockTransRepository> _mockStockTransRepo;
         private readonly Mock<IMapper> _mockMapper;
+        private readonly Mock<IValidator<CreateInvoiceDto>> _mockCreateValidator;
         private readonly InvoiceService _invoiceService;
 
         public InvoiceServiceTests()
@@ -37,6 +41,11 @@ namespace FinanceApi.Tests.InvoiceTest
             _mockCurrentAccountRepo = new Mock<ICurrentAccountRepository>();
             _mockStockTransRepo = new Mock<IStockTransRepository>();
             _mockMapper = new Mock<IMapper>();
+            _mockCreateValidator = new Mock<IValidator<CreateInvoiceDto>>();
+
+            _mockCreateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateInvoiceDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
 
             _invoiceService = new InvoiceService(
                 _mockInvoiceRepo.Object,
@@ -44,7 +53,8 @@ namespace FinanceApi.Tests.InvoiceTest
                 _mockStockRepo.Object,
                 _mockCurrentAccountRepo.Object,
                 _mockStockTransRepo.Object,
-                _mockMapper.Object);
+                _mockMapper.Object,
+                _mockCreateValidator.Object);
         }
 
         [Fact]
@@ -144,7 +154,7 @@ namespace FinanceApi.Tests.InvoiceTest
             var details = new List<InvoiceDetail> { new InvoiceDetail { InvoiceId = 1, StockId = 1, Quantity = 10 } };
             _mockInvoiceDetailRepo.Setup(x => x.GetQueryable()).Returns(details.BuildMock());
 
-            var stock = new Stock { Id = 1, Balance = 5 }; // Insufficient balance
+            var stock = new Stock { Id = 1, Balance = 5 };
             _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(stock);
 
             Func<Task> action = async () => await _invoiceService.ApproveInvoiceAsync(1);

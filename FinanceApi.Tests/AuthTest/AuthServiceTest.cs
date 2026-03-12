@@ -6,12 +6,15 @@ using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.Configuration;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -23,6 +26,8 @@ namespace FinanceApi.Tests.AuthTest
         private readonly Mock<IUserRoleRepository> _mockUserRoleRepo;
         private readonly Mock<IRoleRepository> _mockRoleRepo;
         private readonly Mock<IConfiguration> _mockConfig;
+        private readonly Mock<IValidator<RegisterDto>> _mockRegisterValidator;
+        private readonly Mock<IValidator<LoginDto>> _mockLoginValidator;
         private readonly AuthService _authService;
 
         public AuthServiceTests()
@@ -31,16 +36,28 @@ namespace FinanceApi.Tests.AuthTest
             _mockUserRoleRepo = new Mock<IUserRoleRepository>();
             _mockRoleRepo = new Mock<IRoleRepository>();
             _mockConfig = new Mock<IConfiguration>();
+            _mockRegisterValidator = new Mock<IValidator<RegisterDto>>();
+            _mockLoginValidator = new Mock<IValidator<LoginDto>>();
 
             _mockConfig.Setup(x => x["Jwt:SecretKey"]).Returns("TestIcinCokGizliBirAnahtar1234567890123456");
             _mockConfig.Setup(x => x["Jwt:Issuer"]).Returns("FinanceApi");
             _mockConfig.Setup(x => x["Jwt:Audience"]).Returns("FinanceApiUser");
 
+            _mockRegisterValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<RegisterDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _mockLoginValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<LoginDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
             _authService = new AuthService(
                 _mockUserRepo.Object,
                 _mockUserRoleRepo.Object,
                 _mockRoleRepo.Object,
-                _mockConfig.Object
+                _mockConfig.Object,
+                _mockRegisterValidator.Object,
+                _mockLoginValidator.Object
             );
         }
 

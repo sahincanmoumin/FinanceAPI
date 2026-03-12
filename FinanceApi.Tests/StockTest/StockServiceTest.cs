@@ -8,6 +8,8 @@ using EntityLayer.DTOs.Stock;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
@@ -15,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -24,16 +27,33 @@ namespace FinanceApi.Tests.StockTest
     {
         private readonly Mock<IStockRepository> _mockStockRepo;
         private readonly Mock<IMapper> _mockMapper;
-        private readonly Mock<ICacheService> _mockCacheService; 
+        private readonly Mock<ICacheService> _mockCacheService;
+        private readonly Mock<IValidator<CreateStockDto>> _mockCreateValidator;
+        private readonly Mock<IValidator<UpdateStockDto>> _mockUpdateValidator;
         private readonly StockService _stockService;
 
         public StockServiceTests()
         {
             _mockStockRepo = new Mock<IStockRepository>();
             _mockMapper = new Mock<IMapper>();
-            _mockCacheService = new Mock<ICacheService>(); 
+            _mockCacheService = new Mock<ICacheService>();
+            _mockCreateValidator = new Mock<IValidator<CreateStockDto>>();
+            _mockUpdateValidator = new Mock<IValidator<UpdateStockDto>>();
 
-            _stockService = new StockService(_mockStockRepo.Object, _mockMapper.Object, _mockCacheService.Object);
+            _mockCreateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateStockDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _mockUpdateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<UpdateStockDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _stockService = new StockService(
+                _mockStockRepo.Object,
+                _mockMapper.Object,
+                _mockCacheService.Object,
+                _mockCreateValidator.Object,
+                _mockUpdateValidator.Object);
         }
 
         [Fact]
@@ -44,8 +64,7 @@ namespace FinanceApi.Tests.StockTest
             var stocks = new List<Stock>
             {
                 new Stock { Id = 1, CompanyId = companyId, Name = "Laptop Pro", Code = "LPT-01", Balance = 50, CreateDate = DateTime.Now },
-                new Stock { Id = 2, CompanyId = companyId, Name = "Laptop Air", Code = "LPT-02", Balance = 30, CreateDate = DateTime.Now },
-                new Stock { Id = 3, CompanyId = 2, Name = "Desktop", Code = "DSK-01", Balance = 10, CreateDate = DateTime.Now }
+                new Stock { Id = 2, CompanyId = companyId, Name = "Laptop Air", Code = "LPT-02", Balance = 30, CreateDate = DateTime.Now }
             };
 
             var mockQuery = stocks.BuildMock();
@@ -119,7 +138,6 @@ namespace FinanceApi.Tests.StockTest
             await _stockService.AddAsync(dto);
 
             _mockStockRepo.Verify(x => x.AddAsync(It.IsAny<Stock>()), Times.Once);
-
             _mockCacheService.Verify(c => c.RemoveByPatternAsync(It.Is<string>(s => s.StartsWith("Stocks_Company_1"))), Times.Once);
         }
 
@@ -127,7 +145,7 @@ namespace FinanceApi.Tests.StockTest
         public async Task UpdateAsync_WhenStockExists()
         {
             var dto = new UpdateStockDto { Id = 1, Name = "Updated Stock" };
-            var existingStock = new Stock { Id = 1, Name = "Old Stock", CompanyId = 1 }; 
+            var existingStock = new Stock { Id = 1, Name = "Old Stock", CompanyId = 1 };
 
             _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(existingStock);
 

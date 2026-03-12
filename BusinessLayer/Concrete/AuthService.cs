@@ -1,10 +1,12 @@
-﻿using BusinessLayer.Abstract;
+﻿using BCrypt.Net;
+using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Auth;
 using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +17,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BCrypt.Net;
 
 namespace BusinessLayer.Concrete
 {
@@ -25,17 +26,28 @@ namespace BusinessLayer.Concrete
         private readonly IUserRoleRepository _userRoleRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IConfiguration _configuration;
+        private readonly IValidator<RegisterDto> _registerValidator;
+        private readonly IValidator<LoginDto> _loginValidator;
 
-        public AuthService(IUserRepository userRepository, IUserRoleRepository userRoleRepository, IRoleRepository roleRepository, IConfiguration configuration)
+        public AuthService(
+            IUserRepository userRepository,
+            IUserRoleRepository userRoleRepository,
+            IRoleRepository roleRepository,
+            IConfiguration configuration,
+            IValidator<RegisterDto> registerValidator,
+            IValidator<LoginDto> loginValidator)
         {
             _userRepository = userRepository;
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
             _configuration = configuration;
-
+            _registerValidator = registerValidator;
+            _loginValidator = loginValidator;
         }
         public async Task RegisterAsync(RegisterDto dto)
         {
+            await _registerValidator.ValidateAndThrowAsync(dto);
+
             var user = new User
             {
                 UserName = dto.UserName,
@@ -44,8 +56,6 @@ namespace BusinessLayer.Concrete
             };
 
             await _userRepository.AddAsync(user);
-            
-
 
             var defaultRole = await _roleRepository.GetQueryable()
                                                    .FirstOrDefaultAsync(x => x.Name == "User");
@@ -57,7 +67,6 @@ namespace BusinessLayer.Concrete
                     UserId = user.Id,
                     RoleId = defaultRole.Id
                 };
-
                 await _userRoleRepository.AddAsync(userRole);
             }
             else
@@ -69,13 +78,14 @@ namespace BusinessLayer.Concrete
 
         public async Task<string> LoginAsync(LoginDto dto)
         {
+            await _loginValidator.ValidateAndThrowAsync(dto);
+
             var user = await _userRepository.GetQueryable()
                                             .FirstOrDefaultAsync(x => x.UserName == dto.UserName);
 
             if (user == null) throw new BusinessException(ErrorKeys.UserNotFound);
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
-
             if (!isPasswordValid) throw new BusinessException(ErrorKeys.WrongPassword);
 
             var userRoles = await _userRoleRepository.GetQueryable()
@@ -83,7 +93,6 @@ namespace BusinessLayer.Concrete
                                                      .ToListAsync();
 
             var roles = new List<string>();
-
             foreach (var ur in userRoles)
             {
                 var role = await _roleRepository.GetByIdAsync(ur.RoleId);

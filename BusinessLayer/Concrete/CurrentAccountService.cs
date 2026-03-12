@@ -7,6 +7,7 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,33 @@ namespace BusinessLayer.Concrete
         private readonly ICurrentAccountRepository _currentAccountRepository;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
+        private readonly IValidator<CreateCurrentAccountDto> _validator;
 
-        public CurrentAccountService(ICurrentAccountRepository currentAccountRepository, IMapper mapper, ICacheService cacheService)
+        public CurrentAccountService(
+            ICurrentAccountRepository currentAccountRepository,
+            IMapper mapper,
+            ICacheService cacheService,
+            IValidator<CreateCurrentAccountDto> validator)
         {
             _currentAccountRepository = currentAccountRepository;
             _mapper = mapper;
-            _cacheService = cacheService; 
+            _cacheService = cacheService;
+            _validator = validator;
         }
 
+        public async Task AddAsync(CreateCurrentAccountDto dto)
+        {
+            await _validator.ValidateAndThrowAsync(dto);
+
+            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
+            if (isExist) throw new BusinessException(ErrorKeys.CurrentAccountAlreadyExists);
+
+            var account = _mapper.Map<CurrentAccount>(dto);
+            if (account.Balance < 0) account.Balance = 0;
+
+            await _currentAccountRepository.AddAsync(account);
+            await _cacheService.RemoveByPatternAsync($"CurrentAccounts_Company_{dto.CompanyId}*");
+        }
         public async Task<CurrentAccountListDto> GetByIdAsync(int id)
         {
             var cacheKey = $"CurrentAccount_Single_{id}";
@@ -44,23 +64,6 @@ namespace BusinessLayer.Concrete
             await _cacheService.SetAsync(cacheKey, mappedData, 60);
 
             return mappedData;
-        }
-
-        public async Task AddAsync(CreateCurrentAccountDto dto)
-        {
-            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
-            if (isExist) throw new BusinessException(ErrorKeys.CurrentAccountAlreadyExists);
-
-            if (!System.Enum.IsDefined(typeof(AccountType), dto.Type))
-                throw new BusinessException(ErrorKeys.InvalidAccountType);
-
-            var account = _mapper.Map<CurrentAccount>(dto);
-            if (account.Balance < 0) account.Balance = 0;
-
-            await _currentAccountRepository.AddAsync(account);
-
-            // yeni veriden sonra cache silme kısmii
-            await _cacheService.RemoveByPatternAsync($"CurrentAccounts_Company_{dto.CompanyId}*");
         }
 
         public async Task<PagedResponse<CurrentAccountListDto>> GetAllCurrentAccountsAsync(CurrentAccountFilterDto filter, int companyId)
