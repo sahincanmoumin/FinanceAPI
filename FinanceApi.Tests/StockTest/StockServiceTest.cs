@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.Stock;
 using EntityLayer.Entities.Domain;
-using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
 using FluentAssertions;
 using MockQueryable;
@@ -24,13 +24,16 @@ namespace FinanceApi.Tests.StockTest
     {
         private readonly Mock<IStockRepository> _mockStockRepo;
         private readonly Mock<IMapper> _mockMapper;
+        private readonly Mock<ICacheService> _mockCacheService; 
         private readonly StockService _stockService;
 
         public StockServiceTests()
         {
             _mockStockRepo = new Mock<IStockRepository>();
             _mockMapper = new Mock<IMapper>();
-            _stockService = new StockService(_mockStockRepo.Object, _mockMapper.Object);
+            _mockCacheService = new Mock<ICacheService>(); 
+
+            _stockService = new StockService(_mockStockRepo.Object, _mockMapper.Object, _mockCacheService.Object);
         }
 
         [Fact]
@@ -60,6 +63,8 @@ namespace FinanceApi.Tests.StockTest
             result.Should().NotBeNull();
             result.TotalRecords.Should().Be(2);
             result.Data.Should().HaveCount(2);
+
+            _mockCacheService.Verify(c => c.SetAsync(It.IsAny<string>(), It.IsAny<PagedResponse<StockListDto>>(), 60), Times.Once);
         }
 
         [Fact]
@@ -75,6 +80,8 @@ namespace FinanceApi.Tests.StockTest
 
             result.Should().NotBeNull();
             result.Name.Should().Be("Monitor");
+
+            _mockCacheService.Verify(c => c.SetAsync(It.Is<string>(s => s == "Stock_Single_1"), It.IsAny<StockListDto>(), 60), Times.Once);
         }
 
         [Fact]
@@ -112,13 +119,15 @@ namespace FinanceApi.Tests.StockTest
             await _stockService.AddAsync(dto);
 
             _mockStockRepo.Verify(x => x.AddAsync(It.IsAny<Stock>()), Times.Once);
+
+            _mockCacheService.Verify(c => c.RemoveByPatternAsync(It.Is<string>(s => s.StartsWith("Stocks_Company_1"))), Times.Once);
         }
 
         [Fact]
         public async Task UpdateAsync_WhenStockExists()
         {
             var dto = new UpdateStockDto { Id = 1, Name = "Updated Stock" };
-            var existingStock = new Stock { Id = 1, Name = "Old Stock" };
+            var existingStock = new Stock { Id = 1, Name = "Old Stock", CompanyId = 1 }; 
 
             _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(existingStock);
 
@@ -126,6 +135,9 @@ namespace FinanceApi.Tests.StockTest
 
             _mockMapper.Verify(m => m.Map(dto, existingStock), Times.Once);
             _mockStockRepo.Verify(x => x.Update(existingStock), Times.Once);
+
+            _mockCacheService.Verify(c => c.RemoveAsync("Stock_Single_1"), Times.Once);
+            _mockCacheService.Verify(c => c.RemoveByPatternAsync(It.Is<string>(s => s.StartsWith("Stocks_Company_1"))), Times.Once);
         }
 
         [Fact]
@@ -143,12 +155,15 @@ namespace FinanceApi.Tests.StockTest
         [Fact]
         public async Task DeleteAsync_WhenStockExists()
         {
-            var stock = new Stock { Id = 1 };
+            var stock = new Stock { Id = 1, CompanyId = 1 };
             _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(stock);
 
             await _stockService.DeleteAsync(1);
 
             _mockStockRepo.Verify(x => x.Delete(stock), Times.Once);
+
+            _mockCacheService.Verify(c => c.RemoveAsync("Stock_Single_1"), Times.Once);
+            _mockCacheService.Verify(c => c.RemoveByPatternAsync(It.Is<string>(s => s.StartsWith("Stocks_Company_1"))), Times.Once);
         }
 
         [Fact]

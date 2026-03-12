@@ -1,0 +1,191 @@
+2026-03-12 10:12:09.158 +03:00 [INF] Finance API started successfully
+2026-03-12 10:12:09.222 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-12 10:12:10.516 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-12 10:12:10.519 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-12 10:12:10.622 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-12 10:12:10.624 +03:00 [INF] Hosting environment: Development
+2026-03-12 10:12:10.626 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-12 10:12:20.024 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-12 10:12:20.252 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 238.7218ms
+2026-03-12 10:12:20.375 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.css - null null
+2026-03-12 10:12:20.375 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/swagger-ui.css - null null
+2026-03-12 10:12:20.379 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/swagger-ui-standalone-preset.js - null null
+2026-03-12 10:12:20.377 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/swagger-ui-bundle.js - null null
+2026-03-12 10:12:20.449 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-12 10:12:20.458 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-12 10:12:20.494 +03:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2026-03-12 10:12:20.513 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 63.4173ms
+2026-03-12 10:12:20.519 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.css - 200 202 text/css 143.7577ms
+2026-03-12 10:12:20.522 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 69.6515ms
+2026-03-12 10:12:20.523 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-03-12 10:12:20.523 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-03-12 10:12:20.543 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/swagger-ui.css - 200 152035 text/css 167.8643ms
+2026-03-12 10:12:20.543 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 163.8833ms
+2026-03-12 10:12:20.758 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-03-12 10:12:20.765 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/swagger-ui-bundle.js - 200 1426050 text/javascript 388.6415ms
+2026-03-12 10:12:20.779 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-12 10:12:21.328 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 549.7611ms
+2026-03-12 10:12:21.460 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-12 10:12:21.482 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/favicon-32x32.png - null null
+2026-03-12 10:12:21.488 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-03-12 10:12:21.489 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.8596ms
+2026-03-12 10:12:21.492 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/favicon-32x32.png - 200 628 image/png 9.3967ms
+2026-03-12 10:12:28.679 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-12 10:12:29.574 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-12 10:12:29.594 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-12 10:12:30.823 +03:00 [INF] Login attempt for user: string
+2026-03-12 10:12:31.639 +03:00 [INF] Executed DbCommand (103ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-12 10:12:32.053 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-12 10:12:32.095 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:12:32.226 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-12 10:12:32.236 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 2635.3019ms
+2026-03-12 10:12:32.239 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-12 10:12:32.247 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 3568.0448ms
+2026-03-12 10:12:56.475 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Stocks?companyId=1 - null null
+2026-03-12 10:12:56.528 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:12:56.535 +03:00 [INF] Route matched with {action = "GetAll", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(StockFilterDto, Int32) on controller ApiLayer.Controllers.StocksController (ApiLayer).
+2026-03-12 10:12:56.741 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:12:56.842 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__companyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Stocks` AS `s`
+WHERE `s`.`CompanyId` = @__companyId_0
+2026-03-12 10:12:56.862 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__companyId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate`
+FROM `Stocks` AS `s`
+WHERE `s`.`CompanyId` = @__companyId_0
+ORDER BY `s`.`CreateDate` DESC
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-12 10:12:56.894 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Stock.StockListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:12:56.897 +03:00 [INF] Executed action ApiLayer.Controllers.StocksController.GetAll (ApiLayer) in 357.702ms
+2026-03-12 10:12:56.899 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:12:56.902 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Stocks?companyId=1 - 200 null application/json; charset=utf-8 426.7891ms
+2026-03-12 10:13:01.757 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Stocks?companyId=1 - null null
+2026-03-12 10:13:01.777 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:13:01.781 +03:00 [INF] Route matched with {action = "GetAll", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(StockFilterDto, Int32) on controller ApiLayer.Controllers.StocksController (ApiLayer).
+2026-03-12 10:13:01.810 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:13:01.827 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Stock.StockListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:13:01.830 +03:00 [INF] Executed action ApiLayer.Controllers.StocksController.GetAll (ApiLayer) in 43.6499ms
+2026-03-12 10:13:01.832 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:13:01.834 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Stocks?companyId=1 - 200 null application/json; charset=utf-8 77.8756ms
+2026-03-12 10:13:16.509 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/favicon.ico - null null
+2026-03-12 10:13:16.515 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/favicon.ico - 404 0 null 5.2345ms
+2026-03-12 10:13:16.520 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7241/favicon.ico, Response status code: 404
+2026-03-12 10:13:38.956 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-12 10:13:38.974 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 17.4645ms
+2026-03-12 10:13:39.047 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-12 10:13:39.051 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-12 10:13:39.056 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 8.3249ms
+2026-03-12 10:13:39.061 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.0547ms
+2026-03-12 10:13:39.121 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-12 10:13:39.147 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.5431ms
+2026-03-12 10:13:39.456 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-12 10:13:39.486 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.644ms
+2026-03-12 10:13:47.301 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-12 10:13:47.307 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-12 10:13:47.310 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-12 10:13:47.330 +03:00 [INF] Login attempt for user: string
+2026-03-12 10:13:47.335 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-12 10:13:47.613 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-12 10:13:47.619 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:13:47.623 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-12 10:13:47.625 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 312.6943ms
+2026-03-12 10:13:47.627 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-12 10:13:47.629 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 327.522ms
+2026-03-12 10:14:12.680 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - null null
+2026-03-12 10:14:12.687 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-12 10:14:12.694 +03:00 [INF] Route matched with {action = "GetAll", controller = "CurrentAccounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(CurrentAccountFilterDto, Int32) on controller ApiLayer.Controllers.CurrentAccountsController (ApiLayer).
+2026-03-12 10:14:12.714 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:14:12.731 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__companyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `CurrentAccounts` AS `c`
+WHERE `c`.`CompanyId` = @__companyId_0
+2026-03-12 10:14:12.742 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__companyId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Balance`, `c`.`Code`, `c`.`CompanyId`, `c`.`CreateDate`, `c`.`Name`, `c`.`Type`, `c`.`UpdateDate`
+FROM `CurrentAccounts` AS `c`
+WHERE `c`.`CompanyId` = @__companyId_0
+ORDER BY `c`.`CreateDate` DESC
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-12 10:14:12.756 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.CurrentAccount.CurrentAccountListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:14:12.759 +03:00 [INF] Executed action ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer) in 60.9396ms
+2026-03-12 10:14:12.762 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-12 10:14:12.763 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - 200 null application/json; charset=utf-8 82.794ms
+2026-03-12 10:14:18.691 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - null null
+2026-03-12 10:14:18.698 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-12 10:14:18.700 +03:00 [INF] Route matched with {action = "GetAll", controller = "CurrentAccounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(CurrentAccountFilterDto, Int32) on controller ApiLayer.Controllers.CurrentAccountsController (ApiLayer).
+2026-03-12 10:14:18.722 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:14:18.732 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.CurrentAccount.CurrentAccountListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:14:18.736 +03:00 [INF] Executed action ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer) in 32.0317ms
+2026-03-12 10:14:18.738 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-12 10:14:18.740 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - 200 null application/json; charset=utf-8 48.5996ms
+2026-03-12 10:18:03.125 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Stocks?Name=elma&companyId=1 - null null
+2026-03-12 10:18:03.142 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:18:03.147 +03:00 [INF] Route matched with {action = "GetAll", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(StockFilterDto, Int32) on controller ApiLayer.Controllers.StocksController (ApiLayer).
+2026-03-12 10:18:03.195 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:18:03.243 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__companyId_0='?' (DbType = Int32), @__filter_Name_1_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Stocks` AS `s`
+WHERE (`s`.`CompanyId` = @__companyId_0) AND (`s`.`Name` LIKE @__filter_Name_1_contains)
+2026-03-12 10:18:03.252 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__companyId_0='?' (DbType = Int32), @__filter_Name_1_contains='?' (Size = 100), @__p_3='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate`
+FROM `Stocks` AS `s`
+WHERE (`s`.`CompanyId` = @__companyId_0) AND (`s`.`Name` LIKE @__filter_Name_1_contains)
+ORDER BY `s`.`CreateDate` DESC
+LIMIT @__p_3 OFFSET @__p_2
+2026-03-12 10:18:03.259 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Stock.StockListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:18:03.262 +03:00 [INF] Executed action ApiLayer.Controllers.StocksController.GetAll (ApiLayer) in 110.5671ms
+2026-03-12 10:18:03.264 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:18:03.265 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Stocks?Name=elma&companyId=1 - 200 null application/json; charset=utf-8 140.3229ms
+2026-03-12 10:18:08.195 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Stocks?Name=elma&companyId=1 - null null
+2026-03-12 10:18:08.215 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:18:08.219 +03:00 [INF] Route matched with {action = "GetAll", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(StockFilterDto, Int32) on controller ApiLayer.Controllers.StocksController (ApiLayer).
+2026-03-12 10:18:08.240 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-12 10:18:08.247 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.Stock.StockListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-12 10:18:08.250 +03:00 [INF] Executed action ApiLayer.Controllers.StocksController.GetAll (ApiLayer) in 26.4606ms
+2026-03-12 10:18:08.253 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StocksController.GetAll (ApiLayer)'
+2026-03-12 10:18:08.254 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Stocks?Name=elma&companyId=1 - 200 null application/json; charset=utf-8 59.7211ms

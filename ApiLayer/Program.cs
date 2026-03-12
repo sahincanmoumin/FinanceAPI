@@ -8,12 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using StackExchange.Redis; 
 using System.Text;
 using ApiLayer.Middlewares;
 
-
 var builder = WebApplication.CreateBuilder(args);
-
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -68,6 +67,14 @@ builder.Services.AddScoped<ICurrentAccountService, CurrentAccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IStockTransService, StockTransService>();
 
+//rediss
+var redisConnectionString = builder.Configuration.GetSection("RedisCacheSettings:ConnectionString").Value;
+var multiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
+builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
+
+builder.Services.AddScoped<ICacheService, CacheService>();
+
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -100,9 +107,9 @@ builder.Services.AddSwaggerGen(c =>
         var order = new Dictionary<string, int>
         {
             { "Auth", 1 },
-            { "Users", 2 },            
-            { "Roles", 8 },            
-            { "Companies", 3 },        
+            { "Users", 2 },
+            { "Roles", 8 },
+            { "Companies", 3 },
             { "CurrentAccounts", 7 },
             { "Stocks", 5 },
             {  "StockTransactions", 6  },
@@ -122,7 +129,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionMiddleware>(); // yapılsı
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
