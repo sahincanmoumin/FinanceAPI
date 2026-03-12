@@ -7,13 +7,13 @@ using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq; 
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,9 +44,32 @@ namespace BusinessLayer.Concrete
             _registerValidator = registerValidator;
             _loginValidator = loginValidator;
         }
+
+        // --- PRIVATE VALIDATION ---
+        private async Task ValidateForRegisterAsync(RegisterDto dto)
+        {
+            var validationResult = await _registerValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+        }
+
+        private async Task ValidateForLoginAsync(LoginDto dto)
+        {
+            var validationResult = await _loginValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+        }
+
+        // --- ANA METOTLAR ---
         public async Task RegisterAsync(RegisterDto dto)
         {
-            await _registerValidator.ValidateAndThrowAsync(dto);
+            await ValidateForRegisterAsync(dto);
 
             var user = new User
             {
@@ -78,7 +101,7 @@ namespace BusinessLayer.Concrete
 
         public async Task<string> LoginAsync(LoginDto dto)
         {
-            await _loginValidator.ValidateAndThrowAsync(dto);
+            await ValidateForLoginAsync(dto);
 
             var user = await _userRepository.GetQueryable()
                                             .FirstOrDefaultAsync(x => x.UserName == dto.UserName);
@@ -106,10 +129,9 @@ namespace BusinessLayer.Concrete
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), 
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName)
             };
-
 
             foreach (var role in roles)
             {

@@ -15,7 +15,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace BusinessLayer.Concrete
 {
     public class InvoiceService : IInvoiceService
@@ -46,6 +45,18 @@ namespace BusinessLayer.Concrete
             _createValidator = createValidator;
         }
 
+        // --- PRIVATE VALIDATION ---
+        private async Task ValidateForCreateDraftAsync(CreateInvoiceDto dto)
+        {
+            var validationResult = await _createValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+        }
+
+        // --- ANA METOTLAR ---
         public async Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId)
         {
             var validFilter = new InvoiceFilterDto(filter.PageNumber, filter.PageSize);
@@ -60,6 +71,7 @@ namespace BusinessLayer.Concrete
 
             if (filter.Status.HasValue)
                 query = query.Where(x => x.Status == filter.Status.Value);
+
             //detail için olan filtree
             if (filter.StockId.HasValue)
             {
@@ -99,8 +111,8 @@ namespace BusinessLayer.Concrete
         public async Task<InvoiceListDto> GetByIdAsync(int id)
         {
             var invoice = await _invoiceRepository.GetQueryable()
-                                .Include(x => x.InvoiceDetails) 
-                                .ThenInclude(d => d.Stock)      
+                                .Include(x => x.InvoiceDetails)
+                                .ThenInclude(d => d.Stock)
                                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (invoice == null) throw new BusinessException(ErrorKeys.InvoiceNotFound);
@@ -110,7 +122,7 @@ namespace BusinessLayer.Concrete
 
         public async Task CreateDraftInvoiceAsync(CreateInvoiceDto dto)
         {
-            await _createValidator.ValidateAndThrowAsync(dto);
+            await ValidateForCreateDraftAsync(dto);
 
             var invoice = new Invoice
             {
@@ -157,7 +169,6 @@ namespace BusinessLayer.Concrete
                 var stock = await _stockRepository.GetByIdAsync(detail.StockId);
                 if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
 
-
                 if (!isPurchase && stock.Balance < detail.Quantity)
                 {
                     throw new BusinessException(ErrorKeys.InsufficientStock);
@@ -177,7 +188,7 @@ namespace BusinessLayer.Concrete
                 if (isPurchase)
                     stock.Balance += detail.Quantity;
                 else
-                    stock.Balance -= detail.Quantity; 
+                    stock.Balance -= detail.Quantity;
                 _stockRepository.Update(stock);
 
                 totalInvoiceAmount += (detail.Quantity * detail.UnitPrice);
@@ -193,6 +204,7 @@ namespace BusinessLayer.Concrete
             invoice.Status = InvoiceStatus.Approved;
             _invoiceRepository.Update(invoice);
         }
+
         public async Task SendInvoiceToIntegratorAsync(int invoiceId)
         {
             var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
@@ -205,6 +217,7 @@ namespace BusinessLayer.Concrete
 
             await _invoiceRepository.SaveChangesAsync();
         }
+
         public async Task DeleteDraftInvoiceAsync(int invoiceId)
         {
             var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);

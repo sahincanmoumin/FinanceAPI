@@ -36,6 +36,34 @@ namespace BusinessLayer.Concrete
             _updateValidator = updateValidator;
         }
 
+        // --- PRIVATE VALIDATION ---
+        private async Task ValidateForCreateAsync(CreateStockDto dto)
+        {
+            var validationResult = await _createValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+
+            var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
+            if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
+        }
+
+        private async Task ValidateForUpdateAsync(UpdateStockDto dto)
+        {
+            var validationResult = await _updateValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+
+            var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId && x.Id != dto.Id);
+            if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
+        }
+
+        // --- ANA METOTLAR ---
         public async Task<PagedResponse<StockListDto>> GetAllStocksAsync(StockFilterDto filter, int companyId)
         {
             var cacheKey = $"Stocks_Company_{companyId}_Page_{filter.PageNumber}_Size_{filter.PageSize}_Name_{filter.Name}_Code_{filter.Code}_Unit_{filter.Unit}_MinBalance_{filter.MinBalance}";
@@ -104,10 +132,7 @@ namespace BusinessLayer.Concrete
 
         public async Task AddAsync(CreateStockDto dto)
         {
-            await _createValidator.ValidateAndThrowAsync(dto);
-
-            var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
-            if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
+            await ValidateForCreateAsync(dto);
 
             var stock = _mapper.Map<Stock>(dto);
             stock.Balance = 0;
@@ -118,7 +143,7 @@ namespace BusinessLayer.Concrete
 
         public async Task UpdateAsync(UpdateStockDto dto)
         {
-            await _updateValidator.ValidateAndThrowAsync(dto);
+            await ValidateForUpdateAsync(dto);
 
             var stock = await _stockRepository.GetByIdAsync(dto.Id);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);

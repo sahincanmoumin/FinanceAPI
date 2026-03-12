@@ -34,6 +34,34 @@ namespace BusinessLayer.Concrete
             _updateValidator = updateValidator;
         }
 
+        // --- PRIVATE VALIDATION ---
+        private async Task ValidateForCreateAsync(CreateCompanyDto dto)
+        {
+            var validationResult = await _createValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+
+            var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber);
+            if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
+        }
+
+        private async Task ValidateForUpdateAsync(UpdateCompanyDto dto)
+        {
+            var validationResult = await _updateValidator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new BusinessException(errors);
+            }
+
+            var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber && x.Id != dto.Id);
+            if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
+        }
+
+        // --- ANA METOTLAR ---
         public async Task<PagedResponse<CompanyListDto>> GetAllCompaniesAsync(CompanyFilterDto filter, int userId)
         {
             var validFilter = new CompanyFilterDto(filter.PageNumber, filter.PageSize);
@@ -73,10 +101,7 @@ namespace BusinessLayer.Concrete
 
         public async Task AddAsync(CreateCompanyDto dto)
         {
-            await _createValidator.ValidateAndThrowAsync(dto);
-
-            var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber);
-            if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
+            await ValidateForCreateAsync(dto);
 
             var company = _mapper.Map<Company>(dto);
             await _companyRepository.AddAsync(company);
@@ -84,7 +109,7 @@ namespace BusinessLayer.Concrete
 
         public async Task UpdateAsync(UpdateCompanyDto dto)
         {
-            await _updateValidator.ValidateAndThrowAsync(dto);
+            await ValidateForUpdateAsync(dto);
 
             var company = await _companyRepository.GetByIdAsync(dto.Id);
             if (company == null) throw new BusinessException(ErrorKeys.CompanyNotFound);
