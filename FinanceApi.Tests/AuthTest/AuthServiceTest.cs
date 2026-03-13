@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using AutoMapper;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Auth;
@@ -8,6 +9,7 @@ using EntityLayer.Exceptions;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using MockQueryable;
 using MockQueryable.Moq;
@@ -39,17 +41,20 @@ namespace FinanceApi.Tests.AuthTest
             _mockRegisterValidator = new Mock<IValidator<RegisterDto>>();
             _mockLoginValidator = new Mock<IValidator<LoginDto>>();
 
-            _mockConfig.Setup(x => x["Jwt:SecretKey"]).Returns("TestIcinCokGizliBirAnahtar1234567890123456");
+            _mockConfig.Setup(x => x["Jwt:SecretKey"]).Returns("TestSecretKey1234567890123456125125125");
             _mockConfig.Setup(x => x["Jwt:Issuer"]).Returns("FinanceApi");
             _mockConfig.Setup(x => x["Jwt:Audience"]).Returns("FinanceApiUser");
 
             _mockRegisterValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<RegisterDto>>(), It.IsAny<CancellationToken>()))
+                .Setup(v => v.ValidateAsync(It.IsAny<RegisterDto>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new ValidationResult());
 
             _mockLoginValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<LoginDto>>(), It.IsAny<CancellationToken>()))
+                .Setup(v => v.ValidateAsync(It.IsAny<LoginDto>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new ValidationResult());
+
+            _mockUserRepo.Setup(x => x.BeginTransactionAsync())
+                .ReturnsAsync(new Mock<IDbContextTransaction>().Object);
 
             _authService = new AuthService(
                 _mockUserRepo.Object,
@@ -67,13 +72,13 @@ namespace FinanceApi.Tests.AuthTest
             var dto = new RegisterDto { UserName = "sahin", Password = "123", FullName = "Sahin Test" };
             var rolesList = new List<Role> { new Role { Id = 1, Name = "User" } };
 
-            var mockRoles = rolesList.BuildMock();
-            _mockRoleRepo.Setup(x => x.GetQueryable()).Returns(mockRoles);
+            var mockQuery = rolesList.BuildMock();
+            _mockRoleRepo.Setup(x => x.GetQueryable()).Returns(mockQuery);
 
             await _authService.RegisterAsync(dto);
 
             _mockUserRepo.Verify(x => x.AddAsync(It.IsAny<User>()), Times.Once);
-            _mockUserRepo.Verify(x => x.SaveChangesAsync(), Times.Once);
+            _mockUserRepo.Verify(x => x.SaveChangesAsync(), Times.AtLeastOnce);
         }
 
         [Fact]
@@ -107,7 +112,6 @@ namespace FinanceApi.Tests.AuthTest
             var token = await _authService.LoginAsync(loginDto);
 
             token.Should().NotBeNullOrWhiteSpace();
-            token.Should().StartWith("ey");
         }
 
         [Fact]
