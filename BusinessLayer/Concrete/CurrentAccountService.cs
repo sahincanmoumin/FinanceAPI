@@ -7,7 +7,6 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,52 +19,32 @@ namespace BusinessLayer.Concrete
         private readonly ICurrentAccountRepository _currentAccountRepository;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
-        private readonly IValidator<CreateCurrentAccountDto> _createValidator;
-        private readonly IValidator<UpdateCurrentAccountDto> _updateValidator;
 
         public CurrentAccountService(
             ICurrentAccountRepository currentAccountRepository,
             IMapper mapper,
-            ICacheService cacheService,
-            IValidator<CreateCurrentAccountDto> createValidator,
-            IValidator<UpdateCurrentAccountDto> updateValidator)
+            ICacheService cacheService)
         {
             _currentAccountRepository = currentAccountRepository;
             _mapper = mapper;
             _cacheService = cacheService;
-            _createValidator = createValidator;
-            _updateValidator = updateValidator;
         }
 
-        private async Task ValidateForCreateAsync(CreateCurrentAccountDto dto)
+        private async Task ValidateForCreateAsync(string code, int companyId)
         {
-            var validationResult = await _createValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
-            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
+            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == code && x.CompanyId == companyId);
             if (isExist) throw new BusinessException(ErrorKeys.CurrentAccountAlreadyExists);
         }
 
-        private async Task ValidateForUpdateAsync(UpdateCurrentAccountDto dto)
+        private async Task ValidateForUpdateAsync(string code, int companyId, int id)
         {
-            var validationResult = await _updateValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
-            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId && x.Id != dto.Id);
+            var isExist = await _currentAccountRepository.AnyAsync(x => x.Code == code && x.CompanyId == companyId && x.Id != id);
             if (isExist) throw new BusinessException(ErrorKeys.CurrentAccountAlreadyExists);
         }
 
         public async Task<CurrentAccountListDto> AddAsync(CreateCurrentAccountDto dto)
         {
-            await ValidateForCreateAsync(dto);
+            await ValidateForCreateAsync(dto.Code, dto.CompanyId);
 
             var account = _mapper.Map<CurrentAccount>(dto);
             if (account.Balance < 0) account.Balance = 0;
@@ -125,10 +104,10 @@ namespace BusinessLayer.Concrete
 
         public async Task<CurrentAccountListDto> UpdateAsync(UpdateCurrentAccountDto dto)
         {
-            await ValidateForUpdateAsync(dto);
-
             var account = await _currentAccountRepository.GetByIdAsync(dto.Id);
             if (account == null) throw new BusinessException(ErrorKeys.CurrentAccountNotFound);
+
+            await ValidateForUpdateAsync(dto.Code, account.CompanyId, dto.Id);
 
             _mapper.Map(dto, account);
             _currentAccountRepository.Update(account);

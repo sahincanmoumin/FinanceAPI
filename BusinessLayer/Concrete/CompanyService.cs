@@ -4,10 +4,8 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Company;
 using EntityLayer.DTOs.Pagination;
-using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,43 +17,23 @@ namespace BusinessLayer.Concrete
     {
         private readonly IGenericRepository<Company> _companyRepository;
         private readonly IMapper _mapper;
-        private readonly IValidator<CreateCompanyDto> _createValidator;
-        private readonly IValidator<UpdateCompanyDto> _updateValidator;
 
         public CompanyService(
             IGenericRepository<Company> companyRepository,
-            IMapper mapper,
-            IValidator<CreateCompanyDto> createValidator,
-            IValidator<UpdateCompanyDto> updateValidator)
+            IMapper mapper)
         {
             _companyRepository = companyRepository;
             _mapper = mapper;
-            _createValidator = createValidator;
-            _updateValidator = updateValidator;
         }
 
         private async Task ValidateForCreateAsync(CreateCompanyDto dto)
         {
-            var validationResult = await _createValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
             var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber);
             if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
         }
 
         private async Task ValidateForUpdateAsync(UpdateCompanyDto dto)
         {
-            var validationResult = await _updateValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
             var isExist = await _companyRepository.AnyAsync(x => x.TaxNumber == dto.TaxNumber && x.Id != dto.Id);
             if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
         }

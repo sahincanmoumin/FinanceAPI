@@ -1,8 +1,12 @@
+using ApiLayer.Middlewares;
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.Validators.CurrentAccountValidator;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Context;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,9 +14,6 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using StackExchange.Redis; 
 using System.Text;
-using ApiLayer.Middlewares;
-using FluentValidation;
-using BusinessLayer.Validators.CurrentAccountValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,10 +47,29 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //error json bildirisi
 builder.Configuration.AddJsonFile("errors.json", optional: false, reloadOnChange: false);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+
+            return new Microsoft.AspNetCore.Mvc.BadRequestObjectResult(new
+            {
+                Message = "Validation Errors",
+                Errors = errors
+            });
+        };
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 //validators
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateCurrentAccountValidator>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

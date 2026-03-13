@@ -5,12 +5,11 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Invoice;
 using EntityLayer.DTOs.InvoiceDetail;
+using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore.Storage;
 using MockQueryable;
 using MockQueryable.Moq;
@@ -18,7 +17,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -33,7 +31,6 @@ namespace FinanceApi.Tests.InvoiceTest
         private readonly Mock<IStockTransRepository> _mockStockTransRepo;
         private readonly Mock<IStockTransService> _mockStockTransService;
         private readonly Mock<IMapper> _mockMapper;
-        private readonly Mock<IValidator<CreateInvoiceDto>> _mockCreateValidator;
         private readonly InvoiceService _invoiceService;
 
         public InvoiceServiceTests()
@@ -45,14 +42,7 @@ namespace FinanceApi.Tests.InvoiceTest
             _mockStockTransRepo = new Mock<IStockTransRepository>();
             _mockStockTransService = new Mock<IStockTransService>();
             _mockMapper = new Mock<IMapper>();
-            _mockCreateValidator = new Mock<IValidator<CreateInvoiceDto>>();
 
-            // Validator setup - Direct DTO matching
-            _mockCreateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<CreateInvoiceDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
-
-            // Transaction setup
             _mockInvoiceRepo.Setup(x => x.BeginTransactionAsync())
                 .ReturnsAsync(new Mock<IDbContextTransaction>().Object);
 
@@ -63,7 +53,6 @@ namespace FinanceApi.Tests.InvoiceTest
                 _mockCurrentAccountRepo.Object,
                 _mockStockTransRepo.Object,
                 _mockMapper.Object,
-                _mockCreateValidator.Object,
                 _mockStockTransService.Object);
         }
 
@@ -163,7 +152,6 @@ namespace FinanceApi.Tests.InvoiceTest
 
             await _invoiceService.ApproveInvoiceAsync(1);
 
-            // Alış faturasında borç artar (veya bakiyeye eklenir - iş mantığına göre)
             currentAccount.Balance.Should().Be(1500);
             invoice.Status.Should().Be(InvoiceStatus.Approved);
 

@@ -31,11 +31,9 @@ namespace BusinessLayer.Concrete
             var stock = await _stockRepository.GetByIdAsync(stockId);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
 
-            // Satış işlemiyse (TransactionType.Out) stok kontrolü yap
             if (direction == TransactionType.Out && stock.Balance < quantity)
                 throw new BusinessException(ErrorKeys.InsufficientStock);
 
-            // 1. Hareket Kaydı Oluştur
             var stockTrans = new StockTrans
             {
                 CompanyId = companyId,
@@ -47,14 +45,12 @@ namespace BusinessLayer.Concrete
             };
             await _stockTransRepository.AddAsync(stockTrans);
 
-            // 2. Stok Bakiyesini Güncelle
             if (direction == TransactionType.In)
                 stock.Balance += quantity;
             else
                 stock.Balance -= quantity;
 
             _stockRepository.Update(stock);
-            // Not: SaveChangesAsync'i burada veya InvoiceService sonunda çağırabilirsin.
         }
 
         public async Task<PagedResponse<StockTransListDto>> GetTransactionsByStockIdAsync(int stockId, StockTransFilterDto filter)

@@ -9,16 +9,12 @@ using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -29,8 +25,6 @@ namespace FinanceApi.Tests.CurrentAccountTest
         private readonly Mock<ICurrentAccountRepository> _mockCurrentAccountRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly Mock<ICacheService> _mockCacheService;
-        private readonly Mock<IValidator<CreateCurrentAccountDto>> _mockCreateValidator;
-        private readonly Mock<IValidator<UpdateCurrentAccountDto>> _mockUpdateValidator;
         private readonly CurrentAccountService _currentAccountService;
 
         public CurrentAccountServiceTests()
@@ -38,23 +32,11 @@ namespace FinanceApi.Tests.CurrentAccountTest
             _mockCurrentAccountRepo = new Mock<ICurrentAccountRepository>();
             _mockMapper = new Mock<IMapper>();
             _mockCacheService = new Mock<ICacheService>();
-            _mockCreateValidator = new Mock<IValidator<CreateCurrentAccountDto>>();
-            _mockUpdateValidator = new Mock<IValidator<UpdateCurrentAccountDto>>();
-
-            _mockCreateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<CreateCurrentAccountDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
-
-            _mockUpdateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<UpdateCurrentAccountDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
 
             _currentAccountService = new CurrentAccountService(
                 _mockCurrentAccountRepo.Object,
                 _mockMapper.Object,
-                _mockCacheService.Object,
-                _mockCreateValidator.Object,
-                _mockUpdateValidator.Object);
+                _mockCacheService.Object);
         }
 
         [Fact]
@@ -151,6 +133,7 @@ namespace FinanceApi.Tests.CurrentAccountTest
             var dto = new UpdateCurrentAccountDto { Id = 1, Name = "Updated Name" };
             var existingAccount = new CurrentAccount { Id = 1, Name = "Old Name", CompanyId = 1 };
 
+            _mockCurrentAccountRepo.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<CurrentAccount, bool>>>())).ReturnsAsync(false);
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(existingAccount);
 
             await _currentAccountService.UpdateAsync(dto);

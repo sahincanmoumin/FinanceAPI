@@ -6,7 +6,6 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.Stock;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,46 +18,26 @@ namespace BusinessLayer.Concrete
         private readonly IStockRepository _stockRepository;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
-        private readonly IValidator<CreateStockDto> _createValidator;
-        private readonly IValidator<UpdateStockDto> _updateValidator;
 
         public StockService(
             IStockRepository stockRepository,
             IMapper mapper,
-            ICacheService cacheService,
-            IValidator<CreateStockDto> createValidator,
-            IValidator<UpdateStockDto> updateValidator)
+            ICacheService cacheService)
         {
             _stockRepository = stockRepository;
             _mapper = mapper;
             _cacheService = cacheService;
-            _createValidator = createValidator;
-            _updateValidator = updateValidator;
         }
 
-        private async Task ValidateForCreateAsync(CreateStockDto dto)
+        private async Task ValidateForCreateAsync(string code, int companyId)
         {
-            var validationResult = await _createValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
-            var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId);
+            var isExist = await _stockRepository.AnyAsync(x => x.Code == code && x.CompanyId == companyId);
             if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
         }
 
-        private async Task ValidateForUpdateAsync(UpdateStockDto dto)
+        private async Task ValidateForUpdateAsync(string code, int companyId, int id)
         {
-            var validationResult = await _updateValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-
-            var isExist = await _stockRepository.AnyAsync(x => x.Code == dto.Code && x.CompanyId == dto.CompanyId && x.Id != dto.Id);
+            var isExist = await _stockRepository.AnyAsync(x => x.Code == code && x.CompanyId == companyId && x.Id != id);
             if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
         }
 
@@ -105,7 +84,7 @@ namespace BusinessLayer.Concrete
 
         public async Task<StockListDto> AddAsync(CreateStockDto dto)
         {
-            await ValidateForCreateAsync(dto);
+            await ValidateForCreateAsync(dto.Code, dto.CompanyId);
 
             var stock = _mapper.Map<Stock>(dto);
             stock.Balance = 0;
@@ -118,10 +97,10 @@ namespace BusinessLayer.Concrete
 
         public async Task<StockListDto> UpdateAsync(UpdateStockDto dto)
         {
-            await ValidateForUpdateAsync(dto);
-
             var stock = await _stockRepository.GetByIdAsync(dto.Id);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
+
+            await ValidateForUpdateAsync(dto.Code, stock.CompanyId, dto.Id);
 
             _mapper.Map(dto, stock);
             _stockRepository.Update(stock);

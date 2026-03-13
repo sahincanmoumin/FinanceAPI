@@ -3,19 +3,16 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Company;
+using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -25,30 +22,16 @@ namespace FinanceApi.Tests.CompanyTest
     {
         private readonly Mock<IGenericRepository<Company>> _mockRepo;
         private readonly Mock<IMapper> _mockMapper;
-        private readonly Mock<IValidator<CreateCompanyDto>> _mockCreateValidator;
-        private readonly Mock<IValidator<UpdateCompanyDto>> _mockUpdateValidator;
         private readonly CompanyService _companyService;
 
         public CompanyServiceTests()
         {
             _mockRepo = new Mock<IGenericRepository<Company>>();
             _mockMapper = new Mock<IMapper>();
-            _mockCreateValidator = new Mock<IValidator<CreateCompanyDto>>();
-            _mockUpdateValidator = new Mock<IValidator<UpdateCompanyDto>>();
-
-            _mockCreateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<CreateCompanyDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
-
-            _mockUpdateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<UpdateCompanyDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
 
             _companyService = new CompanyService(
                 _mockRepo.Object,
-                _mockMapper.Object,
-                _mockCreateValidator.Object,
-                _mockUpdateValidator.Object);
+                _mockMapper.Object);
         }
 
         [Fact]
@@ -63,7 +46,6 @@ namespace FinanceApi.Tests.CompanyTest
             await _companyService.AddAsync(dto);
 
             _mockRepo.Verify(x => x.AddAsync(It.IsAny<Company>()), Times.Once);
-            // SaveChangesAsync verify satırını sildik çünkü servis bunu çağırmıyor, repo kendi içinde hallediyor.
         }
 
         [Fact]
@@ -72,6 +54,7 @@ namespace FinanceApi.Tests.CompanyTest
             var dto = new UpdateCompanyDto { Id = 1, Name = "Updated" };
             var existingCompany = new Company { Id = 1, Name = "Old" };
 
+            _mockRepo.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<Company, bool>>>())).ReturnsAsync(false);
             _mockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(existingCompany);
 
             await _companyService.UpdateAsync(dto);
@@ -156,6 +139,7 @@ namespace FinanceApi.Tests.CompanyTest
         public async Task UpdateAsync_WhenCompanyDoesNotExist()
         {
             var dto = new UpdateCompanyDto { Id = 1 };
+            _mockRepo.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<Company, bool>>>())).ReturnsAsync(false);
             _mockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync((Company)null);
 
             Func<Task> action = async () => await _companyService.UpdateAsync(dto);

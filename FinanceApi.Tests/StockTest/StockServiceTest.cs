@@ -8,16 +8,12 @@ using EntityLayer.DTOs.Stock;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -28,8 +24,6 @@ namespace FinanceApi.Tests.StockTest
         private readonly Mock<IStockRepository> _mockStockRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly Mock<ICacheService> _mockCacheService;
-        private readonly Mock<IValidator<CreateStockDto>> _mockCreateValidator;
-        private readonly Mock<IValidator<UpdateStockDto>> _mockUpdateValidator;
         private readonly StockService _stockService;
 
         public StockServiceTests()
@@ -37,24 +31,11 @@ namespace FinanceApi.Tests.StockTest
             _mockStockRepo = new Mock<IStockRepository>();
             _mockMapper = new Mock<IMapper>();
             _mockCacheService = new Mock<ICacheService>();
-            _mockCreateValidator = new Mock<IValidator<CreateStockDto>>();
-            _mockUpdateValidator = new Mock<IValidator<UpdateStockDto>>();
-
-            // Validation Setup - Context yerine direkt nesne tipi üzerinden
-            _mockCreateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<CreateStockDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
-
-            _mockUpdateValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<UpdateStockDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
 
             _stockService = new StockService(
                 _mockStockRepo.Object,
                 _mockMapper.Object,
-                _mockCacheService.Object,
-                _mockCreateValidator.Object,
-                _mockUpdateValidator.Object);
+                _mockCacheService.Object);
         }
 
         [Fact]
@@ -137,6 +118,7 @@ namespace FinanceApi.Tests.StockTest
             var dto = new UpdateStockDto { Id = 1, Name = "Updated Stock" };
             var existingStock = new Stock { Id = 1, Name = "Old Stock", CompanyId = 1 };
 
+            _mockStockRepo.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<Stock, bool>>>())).ReturnsAsync(false);
             _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(existingStock);
 
             await _stockService.UpdateAsync(dto);

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BusinessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Auth;
@@ -7,16 +6,12 @@ using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -28,8 +23,6 @@ namespace FinanceApi.Tests.AuthTest
         private readonly Mock<IUserRoleRepository> _mockUserRoleRepo;
         private readonly Mock<IRoleRepository> _mockRoleRepo;
         private readonly Mock<IConfiguration> _mockConfig;
-        private readonly Mock<IValidator<RegisterDto>> _mockRegisterValidator;
-        private readonly Mock<IValidator<LoginDto>> _mockLoginValidator;
         private readonly AuthService _authService;
 
         public AuthServiceTests()
@@ -38,20 +31,10 @@ namespace FinanceApi.Tests.AuthTest
             _mockUserRoleRepo = new Mock<IUserRoleRepository>();
             _mockRoleRepo = new Mock<IRoleRepository>();
             _mockConfig = new Mock<IConfiguration>();
-            _mockRegisterValidator = new Mock<IValidator<RegisterDto>>();
-            _mockLoginValidator = new Mock<IValidator<LoginDto>>();
 
             _mockConfig.Setup(x => x["Jwt:SecretKey"]).Returns("TestSecretKey1234567890123456125125125");
             _mockConfig.Setup(x => x["Jwt:Issuer"]).Returns("FinanceApi");
             _mockConfig.Setup(x => x["Jwt:Audience"]).Returns("FinanceApiUser");
-
-            _mockRegisterValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<RegisterDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
-
-            _mockLoginValidator
-                .Setup(v => v.ValidateAsync(It.IsAny<LoginDto>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new ValidationResult());
 
             _mockUserRepo.Setup(x => x.BeginTransactionAsync())
                 .ReturnsAsync(new Mock<IDbContextTransaction>().Object);
@@ -60,18 +43,30 @@ namespace FinanceApi.Tests.AuthTest
                 _mockUserRepo.Object,
                 _mockUserRoleRepo.Object,
                 _mockRoleRepo.Object,
-                _mockConfig.Object,
-                _mockRegisterValidator.Object,
-                _mockLoginValidator.Object
+                _mockConfig.Object
             );
+        }
+
+        [Fact]
+        public async Task RegisterAsync_WhenUserExists_ShouldThrowException()
+        {
+            var dto = new RegisterDto { UserName = "testuser" };
+            var users = new List<User> { new User { UserName = "testuser" } };
+            _mockUserRepo.Setup(x => x.GetQueryable()).Returns(users.BuildMock());
+
+            await _authService.Invoking(s => s.RegisterAsync(dto))
+                .Should().ThrowAsync<BusinessException>()
+                .WithMessage(ErrorKeys.UserAlreadyExists);
         }
 
         [Fact]
         public async Task Register_WhenRoleExists_ShouldCreateUser()
         {
             var dto = new RegisterDto { UserName = "sahin", Password = "123", FullName = "Sahin Test" };
-            var rolesList = new List<Role> { new Role { Id = 1, Name = "User" } };
+            var emptyUsers = new List<User>();
+            _mockUserRepo.Setup(x => x.GetQueryable()).Returns(emptyUsers.BuildMock());
 
+            var rolesList = new List<Role> { new Role { Id = 1, Name = "User" } };
             var mockQuery = rolesList.BuildMock();
             _mockRoleRepo.Setup(x => x.GetQueryable()).Returns(mockQuery);
 
@@ -85,6 +80,9 @@ namespace FinanceApi.Tests.AuthTest
         public async Task Register_WhenRoleNotFound_ShouldThrowException()
         {
             var dto = new RegisterDto { UserName = "user", Password = "123" };
+            var emptyUsers = new List<User>();
+            _mockUserRepo.Setup(x => x.GetQueryable()).Returns(emptyUsers.BuildMock());
+
             var emptyRoles = new List<Role>().BuildMock();
             _mockRoleRepo.Setup(x => x.GetQueryable()).Returns(emptyRoles);
 

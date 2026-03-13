@@ -6,7 +6,6 @@ using EntityLayer.DTOs.Auth;
 using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -26,47 +25,31 @@ namespace BusinessLayer.Concrete
         private readonly IUserRoleRepository _userRoleRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IConfiguration _configuration;
-        private readonly IValidator<RegisterDto> _registerValidator;
-        private readonly IValidator<LoginDto> _loginValidator;
 
         public AuthService(
             IUserRepository userRepository,
             IUserRoleRepository userRoleRepository,
             IRoleRepository roleRepository,
-            IConfiguration configuration,
-            IValidator<RegisterDto> registerValidator,
-            IValidator<LoginDto> loginValidator)
+            IConfiguration configuration)
         {
             _userRepository = userRepository;
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
             _configuration = configuration;
-            _registerValidator = registerValidator;
-            _loginValidator = loginValidator;
         }
 
-        private async Task ValidateForRegisterAsync(RegisterDto dto)
+        private async Task ValidateForRegisterAsync(string userName)
         {
-            var validationResult = await _registerValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
+            var isUserExist = await _userRepository.GetQueryable().AnyAsync(x => x.UserName == userName);
+            if (isUserExist)
             {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
-        }
-        private async Task ValidateForLoginAsync(LoginDto dto)
-        {
-            var validationResult = await _loginValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
+                throw new BusinessException(ErrorKeys.UserAlreadyExists);
             }
         }
 
         public async Task RegisterAsync(RegisterDto dto)
         {
-            await ValidateForRegisterAsync(dto);
+            await ValidateForRegisterAsync(dto.UserName);
 
             var user = new User
             {
@@ -98,8 +81,6 @@ namespace BusinessLayer.Concrete
 
         public async Task<string> LoginAsync(LoginDto dto)
         {
-            await ValidateForLoginAsync(dto);
-
             var user = await _userRepository.GetQueryable()
                                             .FirstOrDefaultAsync(x => x.UserName == dto.UserName);
 

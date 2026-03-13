@@ -7,13 +7,10 @@ using EntityLayer.DTOs.Pagination;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
@@ -26,7 +23,6 @@ namespace BusinessLayer.Concrete
         private readonly ICurrentAccountRepository _currentAccountRepository;
         private readonly IStockTransRepository _stockTransRepository;
         private readonly IMapper _mapper;
-        private readonly IValidator<CreateInvoiceDto> _createValidator;
         private readonly IStockTransService _stockTransService;
 
         public InvoiceService(
@@ -36,7 +32,6 @@ namespace BusinessLayer.Concrete
             ICurrentAccountRepository currentAccountRepository,
             IStockTransRepository stockTransRepository,
             IMapper mapper,
-            IValidator<CreateInvoiceDto> createValidator,
             IStockTransService stockTransService)
         {
             _invoiceRepository = invoiceRepository;
@@ -45,18 +40,7 @@ namespace BusinessLayer.Concrete
             _currentAccountRepository = currentAccountRepository;
             _stockTransRepository = stockTransRepository;
             _mapper = mapper;
-            _createValidator = createValidator;
             _stockTransService = stockTransService;
-        }
-
-        private async Task ValidateForCreateDraftAsync(CreateInvoiceDto dto)
-        {
-            var validationResult = await _createValidator.ValidateAsync(dto);
-            if (!validationResult.IsValid)
-            {
-                var errors = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage));
-                throw new BusinessException(errors);
-            }
         }
 
         public async Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId)
@@ -74,7 +58,6 @@ namespace BusinessLayer.Concrete
             if (filter.Status.HasValue)
                 query = query.Where(x => x.Status == filter.Status.Value);
 
-            //detail için olan filtree
             if (filter.StockId.HasValue)
             {
                 query = query.Where(x => x.InvoiceDetails.Any(d => d.StockId == filter.StockId.Value));
@@ -124,8 +107,6 @@ namespace BusinessLayer.Concrete
 
         public async Task<InvoiceListDto> CreateDraftInvoiceAsync(CreateInvoiceDto dto)
         {
-            await ValidateForCreateDraftAsync(dto);
-
             var invoice = new Invoice
             {
                 CompanyId = dto.CompanyId,
@@ -135,7 +116,7 @@ namespace BusinessLayer.Concrete
                 Date = dto.Date,
                 Status = InvoiceStatus.Draft,
                 Type = dto.Type,
-                InvoiceDetails = new List<InvoiceDetail>() 
+                InvoiceDetails = new List<InvoiceDetail>()
             };
 
             await _invoiceRepository.AddAsync(invoice);
@@ -150,12 +131,13 @@ namespace BusinessLayer.Concrete
                     UnitPrice = detailDto.UnitPrice
                 };
                 await _invoiceDetailRepository.AddAsync(detail);
-                invoice.InvoiceDetails.Add(detail); 
+                invoice.InvoiceDetails.Add(detail);
             }
             await _invoiceDetailRepository.SaveChangesAsync();
 
             return _mapper.Map<InvoiceListDto>(invoice);
         }
+
         public async Task ApproveInvoiceAsync(int invoiceId)
         {
             using var transaction = await _invoiceRepository.BeginTransactionAsync();
