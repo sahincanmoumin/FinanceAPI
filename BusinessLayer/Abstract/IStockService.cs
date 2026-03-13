@@ -8,8 +8,8 @@ namespace BusinessLayer.Abstract
     {
         Task<PagedResponse<StockListDto>> GetAllStocksAsync(StockFilterDto filter, int companyId);
         Task<StockListDto> GetByIdAsync(int id);
-        Task AddAsync(CreateStockDto dto);
-        Task UpdateAsync(UpdateStockDto dto);
+        Task<StockListDto> AddAsync(CreateStockDto dto);
+        Task<StockListDto> UpdateAsync(UpdateStockDto dto);
         Task DeleteAsync(int id);
     }
 }

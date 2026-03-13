@@ -29,7 +29,8 @@ namespace FinanceApi.Tests.CurrentAccountTest
         private readonly Mock<ICurrentAccountRepository> _mockCurrentAccountRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly Mock<ICacheService> _mockCacheService;
-        private readonly Mock<IValidator<CreateCurrentAccountDto>> _mockValidator;
+        private readonly Mock<IValidator<CreateCurrentAccountDto>> _mockCreateValidator;
+        private readonly Mock<IValidator<UpdateCurrentAccountDto>> _mockUpdateValidator;
         private readonly CurrentAccountService _currentAccountService;
 
         public CurrentAccountServiceTests()
@@ -37,17 +38,23 @@ namespace FinanceApi.Tests.CurrentAccountTest
             _mockCurrentAccountRepo = new Mock<ICurrentAccountRepository>();
             _mockMapper = new Mock<IMapper>();
             _mockCacheService = new Mock<ICacheService>();
-            _mockValidator = new Mock<IValidator<CreateCurrentAccountDto>>();
+            _mockCreateValidator = new Mock<IValidator<CreateCurrentAccountDto>>();
+            _mockUpdateValidator = new Mock<IValidator<UpdateCurrentAccountDto>>();
 
-            _mockValidator
+            _mockCreateValidator
                 .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateCurrentAccountDto>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new ValidationResult());
+
+            _mockUpdateValidator
+                .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<UpdateCurrentAccountDto>>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new ValidationResult());
 
             _currentAccountService = new CurrentAccountService(
                 _mockCurrentAccountRepo.Object,
                 _mockMapper.Object,
                 _mockCacheService.Object,
-                _mockValidator.Object);
+                _mockCreateValidator.Object,
+                _mockUpdateValidator.Object);
         }
 
         [Fact]

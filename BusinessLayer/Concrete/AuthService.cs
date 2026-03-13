@@ -45,7 +45,6 @@ namespace BusinessLayer.Concrete
             _loginValidator = loginValidator;
         }
 
-        // --- PRIVATE VALIDATION ---
         private async Task ValidateForRegisterAsync(RegisterDto dto)
         {
             var validationResult = await _registerValidator.ValidateAsync(dto);
@@ -55,7 +54,6 @@ namespace BusinessLayer.Concrete
                 throw new BusinessException(errors);
             }
         }
-
         private async Task ValidateForLoginAsync(LoginDto dto)
         {
             var validationResult = await _loginValidator.ValidateAsync(dto);
@@ -66,7 +64,6 @@ namespace BusinessLayer.Concrete
             }
         }
 
-        // --- ANA METOTLAR ---
         public async Task RegisterAsync(RegisterDto dto)
         {
             await ValidateForRegisterAsync(dto);

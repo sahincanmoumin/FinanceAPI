@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace BusinessLayer.Concrete
         private readonly IStockTransRepository _stockTransRepository;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateInvoiceDto> _createValidator;
+        private readonly IStockTransService _stockTransService;
 
         public InvoiceService(
             IInvoiceRepository invoiceRepository,
@@ -34,7 +36,8 @@ namespace BusinessLayer.Concrete
             ICurrentAccountRepository currentAccountRepository,
             IStockTransRepository stockTransRepository,
             IMapper mapper,
-            IValidator<CreateInvoiceDto> createValidator)
+            IValidator<CreateInvoiceDto> createValidator,
+            IStockTransService stockTransService)
         {
             _invoiceRepository = invoiceRepository;
             _invoiceDetailRepository = invoiceDetailRepository;
@@ -43,9 +46,9 @@ namespace BusinessLayer.Concrete
             _stockTransRepository = stockTransRepository;
             _mapper = mapper;
             _createValidator = createValidator;
+            _stockTransService = stockTransService;
         }
 
-        // --- PRIVATE VALIDATION ---
         private async Task ValidateForCreateDraftAsync(CreateInvoiceDto dto)
         {
             var validationResult = await _createValidator.ValidateAsync(dto);
@@ -56,7 +59,6 @@ namespace BusinessLayer.Concrete
             }
         }
 
-        // --- ANA METOTLAR ---
         public async Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId)
         {
             var validFilter = new InvoiceFilterDto(filter.PageNumber, filter.PageSize);
@@ -120,7 +122,7 @@ namespace BusinessLayer.Concrete
             return _mapper.Map<InvoiceListDto>(invoice);
         }
 
-        public async Task CreateDraftInvoiceAsync(CreateInvoiceDto dto)
+        public async Task<InvoiceListDto> CreateDraftInvoiceAsync(CreateInvoiceDto dto)
         {
             await ValidateForCreateDraftAsync(dto);
 
@@ -132,7 +134,8 @@ namespace BusinessLayer.Concrete
                 Ettn = Guid.NewGuid(),
                 Date = dto.Date,
                 Status = InvoiceStatus.Draft,
-                Type = dto.Type
+                Type = dto.Type,
+                InvoiceDetails = new List<InvoiceDetail>() 
             };
 
             await _invoiceRepository.AddAsync(invoice);
@@ -147,49 +150,36 @@ namespace BusinessLayer.Concrete
                     UnitPrice = detailDto.UnitPrice
                 };
                 await _invoiceDetailRepository.AddAsync(detail);
+                invoice.InvoiceDetails.Add(detail); 
             }
             await _invoiceDetailRepository.SaveChangesAsync();
-        }
 
+            return _mapper.Map<InvoiceListDto>(invoice);
+        }
         public async Task ApproveInvoiceAsync(int invoiceId)
         {
+            using var transaction = await _invoiceRepository.BeginTransactionAsync();
+
             var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
             if (invoice == null) throw new BusinessException(ErrorKeys.InvoiceNotFound);
 
             if (invoice.Status != InvoiceStatus.Draft)
-                throw new BusinessException(ErrorKeys.OnlyDraftInvoicesCanBeApproved);
+                throw new BusinessException(ErrorKeys.InvoiceNotDraft);
 
             var details = await _invoiceDetailRepository.GetQueryable().Where(x => x.InvoiceId == invoiceId).ToListAsync();
 
             decimal totalInvoiceAmount = 0;
-            bool isPurchase = invoice.Type == InvoiceType.Purchase;
+            TransactionType direction = invoice.Type == InvoiceType.Purchase ? TransactionType.In : TransactionType.Out;
 
             foreach (var detail in details)
             {
-                var stock = await _stockRepository.GetByIdAsync(detail.StockId);
-                if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
-
-                if (!isPurchase && stock.Balance < detail.Quantity)
-                {
-                    throw new BusinessException(ErrorKeys.InsufficientStock);
-                }
-
-                var stockTrans = new StockTrans
-                {
-                    CompanyId = invoice.CompanyId,
-                    StockId = stock.Id,
-                    Date = DateTime.Now,
-                    Quantity = detail.Quantity,
-                    UnitPrice = detail.UnitPrice,
-                    Direction = isPurchase ? TransactionType.In : TransactionType.Out
-                };
-                await _stockTransRepository.AddAsync(stockTrans);
-
-                if (isPurchase)
-                    stock.Balance += detail.Quantity;
-                else
-                    stock.Balance -= detail.Quantity;
-                _stockRepository.Update(stock);
+                await _stockTransService.ProcessStockActionAsync(
+                    invoice.CompanyId,
+                    detail.StockId,
+                    detail.Quantity,
+                    detail.UnitPrice,
+                    direction
+                );
 
                 totalInvoiceAmount += (detail.Quantity * detail.UnitPrice);
             }
@@ -203,6 +193,10 @@ namespace BusinessLayer.Concrete
 
             invoice.Status = InvoiceStatus.Approved;
             _invoiceRepository.Update(invoice);
+
+            await _invoiceRepository.SaveChangesAsync();
+
+            await transaction.CommitAsync();
         }
 
         public async Task SendInvoiceToIntegratorAsync(int invoiceId)

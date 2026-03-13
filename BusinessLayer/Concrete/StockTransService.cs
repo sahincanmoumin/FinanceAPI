@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using EntityLayer.Constants;
 using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.StockTrans;
 using EntityLayer.Entities.Domain;
+using EntityLayer.Entities.Enums;
+using EntityLayer.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +17,44 @@ namespace BusinessLayer.Concrete
     public class StockTransService : IStockTransService
     {
         private readonly IGenericRepository<StockTrans> _stockTransRepository;
+        private readonly IGenericRepository<Stock> _stockRepository; 
         private readonly IMapper _mapper;
 
-        public StockTransService(IGenericRepository<StockTrans> stockTransRepository, IMapper mapper)
+        public StockTransService(IGenericRepository<StockTrans> stockTransRepository, IGenericRepository<Stock> stockRepository, IMapper mapper)
         {
             _stockTransRepository = stockTransRepository;
+            _stockRepository = stockRepository;
             _mapper = mapper;
+        }
+        public async Task ProcessStockActionAsync(int companyId, int stockId, decimal quantity, decimal unitPrice, TransactionType direction)
+        {
+            var stock = await _stockRepository.GetByIdAsync(stockId);
+            if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
+
+            // Satış işlemiyse (TransactionType.Out) stok kontrolü yap
+            if (direction == TransactionType.Out && stock.Balance < quantity)
+                throw new BusinessException(ErrorKeys.InsufficientStock);
+
+            // 1. Hareket Kaydı Oluştur
+            var stockTrans = new StockTrans
+            {
+                CompanyId = companyId,
+                StockId = stockId,
+                Date = DateTime.Now,
+                Quantity = quantity,
+                UnitPrice = unitPrice,
+                Direction = direction
+            };
+            await _stockTransRepository.AddAsync(stockTrans);
+
+            // 2. Stok Bakiyesini Güncelle
+            if (direction == TransactionType.In)
+                stock.Balance += quantity;
+            else
+                stock.Balance -= quantity;
+
+            _stockRepository.Update(stock);
+            // Not: SaveChangesAsync'i burada veya InvoiceService sonunda çağırabilirsin.
         }
 
         public async Task<PagedResponse<StockTransListDto>> GetTransactionsByStockIdAsync(int stockId, StockTransFilterDto filter)

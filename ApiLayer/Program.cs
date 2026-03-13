@@ -43,6 +43,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["Jwt:Audience"]
         };
     });
+//error json bildirisi
+builder.Configuration.AddJsonFile("errors.json", optional: false, reloadOnChange: false);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

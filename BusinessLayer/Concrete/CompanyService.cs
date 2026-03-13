@@ -34,7 +34,6 @@ namespace BusinessLayer.Concrete
             _updateValidator = updateValidator;
         }
 
-        // --- PRIVATE VALIDATION ---
         private async Task ValidateForCreateAsync(CreateCompanyDto dto)
         {
             var validationResult = await _createValidator.ValidateAsync(dto);
@@ -61,7 +60,6 @@ namespace BusinessLayer.Concrete
             if (isExist) throw new BusinessException(ErrorKeys.CompanyAlreadyExists);
         }
 
-        // --- ANA METOTLAR ---
         public async Task<PagedResponse<CompanyListDto>> GetAllCompaniesAsync(CompanyFilterDto filter, int userId)
         {
             var validFilter = new CompanyFilterDto(filter.PageNumber, filter.PageSize);
@@ -70,14 +68,10 @@ namespace BusinessLayer.Concrete
                                           .Where(c => c.UserId == userId);
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
-            {
                 query = query.Where(c => c.Name.Contains(filter.Name));
-            }
 
             if (!string.IsNullOrWhiteSpace(filter.Address))
-            {
                 query = query.Where(c => c.Address.Contains(filter.Address));
-            }
 
             var totalRecords = await query.CountAsync();
 
@@ -88,7 +82,6 @@ namespace BusinessLayer.Concrete
                 .ToListAsync();
 
             var mappedCompanies = _mapper.Map<IEnumerable<CompanyListDto>>(companies);
-
             return new PagedResponse<CompanyListDto>(mappedCompanies, totalRecords, validFilter.PageNumber, validFilter.PageSize);
         }
 
@@ -99,15 +92,17 @@ namespace BusinessLayer.Concrete
             return _mapper.Map<CompanyListDto>(company);
         }
 
-        public async Task AddAsync(CreateCompanyDto dto)
+        public async Task<CompanyListDto> AddAsync(CreateCompanyDto dto)
         {
             await ValidateForCreateAsync(dto);
 
             var company = _mapper.Map<Company>(dto);
             await _companyRepository.AddAsync(company);
+
+            return _mapper.Map<CompanyListDto>(company);
         }
 
-        public async Task UpdateAsync(UpdateCompanyDto dto)
+        public async Task<CompanyListDto> UpdateAsync(UpdateCompanyDto dto)
         {
             await ValidateForUpdateAsync(dto);
 
@@ -116,6 +111,8 @@ namespace BusinessLayer.Concrete
 
             _mapper.Map(dto, company);
             _companyRepository.Update(company);
+
+            return _mapper.Map<CompanyListDto>(company);
         }
 
         public async Task DeleteAsync(int id)

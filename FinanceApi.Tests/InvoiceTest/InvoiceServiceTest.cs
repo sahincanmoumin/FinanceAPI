@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
@@ -10,6 +11,7 @@ using EntityLayer.Exceptions;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.EntityFrameworkCore.Storage;
 using MockQueryable;
 using MockQueryable.Moq;
 using Moq;
@@ -29,6 +31,7 @@ namespace FinanceApi.Tests.InvoiceTest
         private readonly Mock<IStockRepository> _mockStockRepo;
         private readonly Mock<ICurrentAccountRepository> _mockCurrentAccountRepo;
         private readonly Mock<IStockTransRepository> _mockStockTransRepo;
+        private readonly Mock<IStockTransService> _mockStockTransService;
         private readonly Mock<IMapper> _mockMapper;
         private readonly Mock<IValidator<CreateInvoiceDto>> _mockCreateValidator;
         private readonly InvoiceService _invoiceService;
@@ -40,12 +43,16 @@ namespace FinanceApi.Tests.InvoiceTest
             _mockStockRepo = new Mock<IStockRepository>();
             _mockCurrentAccountRepo = new Mock<ICurrentAccountRepository>();
             _mockStockTransRepo = new Mock<IStockTransRepository>();
+            _mockStockTransService = new Mock<IStockTransService>();
             _mockMapper = new Mock<IMapper>();
             _mockCreateValidator = new Mock<IValidator<CreateInvoiceDto>>();
 
             _mockCreateValidator
                 .Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateInvoiceDto>>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new ValidationResult());
+
+            _mockInvoiceRepo.Setup(x => x.BeginTransactionAsync())
+                .ReturnsAsync(new Mock<IDbContextTransaction>().Object);
 
             _invoiceService = new InvoiceService(
                 _mockInvoiceRepo.Object,
@@ -54,7 +61,8 @@ namespace FinanceApi.Tests.InvoiceTest
                 _mockCurrentAccountRepo.Object,
                 _mockStockTransRepo.Object,
                 _mockMapper.Object,
-                _mockCreateValidator.Object);
+                _mockCreateValidator.Object,
+                _mockStockTransService.Object);
         }
 
         [Fact]
@@ -146,48 +154,28 @@ namespace FinanceApi.Tests.InvoiceTest
         }
 
         [Fact]
-        public async Task ApproveInvoiceAsync_WhenSalesAndInsufficientStock()
-        {
-            var invoice = new Invoice { Id = 1, Status = InvoiceStatus.Draft, Type = InvoiceType.Sales };
-            _mockInvoiceRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(invoice);
-
-            var details = new List<InvoiceDetail> { new InvoiceDetail { InvoiceId = 1, StockId = 1, Quantity = 10 } };
-            _mockInvoiceDetailRepo.Setup(x => x.GetQueryable()).Returns(details.BuildMock());
-
-            var stock = new Stock { Id = 1, Balance = 5 };
-            _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(stock);
-
-            Func<Task> action = async () => await _invoiceService.ApproveInvoiceAsync(1);
-
-            await action.Should().ThrowAsync<BusinessException>()
-                .Where(x => x.Message == ErrorKeys.InsufficientStock);
-        }
-
-        [Fact]
         public async Task ApproveInvoiceAsync_WhenPurchase()
         {
-            var invoice = new Invoice { Id = 1, Status = InvoiceStatus.Draft, Type = InvoiceType.Purchase, CurrentAccountId = 1 };
+            var invoice = new Invoice { Id = 1, Status = InvoiceStatus.Draft, Type = InvoiceType.Purchase, CurrentAccountId = 1, CompanyId = 1 };
             _mockInvoiceRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(invoice);
 
             var details = new List<InvoiceDetail> { new InvoiceDetail { InvoiceId = 1, StockId = 1, Quantity = 10, UnitPrice = 100 } };
             _mockInvoiceDetailRepo.Setup(x => x.GetQueryable()).Returns(details.BuildMock());
-
-            var stock = new Stock { Id = 1, Balance = 20 };
-            _mockStockRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(stock);
 
             var currentAccount = new CurrentAccount { Id = 1, Balance = 500 };
             _mockCurrentAccountRepo.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(currentAccount);
 
             await _invoiceService.ApproveInvoiceAsync(1);
 
-            stock.Balance.Should().Be(30);
             currentAccount.Balance.Should().Be(1500);
             invoice.Status.Should().Be(InvoiceStatus.Approved);
 
-            _mockStockTransRepo.Verify(x => x.AddAsync(It.Is<StockTrans>(st => st.Direction == TransactionType.In)), Times.Once);
-            _mockStockRepo.Verify(x => x.Update(stock), Times.Once);
+            _mockStockTransService.Verify(x => x.ProcessStockActionAsync(
+                It.IsAny<int>(), It.IsAny<int>(), It.IsAny<decimal>(), It.IsAny<decimal>(), It.IsAny<TransactionType>()), Times.Once);
+
             _mockCurrentAccountRepo.Verify(x => x.Update(currentAccount), Times.Once);
             _mockInvoiceRepo.Verify(x => x.Update(invoice), Times.Once);
+            _mockInvoiceRepo.Verify(x => x.SaveChangesAsync(), Times.Once);
         }
 
         [Fact]

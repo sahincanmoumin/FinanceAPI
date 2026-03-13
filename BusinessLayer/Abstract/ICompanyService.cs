@@ -13,8 +13,8 @@ namespace BusinessLayer.Abstract
     {
         Task<PagedResponse<CompanyListDto>> GetAllCompaniesAsync(CompanyFilterDto filter, int userId); 
         Task<CompanyListDto> GetByIdAsync(int id);
-        Task AddAsync(CreateCompanyDto dto);
-        Task UpdateAsync(UpdateCompanyDto dto);
+        Task<CompanyListDto> AddAsync(CreateCompanyDto dto);
+        Task<CompanyListDto> UpdateAsync(UpdateCompanyDto dto);
         Task DeleteAsync(int id);
     }
 }

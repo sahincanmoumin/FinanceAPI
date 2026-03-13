@@ -13,7 +13,7 @@ namespace BusinessLayer.Abstract
     {
         Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId);
         Task<InvoiceListDto> GetByIdAsync(int id);
-        Task CreateDraftInvoiceAsync(CreateInvoiceDto dto);
+        Task<InvoiceListDto> CreateDraftInvoiceAsync(CreateInvoiceDto dto);
         Task ApproveInvoiceAsync(int invoiceId);
         Task DeleteDraftInvoiceAsync(int invoiceId);
         public Task SendInvoiceToIntegratorAsync(int invoiceId);

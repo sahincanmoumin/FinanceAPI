@@ -13,8 +13,8 @@ namespace BusinessLayer.Abstract
     {
         Task<PagedResponse<CurrentAccountListDto>> GetAllCurrentAccountsAsync(CurrentAccountFilterDto filter, int companyId);
         Task<CurrentAccountListDto> GetByIdAsync(int id);
-        Task AddAsync(CreateCurrentAccountDto dto);
-        Task UpdateAsync(UpdateCurrentAccountDto dto);
+        Task<CurrentAccountListDto> AddAsync(CreateCurrentAccountDto dto);
+        Task<CurrentAccountListDto> UpdateAsync(UpdateCurrentAccountDto dto);
         Task DeleteAsync(int id);
         
 

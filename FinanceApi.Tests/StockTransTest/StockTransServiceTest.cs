@@ -20,14 +20,20 @@ namespace FinanceApi.Tests.StockTransTest
     public class StockTransServiceTests
     {
         private readonly Mock<IGenericRepository<StockTrans>> _mockStockTransRepo;
+        private readonly Mock<IGenericRepository<Stock>> _mockStockRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly StockTransService _stockTransService;
 
         public StockTransServiceTests()
         {
             _mockStockTransRepo = new Mock<IGenericRepository<StockTrans>>();
+            _mockStockRepo = new Mock<IGenericRepository<Stock>>();
             _mockMapper = new Mock<IMapper>();
-            _stockTransService = new StockTransService(_mockStockTransRepo.Object, _mockMapper.Object);
+
+            _stockTransService = new StockTransService(
+                _mockStockTransRepo.Object,
+                _mockStockRepo.Object,
+                _mockMapper.Object);
         }
 
         [Fact]
@@ -40,7 +46,7 @@ namespace FinanceApi.Tests.StockTransTest
             {
                 new StockTrans { Id = 1, StockId = stockId, Date = DateTime.Now },
                 new StockTrans { Id = 2, StockId = stockId, Date = DateTime.Now.AddDays(-1) },
-                new StockTrans { Id = 3, StockId = 2, Date = DateTime.Now } // Different StockId
+                new StockTrans { Id = 3, StockId = 2, Date = DateTime.Now }
             };
 
             var mockQuery = transactions.BuildMock();
@@ -83,13 +89,9 @@ namespace FinanceApi.Tests.StockTransTest
             var transactions = new List<StockTrans>
             {
                 new StockTrans { Id = 1, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 10, UnitPrice = 200 },
-                
                 new StockTrans { Id = 2, StockId = stockId, Direction = TransactionType.Out, Date = baseDate, Quantity = 10, UnitPrice = 200 },
-                
                 new StockTrans { Id = 3, StockId = stockId, Direction = TransactionType.In, Date = new DateTime(2024, 2, 1), Quantity = 10, UnitPrice = 200 },
-                
                 new StockTrans { Id = 4, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 50, UnitPrice = 200 },
-                
                 new StockTrans { Id = 5, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 10, UnitPrice = 50 }
             };
 

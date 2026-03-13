@@ -36,7 +36,6 @@ namespace BusinessLayer.Concrete
             _updateValidator = updateValidator;
         }
 
-        // --- PRIVATE VALIDATION ---
         private async Task ValidateForCreateAsync(CreateStockDto dto)
         {
             var validationResult = await _createValidator.ValidateAsync(dto);
@@ -63,55 +62,30 @@ namespace BusinessLayer.Concrete
             if (isExist) throw new BusinessException(ErrorKeys.StockAlreadyExists);
         }
 
-        // --- ANA METOTLAR ---
         public async Task<PagedResponse<StockListDto>> GetAllStocksAsync(StockFilterDto filter, int companyId)
         {
             var cacheKey = $"Stocks_Company_{companyId}_Page_{filter.PageNumber}_Size_{filter.PageSize}_Name_{filter.Name}_Code_{filter.Code}_Unit_{filter.Unit}_MinBalance_{filter.MinBalance}";
 
             var cachedData = await _cacheService.GetAsync<PagedResponse<StockListDto>>(cacheKey);
-            if (cachedData != null)
-            {
-                return cachedData;
-            }
+            if (cachedData != null) return cachedData;
 
             var validFilter = new StockFilterDto(filter.PageNumber, filter.PageSize);
-            var query = _stockRepository.GetQueryable()
-                                        .AsNoTracking()
-                                        .Where(x => x.CompanyId == companyId);
+            var query = _stockRepository.GetQueryable().AsNoTracking().Where(x => x.CompanyId == companyId);
 
-            if (!string.IsNullOrWhiteSpace(filter.Name))
-            {
-                query = query.Where(x => x.Name.Contains(filter.Name));
-            }
-
-            if (!string.IsNullOrWhiteSpace(filter.Code))
-            {
-                query = query.Where(x => x.Code.Contains(filter.Code));
-            }
-
-            if (filter.Unit.HasValue)
-            {
-                query = query.Where(x => x.Unit == filter.Unit.Value);
-            }
-
-            if (filter.MinBalance.HasValue)
-            {
-                query = query.Where(x => x.Balance >= filter.MinBalance.Value);
-            }
+            if (!string.IsNullOrWhiteSpace(filter.Name)) query = query.Where(x => x.Name.Contains(filter.Name));
+            if (!string.IsNullOrWhiteSpace(filter.Code)) query = query.Where(x => x.Code.Contains(filter.Code));
+            if (filter.Unit.HasValue) query = query.Where(x => x.Unit == filter.Unit.Value);
+            if (filter.MinBalance.HasValue) query = query.Where(x => x.Balance >= filter.MinBalance.Value);
 
             var totalRecords = await query.CountAsync();
-
-            var data = await query
-                .OrderByDescending(x => x.CreateDate)
+            var data = await query.OrderByDescending(x => x.CreateDate)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-                .Take(validFilter.PageSize)
-                .ToListAsync();
+                .Take(validFilter.PageSize).ToListAsync();
 
             var mappedData = _mapper.Map<IEnumerable<StockListDto>>(data);
             var response = new PagedResponse<StockListDto>(mappedData, totalRecords, validFilter.PageNumber, validFilter.PageSize);
 
             await _cacheService.SetAsync(cacheKey, response, 60);
-
             return response;
         }
 
@@ -126,11 +100,10 @@ namespace BusinessLayer.Concrete
 
             var mappedData = _mapper.Map<StockListDto>(stock);
             await _cacheService.SetAsync(cacheKey, mappedData, 60);
-
             return mappedData;
         }
 
-        public async Task AddAsync(CreateStockDto dto)
+        public async Task<StockListDto> AddAsync(CreateStockDto dto)
         {
             await ValidateForCreateAsync(dto);
 
@@ -139,9 +112,11 @@ namespace BusinessLayer.Concrete
 
             await _stockRepository.AddAsync(stock);
             await _cacheService.RemoveByPatternAsync($"Stocks_Company_{dto.CompanyId}*");
+
+            return _mapper.Map<StockListDto>(stock);
         }
 
-        public async Task UpdateAsync(UpdateStockDto dto)
+        public async Task<StockListDto> UpdateAsync(UpdateStockDto dto)
         {
             await ValidateForUpdateAsync(dto);
 
@@ -153,6 +128,8 @@ namespace BusinessLayer.Concrete
 
             await _cacheService.RemoveAsync($"Stock_Single_{dto.Id}");
             await _cacheService.RemoveByPatternAsync($"Stocks_Company_{stock.CompanyId}*");
+
+            return _mapper.Map<StockListDto>(stock);
         }
 
         public async Task DeleteAsync(int id)
@@ -161,7 +138,6 @@ namespace BusinessLayer.Concrete
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
 
             _stockRepository.Delete(stock);
-
             await _cacheService.RemoveAsync($"Stock_Single_{id}");
             await _cacheService.RemoveByPatternAsync($"Stocks_Company_{stock.CompanyId}*");
         }

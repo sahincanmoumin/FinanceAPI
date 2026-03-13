@@ -1,11 +1,12 @@
 ﻿using DataAccessLayer.Abstract;
 using DataAccessLayer.Context;
+using EntityLayer.Entities.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using EntityLayer.Entities.Common;
 
 namespace DataAccessLayer.Concrete
 {
@@ -56,6 +57,10 @@ namespace DataAccessLayer.Concrete
         {
             _dbSet.Remove(entity);
             _context.SaveChanges();
+        }
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
         }
 
         public async Task<int> SaveChangesAsync()

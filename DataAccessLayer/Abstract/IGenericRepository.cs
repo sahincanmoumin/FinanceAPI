@@ -1,8 +1,9 @@
-﻿using System;
+﻿using EntityLayer.Entities.Common;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using EntityLayer.Entities.Common;
 
 namespace DataAccessLayer.Abstract
 {
@@ -14,7 +15,8 @@ namespace DataAccessLayer.Abstract
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
         void Update(T entity); 
-        void Delete(T entity); 
+        void Delete(T entity);
+        Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> SaveChangesAsync();
     }
 }
