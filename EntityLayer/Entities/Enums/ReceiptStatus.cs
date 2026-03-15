@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Entities.Enums
 {
-    public enum InvoiceStatus
+    public enum ReceiptStatus
     {
-        Draft =1,
-        Approved=2,
-        Sent=3,
+        Draft=1,
+        Approved= 2
     }
 }

@@ -31,6 +31,7 @@ namespace ApiLayer.Controllers
             _logger.LogInformation("Login attempt for user: {UserName}", dto.UserName);
             var token = await _authService.LoginAsync(dto);
             return Ok(new { Token = token, Message = "Login successful." });
+
         }
     }
-}
+}       

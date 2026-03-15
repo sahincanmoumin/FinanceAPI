@@ -21,6 +21,10 @@ namespace DataAccessLayer.Context
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public DbSet<StockTrans> StockTransactions { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<StockReceipt> StockReceipts { get; set; }
+        public DbSet<StockReceiptDetail> StockReceiptDetails { get; set; }
+        
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

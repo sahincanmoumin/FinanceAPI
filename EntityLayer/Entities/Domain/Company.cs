@@ -17,6 +17,7 @@ namespace EntityLayer.Entities.Domain
 
         public int UserId { get; set; }
         public User User { get; set; }
+        public ICollection<Warehouse> Warehouses { get; set; }
         public ICollection<Stock> Stocks { get; set; }
         public ICollection<CurrentAccount> CurrentAccounts { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
