@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using EntityLayer.Entities;
 using EntityLayer.Entities.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccessLayer.Configurations
 {
@@ -70,6 +71,10 @@ namespace DataAccessLayer.Configurations
                    .WithMany(x => x.Invoices)
                    .HasForeignKey(x => x.CurrentAccountId)
                    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Warehouse)
+               .WithMany()
+               .HasForeignKey(x => x.WarehouseId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 
@@ -105,6 +110,11 @@ namespace DataAccessLayer.Configurations
                    .WithMany(x => x.StockTransactions)
                    .HasForeignKey(x => x.StockId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(x => x.Warehouse)
+               .WithMany()
+               .HasForeignKey(x => x.WarehouseId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
     public class WarehouseConfiguration : IEntityTypeConfiguration<Warehouse>
@@ -151,7 +161,7 @@ namespace DataAccessLayer.Configurations
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
+    
     public class StockReceiptDetailConfiguration : IEntityTypeConfiguration<StockReceiptDetail>
     {
         public void Configure(EntityTypeBuilder<StockReceiptDetail> builder)
@@ -160,17 +170,32 @@ namespace DataAccessLayer.Configurations
             builder.Property(x => x.Quantity).HasColumnType("decimal(18,2)");
             builder.Property(x => x.UnitPrice).HasColumnType("decimal(18,2)");
 
-            // Fiş silinirse detayları da silinsin (Cascade)
             builder.HasOne(x => x.StockReceipt)
                    .WithMany(x => x.Details)
                    .HasForeignKey(x => x.StockReceiptId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            // Stok silinmesi kısıtlıdır (Restrict)
             builder.HasOne(x => x.Stock)
-                   .WithMany() // Stock entity'sinde ICollection<StockReceiptDetail> varsa eklenebilir
+                   .WithMany() 
                    .HasForeignKey(x => x.StockId)
                    .OnDelete(DeleteBehavior.Restrict);
+        }
+    }
+    public class StockWarehouseConfiguration : IEntityTypeConfiguration<StockWarehouse>
+    {
+        public void Configure(EntityTypeBuilder<StockWarehouse> builder)
+        {
+            builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Quantity).HasPrecision(18, 2).HasDefaultValue(0);
+
+            builder.HasIndex(x => new { x.StockId, x.WarehouseId }).IsUnique();
+
+            builder.HasOne(x => x.Stock).WithMany(x => x.StockWarehouses)
+                   .HasForeignKey(x => x.StockId).OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.Warehouse).WithMany(x => x.StockWarehouses)
+                   .HasForeignKey(x => x.WarehouseId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

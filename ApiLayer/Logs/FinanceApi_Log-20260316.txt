@@ -1,0 +1,506 @@
+2026-03-16 13:34:10.467 +03:00 [INF] Finance API started successfully
+2026-03-16 13:34:10.522 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-16 13:34:10.827 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-16 13:34:10.830 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-16 13:34:10.947 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-16 13:34:10.951 +03:00 [INF] Hosting environment: Development
+2026-03-16 13:34:10.954 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-16 13:34:15.353 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-16 13:34:15.658 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 314.1454ms
+2026-03-16 13:34:15.734 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-16 13:34:15.738 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-16 13:34:15.757 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 22.5505ms
+2026-03-16 13:34:15.816 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-16 13:34:15.819 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 81.471ms
+2026-03-16 13:34:15.933 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 116.3349ms
+2026-03-16 13:34:16.127 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-16 13:34:16.180 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 53.1147ms
+2026-03-16 13:34:20.845 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-16 13:34:21.732 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:34:21.755 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-16 13:34:23.094 +03:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType3`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:34:23.105 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 1342.2219ms
+2026-03-16 13:34:23.108 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:34:23.114 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 400 null application/json; charset=utf-8 2269.094ms
+2026-03-16 13:38:09.236 +03:00 [INF] Finance API started successfully
+2026-03-16 13:38:09.289 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-16 13:38:09.482 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-16 13:38:09.485 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-16 13:38:09.576 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-16 13:38:09.579 +03:00 [INF] Hosting environment: Development
+2026-03-16 13:38:09.580 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-16 13:38:24.461 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-16 13:38:24.671 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 219.7398ms
+2026-03-16 13:38:24.731 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-16 13:38:24.731 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-16 13:38:24.740 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 9.3852ms
+2026-03-16 13:38:24.758 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 26.3854ms
+2026-03-16 13:38:24.772 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-16 13:38:24.826 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 54.1207ms
+2026-03-16 13:38:24.887 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-16 13:38:24.935 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 48.1432ms
+2026-03-16 13:38:28.606 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-16 13:38:28.698 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:38:28.724 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-16 13:38:29.711 +03:00 [INF] Login attempt for user: string
+2026-03-16 13:38:30.512 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-16 13:38:30.952 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-16 13:38:30.973 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:38:31.083 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:38:31.092 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 2362.052ms
+2026-03-16 13:38:31.096 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:38:31.105 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 2498.7889ms
+2026-03-16 13:40:30.484 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Warehouse - application/json 102
+2026-03-16 13:40:30.560 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.WarehouseController.Create (ApiLayer)'
+2026-03-16 13:40:30.566 +03:00 [INF] Route matched with {action = "Create", controller = "Warehouse"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.Warehouse.CreateWarehouseDto) on controller FinanceApi.Controllers.WarehouseController (ApiLayer).
+2026-03-16 13:40:30.888 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__code_0='?' (Size = 50), @__companyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Warehouses` AS `w`
+    WHERE (`w`.`Code` = @__code_0) AND (`w`.`CompanyId` = @__companyId_1))
+2026-03-16 13:40:30.902 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__companyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Warehouses` AS `w`
+    WHERE (`w`.`Type` = 1) AND (`w`.`CompanyId` = @__companyId_0))
+2026-03-16 13:40:31.062 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Warehouses` (`Address`, `Code`, `CompanyId`, `CreateDate`, `Name`, `Type`, `UpdateDate`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Warehouses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:40:31.103 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Warehouse.WarehouseListDto'.
+2026-03-16 13:40:31.108 +03:00 [INF] Executed action FinanceApi.Controllers.WarehouseController.Create (ApiLayer) in 538.3999ms
+2026-03-16 13:40:31.111 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.WarehouseController.Create (ApiLayer)'
+2026-03-16 13:40:31.112 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Warehouse - 200 null application/json; charset=utf-8 628.8518ms
+2026-03-16 13:41:20.140 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - null null
+2026-03-16 13:41:20.172 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-16 13:41:20.185 +03:00 [INF] Route matched with {action = "GetAll", controller = "CurrentAccounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(CurrentAccountFilterDto, Int32) on controller ApiLayer.Controllers.CurrentAccountsController (ApiLayer).
+2026-03-16 13:41:20.257 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:41:20.384 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__companyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `CurrentAccounts` AS `c`
+WHERE `c`.`CompanyId` = @__companyId_0
+2026-03-16 13:41:20.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__companyId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Balance`, `c`.`Code`, `c`.`CompanyId`, `c`.`CreateDate`, `c`.`Name`, `c`.`Type`, `c`.`UpdateDate`
+FROM `CurrentAccounts` AS `c`
+WHERE `c`.`CompanyId` = @__companyId_0
+ORDER BY `c`.`CreateDate` DESC
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-16 13:41:20.452 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.CurrentAccount.CurrentAccountListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-16 13:41:20.456 +03:00 [INF] Executed action ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer) in 267.4268ms
+2026-03-16 13:41:20.459 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.CurrentAccountsController.GetAll (ApiLayer)'
+2026-03-16 13:41:20.467 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/CurrentAccounts?companyId=1 - 200 null application/json; charset=utf-8 323.6754ms
+2026-03-16 13:48:29.126 +03:00 [INF] Finance API started successfully
+2026-03-16 13:48:29.243 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-16 13:48:29.525 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-16 13:48:29.526 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-16 13:48:29.627 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-16 13:48:29.630 +03:00 [INF] Hosting environment: Development
+2026-03-16 13:48:29.631 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-16 13:48:38.894 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-16 13:48:39.124 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 245.1868ms
+2026-03-16 13:48:39.176 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-16 13:48:39.176 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-16 13:48:39.188 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 11.9976ms
+2026-03-16 13:48:39.204 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 28.323ms
+2026-03-16 13:48:39.213 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-16 13:48:39.266 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.7767ms
+2026-03-16 13:48:39.333 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-16 13:48:39.388 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 54.2411ms
+2026-03-16 13:49:28.279 +03:00 [INF] Finance API started successfully
+2026-03-16 13:49:28.337 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-16 13:49:28.587 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-16 13:49:28.589 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-16 13:49:28.703 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-16 13:49:28.705 +03:00 [INF] Hosting environment: Development
+2026-03-16 13:49:28.706 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-16 13:49:41.696 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Auth/login - application/json 50
+2026-03-16 13:49:41.817 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:49:41.838 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EntityLayer.DTOs.Auth.LoginDto) on controller ApiLayer.Controllers.AuthController (ApiLayer).
+2026-03-16 13:49:42.773 +03:00 [INF] Login attempt for user: string
+2026-03-16 13:49:43.343 +03:00 [INF] Executed DbCommand (67ms) [Parameters=[@__dto_UserName_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`FullName`, `u`.`PasswordHash`, `u`.`UpdateDate`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`UserName` = @__dto_UserName_0
+LIMIT 1
+2026-03-16 13:49:43.885 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreateDate`, `u`.`RoleId`, `u`.`UpdateDate`, `u`.`UserId`
+FROM `UserRoles` AS `u`
+WHERE `u`.`UserId` = @__user_Id_0
+2026-03-16 13:49:43.925 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `r`.`Id`, `r`.`CreateDate`, `r`.`Name`, `r`.`UpdateDate`
+FROM `Roles` AS `r`
+WHERE `r`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:49:44.000 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:49:44.012 +03:00 [INF] Executed action ApiLayer.Controllers.AuthController.Login (ApiLayer) in 2165.8389ms
+2026-03-16 13:49:44.017 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.AuthController.Login (ApiLayer)'
+2026-03-16 13:49:44.029 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Auth/login - 200 null application/json; charset=utf-8 2342.5461ms
+2026-03-16 13:50:48.707 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Stocks - application/json 83
+2026-03-16 13:50:48.802 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StocksController.Create (ApiLayer)'
+2026-03-16 13:50:48.809 +03:00 [INF] Route matched with {action = "Create", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.Stock.CreateStockDto) on controller ApiLayer.Controllers.StocksController (ApiLayer).
+2026-03-16 13:50:49.203 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:50:49.283 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__code_0='?' (Size = 50), @__companyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Stocks` AS `s`
+    WHERE (`s`.`Code` = @__code_0) AND (`s`.`CompanyId` = @__companyId_1))
+2026-03-16 13:50:49.531 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Stocks` (`Balance`, `Code`, `CompanyId`, `CreateDate`, `Name`, `Unit`, `UpdateDate`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Stocks`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:50:49.584 +03:00 [INF] Stock created for CompanyId: 1
+2026-03-16 13:50:49.587 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:50:49.592 +03:00 [INF] Executed action ApiLayer.Controllers.StocksController.Create (ApiLayer) in 778.1718ms
+2026-03-16 13:50:49.594 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StocksController.Create (ApiLayer)'
+2026-03-16 13:50:49.597 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Stocks - 200 null application/json; charset=utf-8 890.3544ms
+2026-03-16 13:53:49.828 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Invoices/create-draft - application/json 227
+2026-03-16 13:53:49.840 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.InvoicesController.CreateDraft (ApiLayer)'
+2026-03-16 13:53:49.852 +03:00 [INF] Route matched with {action = "CreateDraft", controller = "Invoices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateDraft(EntityLayer.DTOs.Invoice.CreateInvoiceDto) on controller ApiLayer.Controllers.InvoicesController (ApiLayer).
+2026-03-16 13:53:49.910 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:53:49.916 +03:00 [INF] Creating draft invoice for CompanyId: 1, Serial: FD-101
+2026-03-16 13:53:49.963 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (Size = 20), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Invoices` (`CompanyId`, `CreateDate`, `CurrentAccountId`, `Date`, `Ettn`, `SerialNumber`, `Status`, `Type`, `UpdateDate`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+SELECT `Id`
+FROM `Invoices`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:53:49.989 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (DbType = Decimal), @p3='?' (DbType = Int32), @p4='?' (DbType = Decimal), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `InvoiceDetails` (`CreateDate`, `InvoiceId`, `Quantity`, `StockId`, `UnitPrice`, `UpdateDate`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT `Id`
+FROM `InvoiceDetails`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:53:50.008 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:53:50.011 +03:00 [INF] Executed action ApiLayer.Controllers.InvoicesController.CreateDraft (ApiLayer) in 155.9624ms
+2026-03-16 13:53:50.014 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.InvoicesController.CreateDraft (ApiLayer)'
+2026-03-16 13:53:50.015 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Invoices/create-draft - 200 null application/json; charset=utf-8 191.3651ms
+2026-03-16 13:54:04.707 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Invoices/7/approve - null 0
+2026-03-16 13:54:04.720 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.InvoicesController.Approve (ApiLayer)'
+2026-03-16 13:54:04.729 +03:00 [INF] Route matched with {action = "Approve", controller = "Invoices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Approve(Int32) on controller ApiLayer.Controllers.InvoicesController (ApiLayer).
+2026-03-16 13:54:04.833 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `i1`.`Id`, `i1`.`CompanyId`, `i1`.`CreateDate`, `i1`.`CurrentAccountId`, `i1`.`Date`, `i1`.`Ettn`, `i1`.`SerialNumber`, `i1`.`Status`, `i1`.`Type`, `i1`.`UpdateDate`, `s0`.`Id`, `s0`.`CreateDate`, `s0`.`InvoiceId`, `s0`.`Quantity`, `s0`.`StockId`, `s0`.`UnitPrice`, `s0`.`UpdateDate`, `s0`.`Id0`, `s0`.`Balance`, `s0`.`Code`, `s0`.`CompanyId`, `s0`.`CreateDate0`, `s0`.`Name`, `s0`.`Unit`, `s0`.`UpdateDate0`
+FROM (
+    SELECT `i`.`Id`, `i`.`CompanyId`, `i`.`CreateDate`, `i`.`CurrentAccountId`, `i`.`Date`, `i`.`Ettn`, `i`.`SerialNumber`, `i`.`Status`, `i`.`Type`, `i`.`UpdateDate`
+    FROM `Invoices` AS `i`
+    WHERE `i`.`Id` = @__id_0
+    LIMIT 1
+) AS `i1`
+LEFT JOIN (
+    SELECT `i0`.`Id`, `i0`.`CreateDate`, `i0`.`InvoiceId`, `i0`.`Quantity`, `i0`.`StockId`, `i0`.`UnitPrice`, `i0`.`UpdateDate`, `s`.`Id` AS `Id0`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate` AS `CreateDate0`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate` AS `UpdateDate0`
+    FROM `InvoiceDetails` AS `i0`
+    INNER JOIN `Stocks` AS `s` ON `i0`.`StockId` = `s`.`Id`
+) AS `s0` ON `i1`.`Id` = `s0`.`InvoiceId`
+ORDER BY `i1`.`Id`, `s0`.`Id`
+2026-03-16 13:54:14.862 +03:00 [INF] Executed action ApiLayer.Controllers.InvoicesController.Approve (ApiLayer) in 10128.6591ms
+2026-03-16 13:54:14.866 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.InvoicesController.Approve (ApiLayer)'
+2026-03-16 13:54:15.011 +03:00 [ERR] An unhandled exception has occurred. Path: /api/Invoices/7/approve, Method: POST
+EntityLayer.Exceptions.BusinessException: InvoiceNotFound
+   at BusinessLayer.Concrete.InvoiceService.GetByIdAsync(Int32 id) in C:\Users\sahin\source\repos\FinanceApi\BusinessLayer\Concrete\InvoiceService.cs:line 103
+   at ApiLayer.Controllers.InvoicesController.Approve(Int32 id) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Controllers\InvoiceController.cs:line 73
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ApiLayer.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\sahin\source\repos\FinanceApi\ApiLayer\Middlewares\ExceptionMiddleware.cs:line 29
+2026-03-16 13:54:15.054 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Invoices/7/approve - 400 null application/json 10347.3385ms
+2026-03-16 13:54:58.623 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Invoices/4/approve - null 0
+2026-03-16 13:54:58.644 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.InvoicesController.Approve (ApiLayer)'
+2026-03-16 13:54:58.647 +03:00 [INF] Route matched with {action = "Approve", controller = "Invoices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Approve(Int32) on controller ApiLayer.Controllers.InvoicesController (ApiLayer).
+2026-03-16 13:54:58.673 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `i1`.`Id`, `i1`.`CompanyId`, `i1`.`CreateDate`, `i1`.`CurrentAccountId`, `i1`.`Date`, `i1`.`Ettn`, `i1`.`SerialNumber`, `i1`.`Status`, `i1`.`Type`, `i1`.`UpdateDate`, `s0`.`Id`, `s0`.`CreateDate`, `s0`.`InvoiceId`, `s0`.`Quantity`, `s0`.`StockId`, `s0`.`UnitPrice`, `s0`.`UpdateDate`, `s0`.`Id0`, `s0`.`Balance`, `s0`.`Code`, `s0`.`CompanyId`, `s0`.`CreateDate0`, `s0`.`Name`, `s0`.`Unit`, `s0`.`UpdateDate0`
+FROM (
+    SELECT `i`.`Id`, `i`.`CompanyId`, `i`.`CreateDate`, `i`.`CurrentAccountId`, `i`.`Date`, `i`.`Ettn`, `i`.`SerialNumber`, `i`.`Status`, `i`.`Type`, `i`.`UpdateDate`
+    FROM `Invoices` AS `i`
+    WHERE `i`.`Id` = @__id_0
+    LIMIT 1
+) AS `i1`
+LEFT JOIN (
+    SELECT `i0`.`Id`, `i0`.`CreateDate`, `i0`.`InvoiceId`, `i0`.`Quantity`, `i0`.`StockId`, `i0`.`UnitPrice`, `i0`.`UpdateDate`, `s`.`Id` AS `Id0`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate` AS `CreateDate0`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate` AS `UpdateDate0`
+    FROM `InvoiceDetails` AS `i0`
+    INNER JOIN `Stocks` AS `s` ON `i0`.`StockId` = `s`.`Id`
+) AS `s0` ON `i1`.`Id` = `s0`.`InvoiceId`
+ORDER BY `i1`.`Id`, `s0`.`Id`
+2026-03-16 13:54:58.688 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Address`, `c`.`CreateDate`, `c`.`Name`, `c`.`TaxNumber`, `c`.`TaxOffice`, `c`.`UpdateDate`, `c`.`UserId`
+FROM `Companies` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:54:58.692 +03:00 [INF] Invoice approval initiated. InvoiceId: 4
+2026-03-16 13:54:58.705 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `i`.`Id`, `i`.`CompanyId`, `i`.`CreateDate`, `i`.`CurrentAccountId`, `i`.`Date`, `i`.`Ettn`, `i`.`SerialNumber`, `i`.`Status`, `i`.`Type`, `i`.`UpdateDate`
+FROM `Invoices` AS `i`
+WHERE `i`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:54:58.715 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__invoiceId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `i`.`Id`, `i`.`CreateDate`, `i`.`InvoiceId`, `i`.`Quantity`, `i`.`StockId`, `i`.`UnitPrice`, `i`.`UpdateDate`
+FROM `InvoiceDetails` AS `i`
+WHERE `i`.`InvoiceId` = @__invoiceId_0
+2026-03-16 13:54:58.724 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate`
+FROM `Stocks` AS `s`
+WHERE `s`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:54:58.736 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__companyId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Address`, `w`.`Code`, `w`.`CompanyId`, `w`.`CreateDate`, `w`.`Name`, `w`.`Type`, `w`.`UpdateDate`
+FROM `Warehouses` AS `w`
+WHERE (`w`.`CompanyId` = @__companyId_0) AND (`w`.`Type` = 1)
+LIMIT 1
+2026-03-16 13:54:58.789 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Decimal), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Decimal), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `StockTransactions` (`CompanyId`, `CreateDate`, `Date`, `Direction`, `Quantity`, `StockId`, `StockReceiptId`, `UnitPrice`, `UpdateDate`, `WarehouseId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `StockTransactions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:54:58.818 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Stocks` SET `Balance` = @p0, `Code` = @p1, `CompanyId` = @p2, `CreateDate` = @p3, `Name` = @p4, `Unit` = @p5, `UpdateDate` = @p6
+WHERE `Id` = @p7;
+SELECT ROW_COUNT();
+2026-03-16 13:54:58.834 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `c`.`Id`, `c`.`Balance`, `c`.`Code`, `c`.`CompanyId`, `c`.`CreateDate`, `c`.`Name`, `c`.`Type`, `c`.`UpdateDate`
+FROM `CurrentAccounts` AS `c`
+WHERE `c`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 13:54:58.865 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `CurrentAccounts` SET `Balance` = @p0, `Code` = @p1, `CompanyId` = @p2, `CreateDate` = @p3, `Name` = @p4, `Type` = @p5, `UpdateDate` = @p6
+WHERE `Id` = @p7;
+SELECT ROW_COUNT();
+2026-03-16 13:54:58.872 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (Size = 20), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Invoices` SET `CompanyId` = @p0, `CreateDate` = @p1, `CurrentAccountId` = @p2, `Date` = @p3, `Ettn` = @p4, `SerialNumber` = @p5, `Status` = @p6, `Type` = @p7, `UpdateDate` = @p8
+WHERE `Id` = @p9;
+SELECT ROW_COUNT();
+2026-03-16 13:54:58.879 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 13:54:58.881 +03:00 [INF] Executed action ApiLayer.Controllers.InvoicesController.Approve (ApiLayer) in 228.8428ms
+2026-03-16 13:54:58.882 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.InvoicesController.Approve (ApiLayer)'
+2026-03-16 13:54:58.884 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Invoices/4/approve - 200 null application/json; charset=utf-8 260.3439ms
+2026-03-16 13:58:52.603 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/Warehouse - application/json 107
+2026-03-16 13:58:52.612 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.WarehouseController.Create (ApiLayer)'
+2026-03-16 13:58:52.625 +03:00 [INF] Route matched with {action = "Create", controller = "Warehouse"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.Warehouse.CreateWarehouseDto) on controller FinanceApi.Controllers.WarehouseController (ApiLayer).
+2026-03-16 13:58:52.666 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__code_0='?' (Size = 50), @__companyId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM `Warehouses` AS `w`
+    WHERE (`w`.`Code` = @__code_0) AND (`w`.`CompanyId` = @__companyId_1))
+2026-03-16 13:58:52.693 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Warehouses` (`Address`, `Code`, `CompanyId`, `CreateDate`, `Name`, `Type`, `UpdateDate`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT `Id`
+FROM `Warehouses`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 13:58:52.703 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Warehouse.WarehouseListDto'.
+2026-03-16 13:58:52.708 +03:00 [INF] Executed action FinanceApi.Controllers.WarehouseController.Create (ApiLayer) in 79.3004ms
+2026-03-16 13:58:52.710 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.WarehouseController.Create (ApiLayer)'
+2026-03-16 13:58:52.712 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/Warehouse - 200 null application/json; charset=utf-8 109.146ms
+2026-03-16 14:02:07.985 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/StockReceipt - application/json 266
+2026-03-16 14:02:07.995 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.StockReceiptController.Create (ApiLayer)'
+2026-03-16 14:02:08.000 +03:00 [INF] Route matched with {action = "Create", controller = "StockReceipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EntityLayer.DTOs.StockReceipt.CreateStockReceiptDto) on controller FinanceApi.Controllers.StockReceiptController (ApiLayer).
+2026-03-16 14:02:08.118 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `StockReceipts` (`CompanyId`, `CreateDate`, `CurrentAccountId`, `Date`, `SerialNumber`, `Status`, `TargetWarehouseId`, `Type`, `UpdateDate`, `WarehouseId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `StockReceipts`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 14:02:08.127 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p10='?' (DbType = DateTime), @p11='?' (DbType = Decimal), @p12='?' (DbType = Int32), @p13='?' (DbType = Int32), @p14='?' (DbType = Decimal), @p15='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `StockReceiptDetails` (`CreateDate`, `Quantity`, `StockId`, `StockReceiptId`, `UnitPrice`, `UpdateDate`)
+VALUES (@p10, @p11, @p12, @p13, @p14, @p15);
+SELECT `Id`
+FROM `StockReceiptDetails`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 14:02:08.141 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.StockReceipt.StockReceiptListDto'.
+2026-03-16 14:02:08.154 +03:00 [INF] Executed action FinanceApi.Controllers.StockReceiptController.Create (ApiLayer) in 151.6862ms
+2026-03-16 14:02:08.157 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.StockReceiptController.Create (ApiLayer)'
+2026-03-16 14:02:08.160 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/StockReceipt - 200 null application/json; charset=utf-8 204.2532ms
+2026-03-16 14:02:17.555 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7241/api/StockReceipt/1/approve - null 0
+2026-03-16 14:02:17.560 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.StockReceiptController.Approve (ApiLayer)'
+2026-03-16 14:02:17.574 +03:00 [INF] Route matched with {action = "Approve", controller = "StockReceipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Approve(Int32) on controller FinanceApi.Controllers.StockReceiptController (ApiLayer).
+2026-03-16 14:02:17.598 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s1`.`Id`, `s1`.`CompanyId`, `s1`.`CreateDate`, `s1`.`CurrentAccountId`, `s1`.`Date`, `s1`.`SerialNumber`, `s1`.`Status`, `s1`.`TargetWarehouseId`, `s1`.`Type`, `s1`.`UpdateDate`, `s1`.`WarehouseId`, `s0`.`Id`, `s0`.`CreateDate`, `s0`.`Quantity`, `s0`.`StockId`, `s0`.`StockReceiptId`, `s0`.`UnitPrice`, `s0`.`UpdateDate`
+FROM (
+    SELECT `s`.`Id`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`CurrentAccountId`, `s`.`Date`, `s`.`SerialNumber`, `s`.`Status`, `s`.`TargetWarehouseId`, `s`.`Type`, `s`.`UpdateDate`, `s`.`WarehouseId`
+    FROM `StockReceipts` AS `s`
+    WHERE `s`.`Id` = @__id_0
+    LIMIT 1
+) AS `s1`
+LEFT JOIN `StockReceiptDetails` AS `s0` ON `s1`.`Id` = `s0`.`StockReceiptId`
+ORDER BY `s1`.`Id`
+2026-03-16 14:02:17.608 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Balance`, `s`.`Code`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`Name`, `s`.`Unit`, `s`.`UpdateDate`
+FROM `Stocks` AS `s`
+WHERE `s`.`Id` = @__p_0
+LIMIT 1
+2026-03-16 14:02:17.615 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Decimal), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Decimal), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `StockTransactions` (`CompanyId`, `CreateDate`, `Date`, `Direction`, `Quantity`, `StockId`, `StockReceiptId`, `UnitPrice`, `UpdateDate`, `WarehouseId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `StockTransactions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 14:02:17.631 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Stocks` SET `Balance` = @p0, `Code` = @p1, `CompanyId` = @p2, `CreateDate` = @p3, `Name` = @p4, `Unit` = @p5, `UpdateDate` = @p6
+WHERE `Id` = @p7;
+SELECT ROW_COUNT();
+2026-03-16 14:02:17.638 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Decimal), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Decimal), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `StockTransactions` (`CompanyId`, `CreateDate`, `Date`, `Direction`, `Quantity`, `StockId`, `StockReceiptId`, `UnitPrice`, `UpdateDate`, `WarehouseId`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `Id`
+FROM `StockTransactions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+2026-03-16 14:02:17.646 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 100), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Stocks` SET `Balance` = @p0, `Code` = @p1, `CompanyId` = @p2, `CreateDate` = @p3, `Name` = @p4, `Unit` = @p5, `UpdateDate` = @p6
+WHERE `Id` = @p7;
+SELECT ROW_COUNT();
+2026-03-16 14:02:17.653 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p10='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `StockReceipts` SET `CompanyId` = @p0, `CreateDate` = @p1, `CurrentAccountId` = @p2, `Date` = @p3, `SerialNumber` = @p4, `Status` = @p5, `TargetWarehouseId` = @p6, `Type` = @p7, `UpdateDate` = @p8, `WarehouseId` = @p9
+WHERE `Id` = @p10;
+SELECT ROW_COUNT();
+2026-03-16 14:02:17.656 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 14:02:17.657 +03:00 [INF] Executed action FinanceApi.Controllers.StockReceiptController.Approve (ApiLayer) in 78.8713ms
+2026-03-16 14:02:17.660 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.StockReceiptController.Approve (ApiLayer)'
+2026-03-16 14:02:17.662 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7241/api/StockReceipt/1/approve - 200 null application/json; charset=utf-8 106.3219ms
+2026-03-16 14:03:08.065 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/StockReceipt?CompanyId=1 - null null
+2026-03-16 14:03:08.074 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer)'
+2026-03-16 14:03:08.118 +03:00 [INF] Route matched with {action = "GetAll", controller = "StockReceipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(EntityLayer.DTOs.StockReceipt.StockReceiptFilterDto) on controller FinanceApi.Controllers.StockReceiptController (ApiLayer).
+2026-03-16 14:03:08.144 +03:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType3`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 14:03:08.149 +03:00 [INF] Executed action FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer) in 27.1768ms
+2026-03-16 14:03:08.157 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer)'
+2026-03-16 14:03:08.159 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/StockReceipt?CompanyId=1 - 400 null application/json; charset=utf-8 93.574ms
+2026-03-16 14:03:25.339 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/StockReceipt?CompanyId=1&SerialNumber=TD-101 - null null
+2026-03-16 14:03:25.344 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer)'
+2026-03-16 14:03:25.346 +03:00 [INF] Route matched with {action = "GetAll", controller = "StockReceipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(EntityLayer.DTOs.StockReceipt.StockReceiptFilterDto) on controller FinanceApi.Controllers.StockReceiptController (ApiLayer).
+2026-03-16 14:03:25.392 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `StockReceipts` AS `s`
+2026-03-16 14:03:25.406 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s1`.`Id`, `s1`.`CompanyId`, `s1`.`CreateDate`, `s1`.`CurrentAccountId`, `s1`.`Date`, `s1`.`SerialNumber`, `s1`.`Status`, `s1`.`TargetWarehouseId`, `s1`.`Type`, `s1`.`UpdateDate`, `s1`.`WarehouseId`, `s0`.`Id`, `s0`.`CreateDate`, `s0`.`Quantity`, `s0`.`StockId`, `s0`.`StockReceiptId`, `s0`.`UnitPrice`, `s0`.`UpdateDate`
+FROM (
+    SELECT `s`.`Id`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`CurrentAccountId`, `s`.`Date`, `s`.`SerialNumber`, `s`.`Status`, `s`.`TargetWarehouseId`, `s`.`Type`, `s`.`UpdateDate`, `s`.`WarehouseId`
+    FROM `StockReceipts` AS `s`
+    ORDER BY `s`.`Date` DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS `s1`
+LEFT JOIN `StockReceiptDetails` AS `s0` ON `s1`.`Id` = `s0`.`StockReceiptId`
+ORDER BY `s1`.`Date` DESC, `s1`.`Id`
+2026-03-16 14:03:25.419 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.StockReceipt.StockReceiptListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-16 14:03:25.425 +03:00 [INF] Executed action FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer) in 75.903ms
+2026-03-16 14:03:25.427 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.StockReceiptController.GetAll (ApiLayer)'
+2026-03-16 14:03:25.429 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/StockReceipt?CompanyId=1&SerialNumber=TD-101 - 200 null application/json; charset=utf-8 89.2849ms
+2026-03-16 14:14:07.169 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Warehouse?CompanyId=1&Name=D-102 - null null
+2026-03-16 14:14:07.181 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.WarehouseController.GetAll (ApiLayer)'
+2026-03-16 14:14:07.186 +03:00 [INF] Route matched with {action = "GetAll", controller = "Warehouse"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(EntityLayer.DTOs.Warehouse.WarehouseFilterDto) on controller FinanceApi.Controllers.WarehouseController (ApiLayer).
+2026-03-16 14:14:07.212 +03:00 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType3`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-16 14:14:07.216 +03:00 [INF] Executed action FinanceApi.Controllers.WarehouseController.GetAll (ApiLayer) in 26.606ms
+2026-03-16 14:14:07.218 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.WarehouseController.GetAll (ApiLayer)'
+2026-03-16 14:14:07.220 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Warehouse?CompanyId=1&Name=D-102 - 400 null application/json; charset=utf-8 51.7624ms
+2026-03-16 14:15:47.078 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/Warehouse/2 - null null
+2026-03-16 14:15:47.113 +03:00 [INF] Executing endpoint 'FinanceApi.Controllers.WarehouseController.GetById (ApiLayer)'
+2026-03-16 14:15:47.117 +03:00 [INF] Route matched with {action = "GetById", controller = "Warehouse"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller FinanceApi.Controllers.WarehouseController (ApiLayer).
+2026-03-16 14:15:47.151 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `w`.`Id`, `w`.`Address`, `w`.`Code`, `w`.`CompanyId`, `w`.`CreateDate`, `w`.`Name`, `w`.`Type`, `w`.`UpdateDate`
+FROM `Warehouses` AS `w`
+WHERE `w`.`Id` = @__id_0
+LIMIT 1
+2026-03-16 14:15:47.157 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Warehouse.WarehouseListDto'.
+2026-03-16 14:15:47.159 +03:00 [INF] Executed action FinanceApi.Controllers.WarehouseController.GetById (ApiLayer) in 37.6198ms
+2026-03-16 14:15:47.161 +03:00 [INF] Executed endpoint 'FinanceApi.Controllers.WarehouseController.GetById (ApiLayer)'
+2026-03-16 14:15:47.163 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/Warehouse/2 - 200 null application/json; charset=utf-8 84.3637ms
+2026-03-16 14:16:09.328 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/api/StockTrans/7 - null null
+2026-03-16 14:16:09.334 +03:00 [INF] Executing endpoint 'ApiLayer.Controllers.StockTransController.GetTransactionsByStockId (ApiLayer)'
+2026-03-16 14:16:09.339 +03:00 [INF] Route matched with {action = "GetTransactionsByStockId", controller = "StockTrans"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactionsByStockId(Int32, StockTransFilterDto) on controller ApiLayer.Controllers.StockTransController (ApiLayer).
+2026-03-16 14:16:09.363 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__stockId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `StockTransactions` AS `s`
+WHERE `s`.`StockId` = @__stockId_0
+2026-03-16 14:16:09.374 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__stockId_0='?' (DbType = Int32), @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`CompanyId`, `s`.`CreateDate`, `s`.`Date`, `s`.`Direction`, `s`.`Quantity`, `s`.`StockId`, `s`.`StockReceiptId`, `s`.`UnitPrice`, `s`.`UpdateDate`, `s`.`WarehouseId`
+FROM `StockTransactions` AS `s`
+WHERE `s`.`StockId` = @__stockId_0
+ORDER BY `s`.`Date` DESC
+LIMIT @__p_2 OFFSET @__p_1
+2026-03-16 14:16:09.384 +03:00 [INF] Executing OkObjectResult, writing value of type 'EntityLayer.DTOs.Pagination.PagedResponse`1[[EntityLayer.DTOs.StockTrans.StockTransListDto, EntityLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-03-16 14:16:09.392 +03:00 [INF] Executed action ApiLayer.Controllers.StockTransController.GetTransactionsByStockId (ApiLayer) in 48.5614ms
+2026-03-16 14:16:09.395 +03:00 [INF] Executed endpoint 'ApiLayer.Controllers.StockTransController.GetTransactionsByStockId (ApiLayer)'
+2026-03-16 14:16:09.397 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/api/StockTrans/7 - 200 null application/json; charset=utf-8 68.7444ms
+2026-03-16 15:50:37.078 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-16 15:50:37.132 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__financedb_EFMigrationsLock', 259200)
+2026-03-16 15:50:37.192 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2026-03-16 15:50:37.216 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='financedb' AND TABLE_NAME='__EFMigrationsHistory';
+2026-03-16 15:50:37.219 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2026-03-16 15:50:37.229 +03:00 [INF] Applying migration '20260316125025_stockwarehouse'.
+2026-03-16 15:50:37.296 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `StockTransactions` DROP COLUMN `Date`;
+2026-03-16 15:50:37.336 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `StockReceipts` DROP COLUMN `Date`;
+2026-03-16 15:50:37.369 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE `Invoices` DROP COLUMN `Date`;
+2026-03-16 15:50:37.393 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `StockWarehouses` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `StockId` int NOT NULL,
+    `WarehouseId` int NOT NULL,
+    `Quantity` decimal(18,2) NOT NULL DEFAULT 0.0,
+    `CreateDate` datetime(6) NOT NULL,
+    `UpdateDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_StockWarehouses` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_StockWarehouses_Stocks_StockId` FOREIGN KEY (`StockId`) REFERENCES `Stocks` (`Id`),
+    CONSTRAINT `FK_StockWarehouses_Warehouses_WarehouseId` FOREIGN KEY (`WarehouseId`) REFERENCES `Warehouses` (`Id`)
+) CHARACTER SET=utf8mb4;
+2026-03-16 15:50:37.412 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX `IX_StockWarehouses_StockId_WarehouseId` ON `StockWarehouses` (`StockId`, `WarehouseId`);
+2026-03-16 15:50:37.427 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX `IX_StockWarehouses_WarehouseId` ON `StockWarehouses` (`WarehouseId`);
+2026-03-16 15:50:37.429 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20260316125025_stockwarehouse', '9.0.0');
+2026-03-16 15:50:37.433 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT RELEASE_LOCK('__financedb_EFMigrationsLock')

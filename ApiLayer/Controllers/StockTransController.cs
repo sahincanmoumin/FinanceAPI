@@ -1,17 +1,21 @@
 ﻿using BusinessLayer.Abstract;
+using EntityLayer.DTOs.Pagination;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ApiLayer.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class StockTransController : BaseController
     {
         private readonly IStockTransService _stockTransService;
 
-        public StockTransController(IStockTransService _stockTransService)
+        public StockTransController(IStockTransService stockTransService)
         {
-            this._stockTransService = _stockTransService;
+            _stockTransService = stockTransService;
         }
 
         [HttpGet("{stockId}")]

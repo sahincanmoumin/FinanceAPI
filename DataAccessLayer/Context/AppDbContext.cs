@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityLayer.Entities;
 using EntityLayer.Entities.Auth;
-using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Common; // BaseEntity için
+using EntityLayer.Entities.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DataAccessLayer.Context
@@ -24,7 +25,7 @@ namespace DataAccessLayer.Context
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<StockReceipt> StockReceipts { get; set; }
         public DbSet<StockReceiptDetail> StockReceiptDetails { get; set; }
-        
+        public DbSet<StockWarehouse> StockWarehouses { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

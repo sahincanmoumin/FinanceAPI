@@ -3,6 +3,7 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.StockTrans;
+using EntityLayer.Entities;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using FluentAssertions;
@@ -21,6 +22,8 @@ namespace FinanceApi.Tests.StockTransTest
     {
         private readonly Mock<IGenericRepository<StockTrans>> _mockStockTransRepo;
         private readonly Mock<IGenericRepository<Stock>> _mockStockRepo;
+        private readonly Mock<IGenericRepository<Warehouse>> _mockWarehouseRepo;
+        private readonly Mock<IGenericRepository<StockWarehouse>> _mockStockWarehouseRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly StockTransService _stockTransService;
 
@@ -28,11 +31,15 @@ namespace FinanceApi.Tests.StockTransTest
         {
             _mockStockTransRepo = new Mock<IGenericRepository<StockTrans>>();
             _mockStockRepo = new Mock<IGenericRepository<Stock>>();
+            _mockWarehouseRepo = new Mock<IGenericRepository<Warehouse>>();
+            _mockStockWarehouseRepo = new Mock<IGenericRepository<StockWarehouse>>();
             _mockMapper = new Mock<IMapper>();
 
             _stockTransService = new StockTransService(
                 _mockStockTransRepo.Object,
                 _mockStockRepo.Object,
+                _mockWarehouseRepo.Object,
+                _mockStockWarehouseRepo.Object,
                 _mockMapper.Object);
         }
 
@@ -44,9 +51,9 @@ namespace FinanceApi.Tests.StockTransTest
 
             var transactions = new List<StockTrans>
             {
-                new StockTrans { Id = 1, StockId = stockId, Date = DateTime.Now },
-                new StockTrans { Id = 2, StockId = stockId, Date = DateTime.Now.AddDays(-1) },
-                new StockTrans { Id = 3, StockId = 2, Date = DateTime.Now }
+                new StockTrans { Id = 1, StockId = stockId, CreateDate = DateTime.Now },
+                new StockTrans { Id = 2, StockId = stockId, CreateDate = DateTime.Now.AddDays(-1) },
+                new StockTrans { Id = 3, StockId = 2, CreateDate = DateTime.Now }
             };
 
             var mockQuery = transactions.BuildMock();
@@ -88,11 +95,11 @@ namespace FinanceApi.Tests.StockTransTest
 
             var transactions = new List<StockTrans>
             {
-                new StockTrans { Id = 1, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 10, UnitPrice = 200 },
-                new StockTrans { Id = 2, StockId = stockId, Direction = TransactionType.Out, Date = baseDate, Quantity = 10, UnitPrice = 200 },
-                new StockTrans { Id = 3, StockId = stockId, Direction = TransactionType.In, Date = new DateTime(2024, 2, 1), Quantity = 10, UnitPrice = 200 },
-                new StockTrans { Id = 4, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 50, UnitPrice = 200 },
-                new StockTrans { Id = 5, StockId = stockId, Direction = TransactionType.In, Date = baseDate, Quantity = 10, UnitPrice = 50 }
+                new StockTrans { Id = 1, StockId = stockId, Direction = TransactionType.In, CreateDate = baseDate, Quantity = 10, UnitPrice = 200 },
+                new StockTrans { Id = 2, StockId = stockId, Direction = TransactionType.Out, CreateDate = baseDate, Quantity = 10, UnitPrice = 200 },
+                new StockTrans { Id = 3, StockId = stockId, Direction = TransactionType.In, CreateDate = new DateTime(2024, 2, 1), Quantity = 10, UnitPrice = 200 },
+                new StockTrans { Id = 4, StockId = stockId, Direction = TransactionType.In, CreateDate = baseDate, Quantity = 50, UnitPrice = 200 },
+                new StockTrans { Id = 5, StockId = stockId, Direction = TransactionType.In, CreateDate = baseDate, Quantity = 10, UnitPrice = 50 }
             };
 
             var mockQuery = transactions.BuildMock();

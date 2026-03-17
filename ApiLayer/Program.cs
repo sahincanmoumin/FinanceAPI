@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 //error json bildirisi
-builder.Configuration.AddJsonFile("errors.json", optional: false, reloadOnChange: false);
+builder.Configuration.AddJsonFile("error.json", optional: false, reloadOnChange: false);
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
@@ -92,7 +92,9 @@ builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ICurrentAccountService, CurrentAccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IStockTransService, StockTransService>();
-
+builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+builder.Services.AddScoped<IStockReceiptService, StockReceiptService>();
+builder.Services.AddScoped<IStockWarehouseService, StockWarehouseService>();
 //rediss
 var redisConnectionString = builder.Configuration.GetSection("RedisCacheSettings:ConnectionString").Value;
 var multiplexer = ConnectionMultiplexer.Connect(redisConnectionString);

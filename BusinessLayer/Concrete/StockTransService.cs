@@ -4,6 +4,7 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.StockTrans;
+using EntityLayer.Entities;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
@@ -17,40 +18,63 @@ namespace BusinessLayer.Concrete
     public class StockTransService : IStockTransService
     {
         private readonly IGenericRepository<StockTrans> _stockTransRepository;
-        private readonly IGenericRepository<Stock> _stockRepository; 
+        private readonly IGenericRepository<Stock> _stockRepository;
+        private readonly IGenericRepository<Warehouse> _warehouseRepository;
+        private readonly IGenericRepository<StockWarehouse> _stockWarehouseRepository; 
         private readonly IMapper _mapper;
 
-        public StockTransService(IGenericRepository<StockTrans> stockTransRepository, IGenericRepository<Stock> stockRepository, IMapper mapper)
+        public StockTransService(
+            IGenericRepository<StockTrans> stockTransRepository,
+            IGenericRepository<Stock> stockRepository,
+            IGenericRepository<Warehouse> warehouseRepository,
+            IGenericRepository<StockWarehouse> stockWarehouseRepository, 
+            IMapper mapper)
         {
             _stockTransRepository = stockTransRepository;
             _stockRepository = stockRepository;
+            _warehouseRepository = warehouseRepository;
+            _stockWarehouseRepository = stockWarehouseRepository;
             _mapper = mapper;
         }
-        public async Task ProcessStockActionAsync(int companyId, int stockId, decimal quantity, decimal unitPrice, TransactionType direction)
+
+        public async Task ProcessStockActionAsync(int companyId, int stockId, decimal quantity, decimal unitPrice, TransactionType direction, int? warehouseId = null, int? receiptId = null)
         {
             var stock = await _stockRepository.GetByIdAsync(stockId);
             if (stock == null) throw new BusinessException(ErrorKeys.StockNotFound);
 
-            if (direction == TransactionType.Out && stock.Balance < quantity)
-                throw new BusinessException(ErrorKeys.InsufficientStock);
+            int targetWarehouseId = warehouseId ?? 0;
+            if (targetWarehouseId <= 0)
+            {
+                var defaultWarehouse = await _warehouseRepository.GetQueryable()
+                    .FirstOrDefaultAsync(x => x.CompanyId == companyId && x.Type == WarehouseType.Main);
+                targetWarehouseId = defaultWarehouse?.Id ?? throw new BusinessException(ErrorKeys.WarehouseNotFound);
+            }
+
+            if (direction == TransactionType.Out)
+            {
+                var warehouseStock = await _stockWarehouseRepository.GetQueryable()
+                    .FirstOrDefaultAsync(x => x.StockId == stockId && x.WarehouseId == targetWarehouseId);
+
+                decimal availableInWarehouse = warehouseStock?.Quantity ?? 0;
+
+                if (availableInWarehouse < quantity)
+                {
+                    throw new BusinessException(ErrorKeys.InsufficientStock);
+                }
+            }
 
             var stockTrans = new StockTrans
             {
                 CompanyId = companyId,
                 StockId = stockId,
-                Date = DateTime.Now,
+                WarehouseId = targetWarehouseId,
+                StockReceiptId = receiptId,
                 Quantity = quantity,
                 UnitPrice = unitPrice,
                 Direction = direction
             };
+
             await _stockTransRepository.AddAsync(stockTrans);
-
-            if (direction == TransactionType.In)
-                stock.Balance += quantity;
-            else
-                stock.Balance -= quantity;
-
-            _stockRepository.Update(stock);
         }
 
         public async Task<PagedResponse<StockTransListDto>> GetTransactionsByStockIdAsync(int stockId, StockTransFilterDto filter)
@@ -65,12 +89,12 @@ namespace BusinessLayer.Concrete
                 query = query.Where(x => x.Direction == filter.Direction.Value);
 
             if (filter.StartDate.HasValue)
-                query = query.Where(x => x.Date >= filter.StartDate.Value);
+                query = query.Where(x => x.CreateDate >= filter.StartDate.Value);
 
             if (filter.EndDate.HasValue)
             {
                 var endOfDay = filter.EndDate.Value.Date.AddDays(1).AddTicks(-1);
-                query = query.Where(x => x.Date <= endOfDay);
+                query = query.Where(x => x.CreateDate <= endOfDay);
             }
 
             if (filter.MinQuantity.HasValue)
@@ -88,7 +112,7 @@ namespace BusinessLayer.Concrete
             var totalRecords = await query.CountAsync();
 
             var data = await query
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.CreateDate)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                 .Take(validFilter.PageSize)
                 .ToListAsync();

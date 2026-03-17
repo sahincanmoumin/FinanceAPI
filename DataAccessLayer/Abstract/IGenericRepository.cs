@@ -18,5 +18,6 @@ namespace DataAccessLayer.Abstract
         void Delete(T entity);
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task<int> SaveChangesAsync();
+        void DeleteRange(IEnumerable<T> entities);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,5 +31,14 @@ namespace EntityLayer.Constants
         public const string Unauthorized = "Unauthorized";
         public const string OnlyDraftInvoicesCanBeApproved = "OnlyDraftInvoicesCanBeApproved";
         public const string InvoiceNotDraft= "InvoiceNotDraft";
+        public const string WarehouseNotFound = "WarehouseNotFound";
+        public const string WarehouseAlreadyExists = "WarehouseAlreadyExists";
+        public const string MainWarehouseAlreadyExists = "MainWarehouseAlreadyExists";
+        public const string ReceiptNotFound = "ReceiptNotFound";
+        public const string ReceiptAlreadyApproved = "ReceiptAlreadyApproved";
+        public const string ReceiptCannotBeModified ="ReceiptCannotBeModified";
+        public const string OnlyDraftReceiptsCanBeApproved = "OnlyDraftReceiptsCanBeApproved";
+        public const string TransferReceiptTargetWarehouseRequired ="TransferReceiptTargetWarehouseRequired";
+        public const string StockReceiptNotDraft = "StockReceiptNotDraft";
     }
 }

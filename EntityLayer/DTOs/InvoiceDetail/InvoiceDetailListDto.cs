@@ -11,6 +11,7 @@ namespace EntityLayer.DTOs.InvoiceDetail
         public int Id { get; set; }
         public int InvoiceId { get; set; }
         public int StockId { get; set; }
+        public string StockName { get; set; } 
         public decimal Quantity { get; set; }
         public decimal UnitPrice { get; set; }
     }

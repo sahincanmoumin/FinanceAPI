@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 public class InvoiceFilterDto : PaginationFilter
 {
     public string? SerialNumber { get; set; }
+    public int? WarehouseId { get; set; }
     public InvoiceStatus? Status { get; set; }
     public InvoiceType? Type { get; set; } 
     public DateTime? StartDate { get; set; }

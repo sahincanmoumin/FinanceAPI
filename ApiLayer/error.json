@@ -21,6 +21,15 @@
     "InvalidAccountType": { "Message": "Invalid account type" },
     "CurrentAccountAlreadyExists": { "Message": "Current account already exists" },
     "OnlyDraftInvoicesCanBeApproved": { "Message": "Only draft invoices can be approved" },
-    "InvoiceNotDraft": { "Message": "Invoice is not in draft status" }
+    "InvoiceNotDraft": { "Message": "Invoice is not in draft status" },
+    "WarehouseNotFound": { "Message": "Warehouse not found" },
+    "WarehouseAlreadyExists": { "Message": "Warehouse already exists" },
+    "MainWarehouseAlreadyExists": { "Message": "Main warehouse already exists" },
+    "ReceiptNotFound": { "Message": "Receipt not found" },
+    "ReceiptAlreadyApproved": { "Message": "Receipt already approved" },
+    "ReceiptCannotBeModified": { "Message": "Receipt cannot be modified after approval" },
+    "OnlyDraftReceiptsCanBeApproved": { "Message": "Only draft receipts can be approved" },
+    "TransferReceiptTargetWarehouseRequired": { "Message": "A target warehouse must be selected for the transfer receipt." },
+    "StockReceiptNotDraft": { "Message": "Stock receipt is not in draft status" }
   }
 }

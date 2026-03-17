@@ -10,16 +10,16 @@ namespace EntityLayer.Entities.Domain
 {
     public class StockTrans : BaseEntity
     {
-        public DateTime Date { get; set; }
+        public int CompanyId { get; set; }
+        public int StockId { get; set; }
+        public int WarehouseId { get; set; } 
+        public int? StockReceiptId { get; set; } 
         public decimal Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public TransactionType Direction { get; set; }
 
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
-
-        public int StockId { get; set; }
         public Stock Stock { get; set; }
-
+        public Warehouse Warehouse { get; set; }
+        public StockReceipt StockReceipt { get; set; }
     }
 }

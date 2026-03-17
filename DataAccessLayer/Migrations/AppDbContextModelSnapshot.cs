@@ -156,9 +156,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("CurrentAccountId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<Guid?>("Ettn")
                         .HasColumnType("char(36)");
 
@@ -176,11 +173,16 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("CurrentAccountId");
+
+                    b.HasIndex("WarehouseId");
 
                     b.ToTable("Invoices");
                 });
@@ -301,9 +303,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("CurrentAccountId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("SerialNumber")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -386,9 +385,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int>("Direction")
                         .HasColumnType("int");
 
@@ -398,17 +394,25 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("StockId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StockReceiptId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("StockId");
+
+                    b.HasIndex("StockReceiptId");
+
+                    b.HasIndex("WarehouseId");
 
                     b.ToTable("StockTransactions");
                 });
@@ -484,6 +488,42 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Warehouses");
                 });
 
+            modelBuilder.Entity("EntityLayer.Entities.StockWarehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("Quantity")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.HasIndex("StockId", "WarehouseId")
+                        .IsUnique();
+
+                    b.ToTable("StockWarehouses");
+                });
+
             modelBuilder.Entity("EntityLayer.Entities.Domain.Company", b =>
                 {
                     b.HasOne("EntityLayer.Entities.Auth.User", "User")
@@ -520,9 +560,17 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("EntityLayer.Entities.Domain.Warehouse", "Warehouse")
+                        .WithMany()
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Company");
 
                     b.Navigation("CurrentAccount");
+
+                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.Domain.InvoiceDetail", b =>
@@ -609,21 +657,27 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Entities.Domain.StockTrans", b =>
                 {
-                    b.HasOne("EntityLayer.Entities.Domain.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("EntityLayer.Entities.Domain.Stock", "Stock")
                         .WithMany("StockTransactions")
                         .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Company");
+                    b.HasOne("EntityLayer.Entities.Domain.StockReceipt", "StockReceipt")
+                        .WithMany()
+                        .HasForeignKey("StockReceiptId");
+
+                    b.HasOne("EntityLayer.Entities.Domain.Warehouse", "Warehouse")
+                        .WithMany()
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Stock");
+
+                    b.Navigation("StockReceipt");
+
+                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.Domain.UserRole", b =>
@@ -654,6 +708,25 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("EntityLayer.Entities.StockWarehouse", b =>
+                {
+                    b.HasOne("EntityLayer.Entities.Domain.Stock", "Stock")
+                        .WithMany("StockWarehouses")
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Entities.Domain.Warehouse", "Warehouse")
+                        .WithMany("StockWarehouses")
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Stock");
+
+                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.Auth.User", b =>
@@ -694,6 +767,8 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("InvoiceDetails");
 
                     b.Navigation("StockTransactions");
+
+                    b.Navigation("StockWarehouses");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.Domain.StockReceipt", b =>
@@ -704,6 +779,8 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Entities.Domain.Warehouse", b =>
                 {
                     b.Navigation("StockReceipts");
+
+                    b.Navigation("StockWarehouses");
                 });
 #pragma warning restore 612, 618
         }

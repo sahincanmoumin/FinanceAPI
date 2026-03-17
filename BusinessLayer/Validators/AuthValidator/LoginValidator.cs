@@ -13,9 +13,7 @@ namespace BusinessLayer.ValidationRules.Auth
         public LoginValidator()
         {
             RuleFor(x => x.UserName)
-                .NotEmpty().WithMessage("User name cannot be empty.")
-                .EmailAddress().WithMessage("Please enter a valid email address.");
-
+                .NotEmpty().WithMessage("User name cannot be empty.");
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password cannot be empty.");
         }

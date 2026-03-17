@@ -10,8 +10,8 @@ namespace EntityLayer.DTOs.Invoice
     {
         public int Id { get; set; }
         public int CurrentAccountId { get; set; }
+        public int WarehouseId { get; set; } 
         public string SerialNumber { get; set; }
         public Guid? Ettn { get; set; }
-        public DateTime Date { get; set; }
     }
 }

@@ -49,10 +49,10 @@ namespace DataAccessLayer.Concrete
 
         public void Update(T entity)
         {
+            _context.ChangeTracker.Clear();
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
-
         public void Delete(T entity)
         {
             _dbSet.Remove(entity);
@@ -66,6 +66,10 @@ namespace DataAccessLayer.Concrete
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            _context.Set<T>().RemoveRange(entities);
         }
     }
 }

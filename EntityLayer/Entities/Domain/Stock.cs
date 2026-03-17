@@ -19,5 +19,6 @@ namespace EntityLayer.Entities.Domain
         public Company Company { get; set; }
         public ICollection<InvoiceDetail> InvoiceDetails { get; set; }
         public ICollection<StockTrans> StockTransactions { get; set; }
+        public ICollection<StockWarehouse> StockWarehouses { get; set; }
     }
 }

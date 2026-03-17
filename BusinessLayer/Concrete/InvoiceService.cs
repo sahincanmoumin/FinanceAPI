@@ -4,6 +4,8 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Invoice;
 using EntityLayer.DTOs.Pagination;
+using EntityLayer.DTOs.StockReceipt;
+using EntityLayer.DTOs.StockReceiptDetail;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Entities.Enums;
 using EntityLayer.Exceptions;
@@ -19,28 +21,81 @@ namespace BusinessLayer.Concrete
     {
         private readonly IInvoiceRepository _invoiceRepository;
         private readonly IInvoiceDetailRepository _invoiceDetailRepository;
-        private readonly IStockRepository _stockRepository;
         private readonly ICurrentAccountRepository _currentAccountRepository;
-        private readonly IStockTransRepository _stockTransRepository;
+        private readonly IStockReceiptService _stockReceiptService;
+        private readonly ICacheService _cacheService;
         private readonly IMapper _mapper;
-        private readonly IStockTransService _stockTransService;
 
         public InvoiceService(
             IInvoiceRepository invoiceRepository,
             IInvoiceDetailRepository invoiceDetailRepository,
-            IStockRepository stockRepository,
             ICurrentAccountRepository currentAccountRepository,
-            IStockTransRepository stockTransRepository,
-            IMapper mapper,
-            IStockTransService stockTransService)
+            IStockReceiptService stockReceiptService,
+            ICacheService cacheService,
+            IMapper mapper)
         {
             _invoiceRepository = invoiceRepository;
             _invoiceDetailRepository = invoiceDetailRepository;
-            _stockRepository = stockRepository;
             _currentAccountRepository = currentAccountRepository;
-            _stockTransRepository = stockTransRepository;
+            _stockReceiptService = stockReceiptService;
+            _cacheService = cacheService;
             _mapper = mapper;
-            _stockTransService = stockTransService;
+        }
+
+        public async Task ApproveInvoiceAsync(int invoiceId)
+        {
+            using var transaction = await _invoiceRepository.BeginTransactionAsync();
+
+            var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
+            if (invoice == null || invoice.Status != InvoiceStatus.Draft)
+                throw new BusinessException("Fatura bulunamadı veya onay süreci için uygun değil.");
+
+            var details = await _invoiceDetailRepository.GetQueryable()
+                .Where(x => x.InvoiceId == invoiceId).ToListAsync();
+
+            if (!details.Any()) throw new BusinessException("Faturaya ait detay bulunamadı.");
+
+            var receiptDto = new CreateStockReceiptDto
+            {
+                CompanyId = invoice.CompanyId,
+                WarehouseId = invoice.WarehouseId,
+                SerialNumber = invoice.SerialNumber,
+                Type = invoice.Type == InvoiceType.Purchase ? ReceiptType.Input : ReceiptType.Output,
+                CurrentAccountId = invoice.CurrentAccountId,
+                Details = details.Select(d => new CreateStockReceiptDetailDto
+                {
+                    StockId = d.StockId,
+                    Quantity = d.Quantity,
+                    UnitPrice = d.UnitPrice
+                }).ToList()
+            };
+
+            var createdReceipt = await _stockReceiptService.AddAsync(receiptDto);
+            await _stockReceiptService.ApproveAsync(createdReceipt.Id, true);
+
+            decimal totalAmount = details.Sum(d => d.Quantity * d.UnitPrice);
+            var currentAccount = await _currentAccountRepository.GetByIdAsync(invoice.CurrentAccountId);
+
+            if (currentAccount != null)
+            {
+                if (invoice.Type == InvoiceType.Sales)
+                    currentAccount.Balance += totalAmount;
+                else
+                    currentAccount.Balance -= totalAmount;
+
+                _currentAccountRepository.Update(currentAccount);
+            }
+
+            invoice.Status = InvoiceStatus.Approved;
+            _invoiceRepository.Update(invoice);
+
+            await _invoiceRepository.SaveChangesAsync();
+
+            await _cacheService.RemoveAsync($"CurrentAccount_Single_{invoice.CurrentAccountId}");
+            await _cacheService.RemoveByPatternAsync($"CurrentAccounts_Company_{invoice.CompanyId}*");
+            await _cacheService.RemoveByPatternAsync($"Stocks_Company_{invoice.CompanyId}*");
+
+            await transaction.CommitAsync();
         }
 
         public async Task<PagedResponse<InvoiceListDto>> GetAllInvoicesAsync(InvoiceFilterDto filter, int companyId)
@@ -49,6 +104,8 @@ namespace BusinessLayer.Concrete
 
             var query = _invoiceRepository.GetQueryable()
                                           .AsNoTracking()
+                                          .Include(x => x.Warehouse)
+                                          .Include(x => x.CurrentAccount)
                                           .Include(x => x.InvoiceDetails)
                                           .Where(x => x.CompanyId == companyId);
 
@@ -59,32 +116,27 @@ namespace BusinessLayer.Concrete
                 query = query.Where(x => x.Status == filter.Status.Value);
 
             if (filter.StockId.HasValue)
-            {
                 query = query.Where(x => x.InvoiceDetails.Any(d => d.StockId == filter.StockId.Value));
-            }
 
             if (filter.MinUnitPrice.HasValue)
-            {
                 query = query.Where(x => x.InvoiceDetails.Any(d => d.UnitPrice >= filter.MinUnitPrice.Value));
-            }
 
             if (filter.StartDate.HasValue)
-                query = query.Where(x => x.Date >= filter.StartDate.Value);
+                query = query.Where(x => x.CreateDate >= filter.StartDate.Value);
 
             if (filter.EndDate.HasValue)
             {
                 var endOfDay = filter.EndDate.Value.Date.AddDays(1).AddTicks(-1);
-                query = query.Where(x => x.Date <= endOfDay);
+                query = query.Where(x => x.CreateDate <= endOfDay);
             }
+
             if (filter.Type.HasValue)
-            {
                 query = query.Where(x => x.Type == filter.Type.Value);
-            }
 
             var totalRecords = await query.CountAsync();
 
             var data = await query
-                .OrderByDescending(x => x.Date)
+                .OrderByDescending(x => x.CreateDate)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                 .Take(validFilter.PageSize)
                 .ToListAsync();
@@ -96,9 +148,11 @@ namespace BusinessLayer.Concrete
         public async Task<InvoiceListDto> GetByIdAsync(int id)
         {
             var invoice = await _invoiceRepository.GetQueryable()
-                                .Include(x => x.InvoiceDetails)
-                                .ThenInclude(d => d.Stock)
-                                .FirstOrDefaultAsync(x => x.Id == id);
+                                 .Include(x => x.Warehouse)
+                                 .Include(x => x.CurrentAccount)
+                                 .Include(x => x.InvoiceDetails)
+                                 .ThenInclude(d => d.Stock)
+                                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (invoice == null) throw new BusinessException(ErrorKeys.InvoiceNotFound);
 
@@ -111,9 +165,9 @@ namespace BusinessLayer.Concrete
             {
                 CompanyId = dto.CompanyId,
                 CurrentAccountId = dto.CurrentAccountId,
+                WarehouseId = dto.WarehouseId,
                 SerialNumber = dto.SerialNumber,
                 Ettn = Guid.NewGuid(),
-                Date = dto.Date,
                 Status = InvoiceStatus.Draft,
                 Type = dto.Type,
                 InvoiceDetails = new List<InvoiceDetail>()
@@ -136,49 +190,6 @@ namespace BusinessLayer.Concrete
             await _invoiceDetailRepository.SaveChangesAsync();
 
             return _mapper.Map<InvoiceListDto>(invoice);
-        }
-
-        public async Task ApproveInvoiceAsync(int invoiceId)
-        {
-            using var transaction = await _invoiceRepository.BeginTransactionAsync();
-
-            var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
-            if (invoice == null) throw new BusinessException(ErrorKeys.InvoiceNotFound);
-
-            if (invoice.Status != InvoiceStatus.Draft)
-                throw new BusinessException(ErrorKeys.InvoiceNotDraft);
-
-            var details = await _invoiceDetailRepository.GetQueryable().Where(x => x.InvoiceId == invoiceId).ToListAsync();
-
-            decimal totalInvoiceAmount = 0;
-            TransactionType direction = invoice.Type == InvoiceType.Purchase ? TransactionType.In : TransactionType.Out;
-
-            foreach (var detail in details)
-            {
-                await _stockTransService.ProcessStockActionAsync(
-                    invoice.CompanyId,
-                    detail.StockId,
-                    detail.Quantity,
-                    detail.UnitPrice,
-                    direction
-                );
-
-                totalInvoiceAmount += (detail.Quantity * detail.UnitPrice);
-            }
-
-            var currentAccount = await _currentAccountRepository.GetByIdAsync(invoice.CurrentAccountId);
-            if (currentAccount != null)
-            {
-                currentAccount.Balance += totalInvoiceAmount;
-                _currentAccountRepository.Update(currentAccount);
-            }
-
-            invoice.Status = InvoiceStatus.Approved;
-            _invoiceRepository.Update(invoice);
-
-            await _invoiceRepository.SaveChangesAsync();
-
-            await transaction.CommitAsync();
         }
 
         public async Task SendInvoiceToIntegratorAsync(int invoiceId)
@@ -212,6 +223,7 @@ namespace BusinessLayer.Concrete
             }
 
             _invoiceRepository.Delete(invoice);
+            await _invoiceRepository.SaveChangesAsync();
         }
     }
 }
