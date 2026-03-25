@@ -1,0 +1,17 @@
+2026-03-23 09:26:40.787 +03:00 [INF] Finance API started successfully
+2026-03-23 09:26:40.845 +03:00 [INF] User profile is available. Using 'C:\Users\sahin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-23 09:26:41.109 +03:00 [INF] Now listening on: https://localhost:7241
+2026-03-23 09:26:41.112 +03:00 [INF] Now listening on: http://localhost:5083
+2026-03-23 09:26:41.208 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-23 09:26:41.211 +03:00 [INF] Hosting environment: Development
+2026-03-23 09:26:41.213 +03:00 [INF] Content root path: C:\Users\sahin\source\repos\FinanceApi\ApiLayer
+2026-03-23 09:26:43.746 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.html - null null
+2026-03-23 09:26:44.177 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.html - 200 null text/html;charset=utf-8 442.4349ms
+2026-03-23 09:26:44.245 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-23 09:26:44.245 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/index.js - null null
+2026-03-23 09:26:44.261 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/index.js - 200 null application/javascript;charset=utf-8 15.5518ms
+2026-03-23 09:26:44.298 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_framework/aspnetcore-browser-refresh.js - 200 14921 application/javascript; charset=utf-8 52.7554ms
+2026-03-23 09:26:44.368 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/_vs/browserLink - null null
+2026-03-23 09:26:45.072 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/_vs/browserLink - 200 null text/javascript; charset=UTF-8 704.075ms
+2026-03-23 09:26:45.237 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - null null
+2026-03-23 09:26:45.281 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7241/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 44.1682ms

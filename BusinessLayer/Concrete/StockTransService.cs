@@ -20,14 +20,14 @@ namespace BusinessLayer.Concrete
         private readonly IGenericRepository<StockTrans> _stockTransRepository;
         private readonly IGenericRepository<Stock> _stockRepository;
         private readonly IGenericRepository<Warehouse> _warehouseRepository;
-        private readonly IGenericRepository<StockWarehouse> _stockWarehouseRepository; 
+        private readonly IGenericRepository<StockWarehouse> _stockWarehouseRepository;
         private readonly IMapper _mapper;
 
         public StockTransService(
             IGenericRepository<StockTrans> stockTransRepository,
             IGenericRepository<Stock> stockRepository,
             IGenericRepository<Warehouse> warehouseRepository,
-            IGenericRepository<StockWarehouse> stockWarehouseRepository, 
+            IGenericRepository<StockWarehouse> stockWarehouseRepository,
             IMapper mapper)
         {
             _stockTransRepository = stockTransRepository;
@@ -77,13 +77,18 @@ namespace BusinessLayer.Concrete
             await _stockTransRepository.AddAsync(stockTrans);
         }
 
-        public async Task<PagedResponse<StockTransListDto>> GetTransactionsByStockIdAsync(int stockId, StockTransFilterDto filter)
+        public async Task<PagedResponse<StockTransListDto>> GetAllTransactionsAsync(StockTransFilterDto filter)
         {
             var validFilter = new StockTransFilterDto(filter.PageNumber, filter.PageSize);
 
-            var query = _stockTransRepository.GetQueryable()
-                .AsNoTracking()
-                .Where(x => x.StockId == stockId);
+            var query = _stockTransRepository.GetQueryable().AsNoTracking();
+            query = query.Where(x => x.CompanyId == filter.CompanyId);
+
+            if (filter.WarehouseId.HasValue)
+                query = query.Where(x => x.WarehouseId == filter.WarehouseId.Value);
+
+            if (filter.StockId.HasValue)
+                query = query.Where(x => x.StockId == filter.StockId.Value);
 
             if (filter.Direction.HasValue)
                 query = query.Where(x => x.Direction == filter.Direction.Value);

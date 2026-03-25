@@ -35,7 +35,13 @@ namespace BusinessLayer.Concrete
             _cacheService = cacheService;
             _mapper = mapper;
         }
-
+        private void ValidateStatus(CreateStockReceiptDto dto)
+        {
+            if(dto.TargetWarehouseId.HasValue && dto.WarehouseId >=0 && dto.Type != ReceiptType.Transfer)
+            {
+                throw new BusinessException(ErrorKeys.InvalidTransfer);
+            }
+        }
         private void ValidateIsDraft(ReceiptStatus status, string errorKey)
         {
             if (status != ReceiptStatus.Draft)
@@ -46,6 +52,18 @@ namespace BusinessLayer.Concrete
         {
             if (type == ReceiptType.Transfer && !targetWarehouseId.HasValue)
                 throw new BusinessException(ErrorKeys.TransferReceiptTargetWarehouseRequired);
+        }
+        public async Task<StockReceiptListDto> AddAsync(CreateStockReceiptDto dto)
+        {
+            ValidateStatus(dto);
+
+            var receipt = _mapper.Map<StockReceipt>(dto);
+            receipt.Status = ReceiptStatus.Draft;
+
+            await _receiptRepository.AddAsync(receipt);
+            await _receiptRepository.SaveChangesAsync();
+
+            return await GetByIdAsync(receipt.Id);
         }
 
         public async Task ApproveAsync(int id, bool isNested = false)
@@ -67,7 +85,7 @@ namespace BusinessLayer.Concrete
                     if (receipt.Type == ReceiptType.Transfer)
                     {
                         ValidateTransferTarget(receipt.Type, receipt.TargetWarehouseId);
-
+                        
                         await _stockTransService.ProcessStockActionAsync(receipt.CompanyId, detail.StockId, detail.Quantity, detail.UnitPrice, TransactionType.Out, receipt.WarehouseId, receipt.Id);
                         await _stockTransService.ProcessStockActionAsync(receipt.CompanyId, detail.StockId, detail.Quantity, detail.UnitPrice, TransactionType.In, receipt.TargetWarehouseId.Value, receipt.Id);
                         await _stockWarehouseService.UpdateTransferBalanceAsync(detail.StockId, receipt.WarehouseId, receipt.TargetWarehouseId.Value, detail.Quantity);
@@ -137,16 +155,7 @@ namespace BusinessLayer.Concrete
             return _mapper.Map<StockReceiptListDto>(receipt);
         }
 
-        public async Task<StockReceiptListDto> AddAsync(CreateStockReceiptDto dto)
-        {
-            var receipt = _mapper.Map<StockReceipt>(dto);
-            receipt.Status = ReceiptStatus.Draft;
-
-            await _receiptRepository.AddAsync(receipt);
-            await _receiptRepository.SaveChangesAsync();
-
-            return await GetByIdAsync(receipt.Id);
-        }
+        
 
         public async Task<StockReceiptListDto> UpdateAsync(UpdateStockReceiptDto dto)
         {

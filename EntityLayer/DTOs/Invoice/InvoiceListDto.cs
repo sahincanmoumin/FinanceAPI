@@ -21,6 +21,7 @@ namespace EntityLayer.DTOs.Invoice
         public int CurrentAccountId { get; set; }
         public string CurrentAccountName { get; set; } 
         public string WarehouseName { get; set; } 
+        public DateTime Date { get; set; }
         public List<InvoiceDetailListDto> InvoiceDetails { get; set; }
     }
 }

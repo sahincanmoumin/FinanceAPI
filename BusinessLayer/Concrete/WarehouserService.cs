@@ -48,8 +48,6 @@ namespace BusinessLayer.Concrete
 
             var query = _warehouseRepository.GetQueryable().AsNoTracking();
 
-            if (filter.CompanyId.HasValue)
-                query = query.Where(w => w.CompanyId == filter.CompanyId.Value);
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
                 query = query.Where(w => w.Name.Contains(filter.Name));

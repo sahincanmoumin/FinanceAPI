@@ -12,6 +12,7 @@ namespace EntityLayer.DTOs.Invoice
         public int CurrentAccountId { get; set; }
         public int WarehouseId { get; set; } 
         public string SerialNumber { get; set; }
+        public DateTime Date { get; set; }
         public Guid? Ettn { get; set; }
     }
 }

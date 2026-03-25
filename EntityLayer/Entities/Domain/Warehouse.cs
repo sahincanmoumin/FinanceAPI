@@ -15,7 +15,7 @@ namespace EntityLayer.Entities.Domain
         public string Code { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public WarehouseType Type { get; set; }//sorulacak
+        public WarehouseType Type { get; set; }
 
         public Company Company { get; set; }
         public ICollection<StockReceipt> StockReceipts { get; set; }

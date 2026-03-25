@@ -15,6 +15,7 @@ namespace EntityLayer.DTOs.StockReceipt
         public int? TargetWarehouseId { get; set; }
         public int? CurrentAccountId { get; set; }
         public string SerialNumber { get; set; }
+        public DateTime Date { get; set; }
         public ReceiptType Type { get; set; }
         public List<CreateStockReceiptDetailDto> Details { get; set; }
     }

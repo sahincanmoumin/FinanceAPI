@@ -22,7 +22,7 @@ namespace EntityLayer.DTOs.StockReceipt
 
         public int? CompanyId { get; set; }
         public int? WarehouseId { get; set; }
-        public string SerialNumber { get; set; }
+        public string? SerialNumber { get; set; }
         public ReceiptStatus? Status { get; set; }
         public ReceiptType? Type { get; set; }
         public DateTime? StartDate { get; set; }

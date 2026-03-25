@@ -42,7 +42,8 @@ namespace BusinessLayer.Concrete
         {
             var validFilter = new CompanyFilterDto(filter.PageNumber, filter.PageSize);
             var query = _companyRepository.GetQueryable()
-                                          .AsNoTracking()
+                                         
+                .AsNoTracking()
                                           .Where(c => c.UserId == userId);
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
@@ -84,7 +85,7 @@ namespace BusinessLayer.Concrete
         {
             await ValidateForUpdateAsync(dto);
 
-            var company = await _companyRepository.GetByIdAsync(dto.Id);
+            var company = await _companyRepository.GetByIdAsync(dto.Id); 
             if (company == null) throw new BusinessException(ErrorKeys.CompanyNotFound);
 
             _mapper.Map(dto, company);

@@ -23,7 +23,7 @@ namespace EntityLayer.DTOs.StockReceipt
         public decimal TotalAmount { get; set; }
         public ReceiptStatus Status { get; set; } 
         public ReceiptType Type { get; set; }
-
+        public DateTime Date { get; set; }
         public List<StockReceiptDetailListDto> Details { get; set; }
 
     }

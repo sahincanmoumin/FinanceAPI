@@ -8,14 +8,16 @@ namespace BusinessLayer.Abstract
     public interface IStockTransService
     {
         Task ProcessStockActionAsync(
-                int companyId,
-                int stockId,
-                decimal quantity,
-                decimal unitPrice,
-                TransactionType direction,
-                int? warehouseId = null,
-                int? receiptId = null
-            );
-        Task<PagedResponse<StockTransListDto>> GetTransactionsByStockIdAsync(int stockId, StockTransFilterDto filter);
+            int companyId,
+            int stockId,
+            decimal quantity,
+            decimal unitPrice,
+            TransactionType direction,
+            int? warehouseId = null,
+            int? receiptId = null
+        );
+
+        Task<PagedResponse<StockTransListDto>> GetAllTransactionsAsync(StockTransFilterDto filter);
+
     }
 }

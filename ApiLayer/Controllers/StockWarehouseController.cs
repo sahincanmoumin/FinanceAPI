@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Constants;
+using EntityLayer.DTOs.StockWarehouse;
 using EntityLayer.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,13 @@ namespace ApiLayer.Controllers
     public class StockWarehouseController : BaseController
     {
         private readonly IStockWarehouseService _stockWarehouseService;
-        private readonly IWarehouseService _warehouseService;
         private readonly ICompanyService _companyService;
 
         public StockWarehouseController(
             IStockWarehouseService stockWarehouseService,
-            IWarehouseService warehouseService,
             ICompanyService companyService)
         {
             _stockWarehouseService = stockWarehouseService;
-            _warehouseService = warehouseService;
             _companyService = companyService;
         }
 
@@ -34,15 +32,16 @@ namespace ApiLayer.Controllers
             return company != null && company.UserId == loggedInUserId;
         }
 
-        [HttpGet("warehouse/{warehouseId}")]
-        public async Task<IActionResult> GetStockStatusByWarehouse(int warehouseId)
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] StockWarehouseFilterDto filter)
         {
-            var warehouse = await _warehouseService.GetByIdAsync(warehouseId);
+            if (filter.CompanyId <= 0)
+                throw new BusinessException(ErrorKeys.CompanyIdRequired);
 
-            if (!await HasAccessToCompany(warehouse.CompanyId))
+            if (!await HasAccessToCompany(filter.CompanyId))
                 throw new BusinessException(ErrorKeys.Unauthorized);
 
-            var result = await _stockWarehouseService.GetStockStatusByWarehouseAsync(warehouseId);
+            var result = await _stockWarehouseService.GetAllStockStatusAsync(filter);
             return Ok(result);
         }
     }

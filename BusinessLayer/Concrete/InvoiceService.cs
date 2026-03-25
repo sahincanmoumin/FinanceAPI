@@ -47,13 +47,13 @@ namespace BusinessLayer.Concrete
             using var transaction = await _invoiceRepository.BeginTransactionAsync();
 
             var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
-            if (invoice == null || invoice.Status != InvoiceStatus.Draft)
-                throw new BusinessException("Fatura bulunamadı veya onay süreci için uygun değil.");
+            if (invoice == null || invoice.Status != InvoiceStatus.Draft) 
+                throw new BusinessException(ErrorKeys.InvoiceNotFound);
 
             var details = await _invoiceDetailRepository.GetQueryable()
                 .Where(x => x.InvoiceId == invoiceId).ToListAsync();
 
-            if (!details.Any()) throw new BusinessException("Faturaya ait detay bulunamadı.");
+            if (!details.Any()) throw new BusinessException(ErrorKeys.InvoiceDetailNotFound);
 
             var receiptDto = new CreateStockReceiptDto
             {
@@ -197,7 +197,7 @@ namespace BusinessLayer.Concrete
             var invoice = await _invoiceRepository.GetByIdAsync(invoiceId);
 
             if (invoice.Status != InvoiceStatus.Approved)
-                throw new BusinessException(ErrorKeys.InvalidTransaction);
+                throw new BusinessException(ErrorKeys.OnlyApprovedInvoicesCanBeSent);
 
             invoice.Status = InvoiceStatus.Sent;
             _invoiceRepository.Update(invoice);

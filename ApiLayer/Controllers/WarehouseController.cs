@@ -34,10 +34,10 @@ namespace ApiLayer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] WarehouseFilterDto filter, [FromQuery] int companyId)
         {
-            if (!await HasAccessToCompany(companyId))
+            if (!await HasAccessToCompany(companyId))   
                 throw new BusinessException(ErrorKeys.Unauthorized);
 
-            filter.CompanyId = companyId;
+            
             var result = await _warehouseService.GetAllAsync(filter);
             return Ok(result);
         }

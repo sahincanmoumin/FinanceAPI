@@ -3,6 +3,9 @@ using EntityLayer.Entities.Enums;
 
 public class StockTransFilterDto : PaginationFilter
 {
+    public int CompanyId { get; set; }
+    public int? WarehouseId { get; set; }
+    public int? StockId { get; set; }
     public TransactionType? Direction { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }

@@ -4,6 +4,8 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Constants;
 using EntityLayer.DTOs.Pagination;
 using EntityLayer.DTOs.Role;
+using EntityLayer.DTOs.User;
+using EntityLayer.Entities.Auth;
 using EntityLayer.Entities.Domain;
 using EntityLayer.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +17,43 @@ namespace BusinessLayer.Concrete
 {
     public class RoleService : IRoleService
     {
+        private readonly IGenericRepository<UserRole> _userRoleRepository;
+        private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<Role> _roleRepository;
         private readonly IMapper _mapper;
 
-        public RoleService(IGenericRepository<Role> roleRepository, IMapper mapper)
+
+        public RoleService(
+            IGenericRepository<UserRole> userRoleRepository,
+            IGenericRepository<User> userRepository,
+            IGenericRepository<Role> roleRepository,
+            IMapper mapper)
         {
+            _userRoleRepository = userRoleRepository;
+            _userRepository = userRepository;
             _roleRepository = roleRepository;
             _mapper = mapper;
+        }
+        public async Task AssignRoleAsync(AssignRoleDto dto)
+        {
+            var user = await _userRepository.GetByIdAsync(dto.UserId);
+            if (user == null) throw new BusinessException(ErrorKeys.UserNotFound);
+
+            var role = await _roleRepository.GetByIdAsync(dto.RoleId);
+            if (role == null) throw new BusinessException(ErrorKeys.RoleNotFound);
+
+            var exists = await _userRoleRepository.GetQueryable()
+                .AnyAsync(x => x.UserId == dto.UserId && x.RoleId == dto.RoleId);
+
+            if (exists) throw new BusinessException(ErrorKeys.UserAlreadyHasRole);
+
+            var userRole = new UserRole
+            {
+                UserId = dto.UserId,
+                RoleId = dto.RoleId
+            };
+
+            await _userRoleRepository.AddAsync(userRole);
         }
 
         public async Task<PagedResponse<RoleListDto>> GetAllRolesAsync(RoleFilterDto filter)

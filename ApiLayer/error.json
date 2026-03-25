@@ -30,6 +30,11 @@
     "ReceiptCannotBeModified": { "Message": "Receipt cannot be modified after approval" },
     "OnlyDraftReceiptsCanBeApproved": { "Message": "Only draft receipts can be approved" },
     "TransferReceiptTargetWarehouseRequired": { "Message": "A target warehouse must be selected for the transfer receipt." },
-    "StockReceiptNotDraft": { "Message": "Stock receipt is not in draft status" }
+    "StockReceiptNotDraft": { "Message": "Stock receipt is not in draft status" },
+    "CompanyIdRequired": { "Message": "Company ID is required" },
+    "InvoiceDetailNotFound": { "Message": "Invoice detail not found" },
+    "OnlyApprovedInvoicesCanBeSent": { "Message": "Only approved invoices can be sent" },
+    "UserAlreadyHasRole": { "Message": "User already has this role" },
+    "InvalidTransfer": { "Message": "Only transfer operations are allowed" }
   }
 }

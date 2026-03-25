@@ -48,7 +48,7 @@ namespace BusinessLayer.Concrete
         }
 
         public async Task RegisterAsync(RegisterDto dto)
-        {
+        { 
             await ValidateForRegisterAsync(dto.UserName);
 
             var user = new User

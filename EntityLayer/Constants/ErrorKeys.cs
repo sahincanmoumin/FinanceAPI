@@ -40,5 +40,10 @@ namespace EntityLayer.Constants
         public const string OnlyDraftReceiptsCanBeApproved = "OnlyDraftReceiptsCanBeApproved";
         public const string TransferReceiptTargetWarehouseRequired ="TransferReceiptTargetWarehouseRequired";
         public const string StockReceiptNotDraft = "StockReceiptNotDraft";
+        public const string CompanyIdRequired = "CompanyIdRequired";
+        public const string InvoiceDetailNotFound = "InvoiceDetailNotFound";
+        public const string OnlyApprovedInvoicesCanBeSent = "OnlyApprovedInvoicesCanBeSent";
+        public const string UserAlreadyHasRole = "UserAlreadyHasRole";
+        public const string InvalidTransfer = "InvalidTransfer";
     }
 }

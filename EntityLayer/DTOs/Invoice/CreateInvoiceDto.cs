@@ -17,6 +17,7 @@ namespace EntityLayer.DTOs.Invoice
         public int WarehouseId { get; set; } 
         public string SerialNumber { get; set; }
         public InvoiceType Type { get; set; }
+        public DateTime Date { get; set; }
         public List<CreateInvoiceDetailDto> InvoiceDetails { get; set; }
     }
 }

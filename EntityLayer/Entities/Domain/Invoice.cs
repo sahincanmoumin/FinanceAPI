@@ -14,9 +14,11 @@ namespace EntityLayer.Entities.Domain
 
         public string SerialNumber { get; set; }
         public Guid? Ettn { get; set; } 
-
         public InvoiceStatus Status { get; set; }
         public InvoiceType Type { get; set; }
+        public DateTime Date { get; set; }
+
+
         public int WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
         public int CompanyId { get; set; }

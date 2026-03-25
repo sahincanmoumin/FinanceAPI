@@ -30,6 +30,11 @@ namespace BusinessLayer.Concrete
             _mapper = mapper;
         }
 
+        public async Task UpdateTransferBalanceAsync(int stockId, int fromWarehouseId, int toWarehouseId, decimal quantity)
+        {
+            await AdjustWarehouseBalance(stockId, fromWarehouseId, quantity, ReceiptType.Output);
+            await AdjustWarehouseBalance(stockId, toWarehouseId, quantity, ReceiptType.Input);
+        }
         private void ValidateWarehouseStock(StockWarehouse existingRecord, decimal quantity, ReceiptType type)
         {
             if (type == ReceiptType.Output || type == ReceiptType.Transfer)
@@ -41,16 +46,6 @@ namespace BusinessLayer.Concrete
                     throw new BusinessException(ErrorKeys.InsufficientStock);
             }
         }
-
-        private async Task<Stock> ValidateStockAndGetAsync(int stockId)
-        {
-            var stock = await _stockRepository.GetByIdAsync(stockId);
-            if (stock == null)
-                throw new BusinessException(ErrorKeys.StockNotFound);
-
-            return stock;
-        }
-
         public async Task UpdateBalanceAsync(int stockId, int warehouseId, decimal quantity, ReceiptType type)
         {
             await AdjustWarehouseBalance(stockId, warehouseId, quantity, type);
@@ -65,10 +60,25 @@ namespace BusinessLayer.Concrete
             _stockRepository.Update(stock);
         }
 
-        public async Task UpdateTransferBalanceAsync(int stockId, int fromWarehouseId, int toWarehouseId, decimal quantity)
+
+        public async Task<List<StockWarehouseListDto>> GetAllStockStatusAsync(StockWarehouseFilterDto filter)
         {
-            await AdjustWarehouseBalance(stockId, fromWarehouseId, quantity, ReceiptType.Output);
-            await AdjustWarehouseBalance(stockId, toWarehouseId, quantity, ReceiptType.Input);
+            var query = _swRepository.GetQueryable()
+                .Include(x => x.Stock)
+                .Include(x => x.Warehouse)
+                .AsNoTracking();
+
+            query = query.Where(x => x.Stock.CompanyId == filter.CompanyId);
+
+            if (filter.WarehouseId.HasValue)
+                query = query.Where(x => x.WarehouseId == filter.WarehouseId.Value);
+
+            if (filter.StockId.HasValue)
+                query = query.Where(x => x.StockId == filter.StockId.Value);
+
+            var data = await query.ToListAsync();
+
+            return _mapper.Map<List<StockWarehouseListDto>>(data);
         }
 
         private async Task AdjustWarehouseBalance(int stockId, int warehouseId, decimal quantity, ReceiptType type)
@@ -80,13 +90,12 @@ namespace BusinessLayer.Concrete
 
             if (existingRecord == null)
             {
-                var newRecord = new StockWarehouse
+                await _swRepository.AddAsync(new StockWarehouse
                 {
                     StockId = stockId,
                     WarehouseId = warehouseId,
                     Quantity = quantity
-                };
-                await _swRepository.AddAsync(newRecord);
+                });
             }
             else
             {
@@ -99,16 +108,13 @@ namespace BusinessLayer.Concrete
             }
         }
 
-        public async Task<List<StockWarehouseListDto>> GetStockStatusByWarehouseAsync(int warehouseId)
+        private async Task<Stock> ValidateStockAndGetAsync(int stockId)
         {
-            var stockStatus = await _swRepository.GetQueryable()
-                .Include(x => x.Stock)
-                .Include(x => x.Warehouse)
-                .Where(x => x.WarehouseId == warehouseId)
-                .AsNoTracking()
-                .ToListAsync();
+            var stock = await _stockRepository.GetByIdAsync(stockId);
+            if (stock == null)
+                throw new BusinessException(ErrorKeys.StockNotFound);
 
-            return _mapper.Map<List<StockWarehouseListDto>>(stockStatus);
+            return stock;
         }
     }
 }

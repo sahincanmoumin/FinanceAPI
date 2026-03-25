@@ -21,6 +21,7 @@ namespace EntityLayer.Entities.Domain
         public int? CurrentAccountId { get; set; }
 
         public string SerialNumber { get; set; }
+        public DateTime Date { get; set; }
 
         public ReceiptStatus Status { get; set; } // Draft//Approved
         public ReceiptType Type { get; set; } // Input//Output//Transfer

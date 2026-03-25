@@ -80,7 +80,6 @@ namespace BusinessLayer.Concrete
             user.FullName = dto.FullName;
             user.UserName = dto.UserName;
 
-            // 3. Şifre alanı dolu geldiyse şifreyi değiştir (Sadeleştirilmiş mantık)
             if (!string.IsNullOrWhiteSpace(dto.Password))
             {
                 user.PasswordHash = HashingHelper.HashPassword(dto.Password);

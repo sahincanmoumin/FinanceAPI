@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using StackExchange.Redis; 
+using StackExchange.Redis;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File("Logs/FinanceApi_Log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
 builder.Host.UseSerilog();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -44,6 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["Jwt:Audience"]
         };
     });
+
 //error json bildirisi
 builder.Configuration.AddJsonFile("error.json", optional: false, reloadOnChange: false);
 
@@ -72,8 +72,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateCurrentAccountValidator>();
 
+// Repositories
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
@@ -83,6 +83,7 @@ builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 builder.Services.AddScoped<IInvoiceDetailRepository, InvoiceDetailRepository>();
 builder.Services.AddScoped<IStockTransRepository, StockTransRepository>();
 
+// Services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
@@ -95,18 +96,18 @@ builder.Services.AddScoped<IStockTransService, StockTransService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<IStockReceiptService, StockReceiptService>();
 builder.Services.AddScoped<IStockWarehouseService, StockWarehouseService>();
+
 //rediss
 var redisConnectionString = builder.Configuration.GetSection("RedisCacheSettings:ConnectionString").Value;
 var multiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
 builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
-
 builder.Services.AddScoped<ICacheService, CacheService>();
-
-//validtors
-builder.Services.AddValidatorsFromAssemblyContaining<CreateCurrentAccountValidator>();
 
 builder.Services.AddSwaggerGen(c =>
 {
+    // v1 dökümanının tanımlanması kritik
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Finance API", Version = "v1" });
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
@@ -138,12 +139,13 @@ builder.Services.AddSwaggerGen(c =>
         {
             { "Auth", 1 },
             { "Users", 2 },
-            { "Roles", 8 },
             { "Companies", 3 },
-            { "CurrentAccounts", 7 },
+            { "Invoices", 4 },
             { "Stocks", 5 },
-            {  "StockTransactions", 6  },
-            { "Invoices", 3 }
+            { "StockTransactions", 6 },
+            { "CurrentAccounts", 7 },
+            { "Roles", 8 }
+            
         };
 
         var controller = apiDesc.ActionDescriptor.RouteValues["controller"];
@@ -159,12 +161,20 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+app.UseStaticFiles(); //giris html icin
+
 app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Finance API v1");
+        // JS dosyasını arayüze enjekte ediyoruz
+        c.InjectJavascript("/swagger-custom.js");
+    });
 }
 
 app.UseHttpsRedirection();
@@ -173,5 +183,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 Log.Information("Finance API started successfully");
-
 app.Run();
